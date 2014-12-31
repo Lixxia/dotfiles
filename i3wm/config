@@ -31,7 +31,7 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute && pkill -RTM
 for_window [class="chrome"] border none
 for_window [class="Firefox"] border none
 for_window [class="Spotify"] border none
-for_window [class="Mail"] border none
+for_window [class="Thunderbird"] border none
 
 # thin borders
 new_window pixel 1
@@ -179,6 +179,7 @@ bar {
         status_command i3blocks
 	#bar position
 	position top
+	tray_output none
 	colors {
 	statusline #e1e3ca
  	separator #1f1f1f
