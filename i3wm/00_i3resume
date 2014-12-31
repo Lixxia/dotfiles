@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# screenlock: lock screen on hibernate or suspend
+# place in /etc/pm/sleep.d
+# chmod 755
+# chown root:root
+
+username=lixxia 
+userhome=/home/$username
+export XAUTHORITY="$userhome/.Xauthority"
+export DISPLAY=":0"
+case "$1" in 
+	hibernate|suspend)
+	   sudo $userhome/.i3/resumelocker.sh
+	   ;;
+	thaw|resume)
+	   ;;
+	*) exit $NA
+	   ;; 
+esac
