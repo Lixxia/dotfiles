@@ -1,0 +1,53 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+separator_block_width=10
+
+[focused window title]
+command=xdotool getactivewindow getwindowname | cut -c 1-80
+interval=1
+color=#A6D1FA
+min_width=970
+align=center
+
+[wireless]
+label=
+instance=wlan0
+#instance=wlp3s0
+command=~/repos/i3blocks/scripts/network
+color=#e1e3ca
+interval=10
+
+[volume]
+instance=Master
+command=~/repos/i3blocks/scripts/volume
+interval=once
+signal=10
+
+[battery]
+command=~/repos/i3blocks/scripts/battery
+interval=30
+
+[time]
+command=~/repos/i3blocks/scripts/calendar
+interval=5
