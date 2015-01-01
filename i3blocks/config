@@ -27,7 +27,7 @@ separator_block_width=10
 command=xdotool getactivewindow getwindowname | cut -c 1-80
 interval=1
 color=#A6D1FA
-min_width=970
+min_width=1000
 align=center
 
 [wireless]
