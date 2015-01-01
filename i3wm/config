@@ -9,23 +9,23 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # workspace variables
-set $ws1 ""
-set $ws2 ""
-set $ws3 ""
-set $ws4 ""
-set $ws5 ""
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# startup
-exec gnome-settings-daemon
-exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; workspace $ws2; exec firefox; workspace $ws3; exec hexchat; workspace $ws4; exec thunderbird; workspace $ws1'
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 # wallpaper
 exec sh /home/lixxia/.fehbg &
+
+# startup
+exec gnome-settings-daemon
+exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; workspace $ws2; exec firefox -P 'default'; workspace $ws3; exec hexchat; workspace $ws4; exec thunderbird; workspace $ws1'
 
 # floating windows
 for_window [class="Gedit"] floating enable
@@ -187,6 +187,7 @@ bar {
 	#bar position
 	position top
 	tray_output none
+	strip_workspace_numbers yes
 	colors {
 	statusline #e1e3ca
  	separator #1f1f1f
