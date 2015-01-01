@@ -21,7 +21,7 @@ state="$(cat /sys/class/net/$INTERFACE/operstate)"
 if [ "$state" != "up" ]; then
 	echo "down"
 	echo "down"
-	echo "#7e8a7c"
+	echo "#6b6c61"
 	exit 0
 fi
 
