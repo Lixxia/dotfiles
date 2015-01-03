@@ -148,10 +148,12 @@ vbox#threadContentArea > tree#threadTree > treecols:first-child {
   opacity: 1 !important;
 }
 
-/* Fix threadpane splitter border */
+/* Fix pane splitter borders */
+
 #folderpane_splitter {
   margin-top: -3px !important;
 }
+
 #threadpane-splitter {
   margin-top: -35px !important;
 }
