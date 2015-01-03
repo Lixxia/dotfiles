@@ -14,6 +14,7 @@ set $ws10 "10:"
 exec sh /home/lixxia/.fehbg &
 
 # startup
+exec gnome-keyring-daemon
 exec gnome-settings-daemon
 exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; workspace $ws2; exec firefox -P 'default'; workspace $ws3; exec hexchat; workspace $ws4; exec thunderbird; workspace $ws1'
 
