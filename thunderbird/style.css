@@ -1,3 +1,5 @@
+/* Designed to work with tab auto-hide */
+
 /* Hide sort and quick filter bar */
 
 #qfb-qs-textbox {
@@ -6,7 +8,7 @@
 }
 
 #threadContentArea {
-  margin-top: -33px !important;
+  margin-top: -35px !important;
 }
 
 #mail-toolbox {
@@ -36,7 +38,7 @@ vbox#threadContentArea > tree#threadTree > treecols:first-child {
 
 #header-view-toolbox {
   position: fixed !important;
-  top: 3.3% !important;
+  top: 3px !important;
   padding-left: 5px !important;
 }
 
@@ -94,7 +96,7 @@ vbox#threadContentArea > tree#threadTree > treecols:first-child {
   color: HighlightText !important;
 }
 
-/* remove separators */
+/* remove separators on tabs */
 
 .tabmail-tabs[movingtab] > .tabmail-tab[beforeselected]:not([last-visible-tab])::after,
 .tabmail-tabs .tabmail-tab:not([selected]):not([afterselected-visible]):not([afterhovered]):not([first-visible-tab]):not(:hover)::before,
@@ -144,4 +146,12 @@ vbox#threadContentArea > tree#threadTree > treecols:first-child {
   border-style: none !important;
   color: inherit !important;
   opacity: 1 !important;
+}
+
+/* Fix threadpane splitter border */
+#folderpane_splitter {
+  margin-top: -3px !important;
+}
+#threadpane-splitter {
+  margin-top: -35px !important;
 }
