@@ -1,3 +1,5 @@
+# Icons utilize this font: https://www.dropbox.com/s/nypgaun7ckl97ga/icons.ttf
+
 # workspace variables
 set $ws1 "1:"
 set $ws2 "2:"
@@ -152,7 +154,8 @@ bindsym $mod+r mode "resize"
 client.focused 			#1f1f1f #1f1f1f #e1e3ca
 client.unfocused 		#1f1f1f #1f1f1f #6b6c61
 client.focused_inactive 	#1f1f1f #1f1f1f #6b6c61
-client.urgent 			#1f1f1f #ff0000 #e1e3ca
+client.urgent 			#1f1f1f #8f3535 #e1e3ca
+
 
 # Start i3bar to display a workspace bar + info from i3blocks
 bar {
@@ -169,6 +172,6 @@ bar {
 	focused_workspace 	#1f1f1f #1f1f1f #e1e3ca
 	active_workspace 	#1f1f1f #1f1f1f #6b6c61
 	inactive_workspace 	#1f1f1f #1f1f1f #6b6c61
-	urgent_workspace 	#1f1f1f #1f1f1f #ff0000
+	urgent_workspace 	#1f1f1f #1f1f1f #8f3535
 	}
 }
