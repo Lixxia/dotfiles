@@ -46,7 +46,7 @@ vbox#threadContentArea > tree#threadTree > treecols:first-child {
 /* header background fix */
 
 #msgHeaderView {
-  background-color: #FAFAFA !important;
+  background-color: #DEDEDE !important;
 }
 
 /* Tab styling */
