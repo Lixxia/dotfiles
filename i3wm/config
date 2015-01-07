@@ -24,6 +24,7 @@ for_window [class="Gedit"] floating enable
 for_window [window_role="Msgcompose"] floating enable, border normal
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
 
 # modkey 4=windows, 1=alt
 set $mod Mod4
