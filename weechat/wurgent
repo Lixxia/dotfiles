@@ -1,0 +1,5 @@
+#!/bin/bash
+# Searches for weechat terminal process and sets it to urgent, used in conjunction 
+# with another script to allow urgency on irc messages 
+wid=$(xdotool search --name "weechat 0.4.2")
+seturgent $wid
