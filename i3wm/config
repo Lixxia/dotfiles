@@ -40,6 +40,7 @@ for_window [class="chrome"] border none
 for_window [class="Firefox"] border none
 for_window [class="Spotify"] border none
 for_window [class="Thunderbird"] border none
+for_window [class-"Sublime"] border none
 
 # thin borders
 new_window 1pixel

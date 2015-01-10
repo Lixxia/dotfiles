@@ -1,0 +1,45 @@
+[global]
+    font = "Droid Sans Bold 9"
+    allow_markup = yes
+    format = "<b>%s %p</b>\n%b"
+    sort = yes
+    indicate_hidden = true
+    idle_threshold = 0
+    # geometry [{width}]x{height}][+/-{x}+/-{y}]
+    geometry = "300x10-5+27"
+    alignment = center
+    show_age_threshold = -1
+    sticky_history = no
+    follow = mouse
+    word_wrap = yes
+    separator_height = 1
+    padding = 5
+    horizontal_padding = 0
+    startup_notification = true
+    dmenu = "/usr/bin/dmenu -p dunst: -nb #1f1f1f -nf #000000 -sb #94DBFF -sf #000000"
+    browser = /usr/bin/firefox -new-tab
+
+[frame]
+    width = 1
+    color = "#151515"
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+alt+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#1f1f1f"
+    foreground = "#e1e3ca"
+    timeout = 10
+
+[urgency_normal]
+    background = "#1f1f1f"
+    foreground = "#e1e3ca"
+    timeout = 20
+
+[urgency_critical]
+    background = "#1f1f1f"
+    foreground = "#AC4142"
+    timeout = 0
