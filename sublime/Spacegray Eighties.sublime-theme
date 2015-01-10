@@ -526,6 +526,7 @@
         "class": "sidebar_label",
         "font.face":"Droid Sans",
         "font.size":12,
+        "font.bold": false,
         "color": [106, 107, 97] // 03
     },
     {
