@@ -17,7 +17,7 @@ exec sh /home/lixxia/.fehbg &
 
 # startup
 exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; workspace $ws2; exec firefox -P 'default'; workspace $ws3; exec i3-sensible-terminal; workspace $ws4; exec thunderbird; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; workspace $ws2; exec firefox -P 'default'; workspace $ws3; exec gnome-terminal --window-with-profile=weechat -e weechat; workspace $ws4; exec thunderbird; workspace $ws1'
 
 # floating windows
 for_window [class="Gedit"] floating enable
