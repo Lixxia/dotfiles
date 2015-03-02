@@ -1,0 +1,258 @@
+/* from: https://github.com/phallus/user-styles/blob/master/styles-clean/fix-wikipedia.css 
+  with a few tweaks
+*/
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain(wikipedia.org) {
+
+/* things to hide */
+.magnify,
+.ambox, .ombox,
+.Inline-Template, .Template-Fact, .Template-Timefact,
+stub, #tfd,
+#mp-topbanner,
+#centralNotice,
+#siteSub,
+#left-navigation,
+#p-personal,
+#p-views,
+#footer {
+  display: none !important;
+}
+
+
+/* personal fixes */
+.suggestions-result, 
+#p-search form, #p-search input,
+#simpleSearch input#searchInput,input, #searchInput,
+.suggestions-result-current .special-label, .suggestions-result-current .special-query,
+.suggestions-special .special-query,
+.suggestions-special .special-label {
+  font-size: 10px !important;
+}
+
+#p-search {
+  margin-top: 6px !important;
+  margin-bottom: -4px !important;
+  margin-right: 12px !important;
+}
+
+div#simpleSearch button#searchButton {
+  margin-top: 0px !important;
+  padding-top: 1px !important;
+}
+
+b {
+  font-style: normal !important;
+  font-weight: normal !important;
+}
+
+/* <3 u acbn */
+
+body {
+  background-color: #f1f1f1 !important;
+}
+     
+a {
+  color: #4365cc;
+}
+     
+#bodyContent {
+  max-width: 940px;
+  margin: 0 auto;
+}
+     
+.mw-content-ltr {
+  background-color: #ffffff !important;
+  padding: 40px !important;
+  border: 1px solid #c7c7c7 !important;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+#content {
+  background-color: #f1f1f1 !important;
+  border: 0 !important;
+}
+
+#mw-content-text {
+  position: relative;
+  left: -70px;
+  top: -60px;
+  padding: 20px !important;
+  padding-top: 10px !important;
+}
+
+#firstHeading {
+  top: -63px !important;
+}
+
+#mw-content-text:before, #mw-content-text:after {
+  content: " ";
+  display: table;
+}
+
+#mw-content-text:after {
+  clear: both;
+}
+
+#mw-page-base {
+  background-color: #f1f1f1 !important;
+  background-image: none !important;
+}
+
+.vectorTabs ul li {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.vectorTabs, .vectorTabs span, .vectorTabs ul {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+#mw-head {
+  opacity:0 !important;
+  background-color: transparent !important;
+}
+
+#mw-panel {
+  opacity: 0 !important;
+  background-color: #f1f1f1 !important;
+  border-right: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+
+#mw-head:hover, #mw-panel:hover {
+  opacity:1 !important;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  z-index:999 !important;
+}
+
+#p-logo {
+  background-color: #f1f1f1 !important;
+  border-right: 1px solid #aaa;
+}
+
+#firstHeading {
+  font-family: Arial, Helvetica, sans-serif !important;
+  text-align: center !important;
+  position: relative !important;
+  left: -70px !important;
+  margin-bottom: 0px !important;
+  letter-spacing: 0.5px !important;
+  opacity: 0.8 !important;
+}
+
+.topicon {
+  opacity: 0.8;
+}
+
+#coordinates {
+  padding: 3px !important;
+}
+
+.infobox {
+  border: 0 !important;
+  background-color: #f2f2f2 !important;
+}
+
+#toc, .toc {
+  border: 0 !important;
+  background-color: transparent !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+#toc h2 {
+  display: none !important;
+}
+
+h1 {
+  border-bottom: 0 !important;
+}
+
+h2 {
+  border-bottom: 0 !important;
+  opacity: 0.9;
+}
+
+.page-Main_Page h2 {
+  border-bottom: 1px solid #aaa !important;
+}
+
+h3, h4 {
+  opacity: 0.9;
+}
+
+.mw-editsection, .toctoggle {opacity:0 !important;}
+.mw-editsection:hover, .toctoggle:hover {
+  opacity:1 !important;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  z-index:999 !important;
+}
+
+#content p, #content ul, #content ol, .thumbcaption {
+  color: #3c3c3c !important;
+}
+
+blockquote, .quotebox, pre, code, .mbox-small, .mbox-small-left, .tleft, .tright, .tright table, .navbox, #editpage-specialchars, .editOptions {
+  border: 0!important;
+  background-color: #f2f2f2 !important;
+}
+
+blockquote p {
+  padding: 8px !important;
+}
+
+.navbar {
+  opacity:0 !important;
+}
+
+.navbar:hover {
+  opacity:1 !important;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  z-index:999 !important;
+}
+
+.thumbinner {
+  border: 0 !important;
+  border-style: none !important;
+  border-width: 0 !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+#catlinks, #mw-data-after-content {
+  opacity:0 !important;
+  position: relative;
+  left: -70px;
+  margin-top: -35px;
+  margin-bottom: 10px;
+}
+
+#catlinks:hover, #mw-data-after-content:hover {
+  opacity:1 !important;
+  -webkit-transition: all .25s ease-in-out;
+  -moz-transition: all .25s ease-in-out;
+  -o-transition: all .25s ease-in-out;
+  -ms-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  z-index:999 !important;
+}
+
+}
+
