@@ -1,6 +1,6 @@
 Python:
-anotify.py
-correction_completion.py
+anotify.py (modified and used with wurgent)
+correction_completion.py (aspell)
 
 Perl:
 buffers.pl
