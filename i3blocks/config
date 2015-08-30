@@ -31,7 +31,7 @@ min_width=1000
 align=center
 
 [wireless]
-label=
+label=
 instance=wlan0
 #instance=wlp3s0
 command=~/repos/i3blocks/scripts/network

@@ -1,11 +1,11 @@
-# Icons utilize this font: https://www.dropbox.com/s/nypgaun7ckl97ga/icons.ttf
+# Icon Font: fontawesome 
 
 # workspace variables
 set $ws1 "1:"
-set $ws2 "2:"
+set $ws2 "2:"
 set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
+set $ws4 "4:"
+set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
@@ -14,7 +14,7 @@ set $ws10 "10:"
 
 # startup
 exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; exec i3-sensible-terminal; workspace $ws2; exec firefox -P 'default'; workspace $ws3; exec gnome-terminal --window-with-profile=weechat -e "screen -S weechat"; exec ./.i3/wchat; workspace $ws4; exec thunderbird; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; exec i3-sensible-terminal; workspace $ws2; exec firefox -P 'default'; workspace $ws3; exec gnome-terminal --window-with-profile=weechat -e weechat; workspace $ws4; exec thunderbird; workspace $ws1'
 
 # floating windows
 for_window [title="Ranger"] floating enable
