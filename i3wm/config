@@ -1,28 +1,39 @@
-# Icon Font: fontawesome 
-
 # workspace variables
 set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
-set $ws5 "5:"
+set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws9 "9:"
+set $ws10 "10:"
 
-# startup
+# startup programs
 exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; exec i3-sensible-terminal; workspace $ws2; exec firefox -P 'default'; workspace $ws3; exec gnome-terminal --window-with-profile=weechat -e weechat; workspace $ws4; exec thunderbird; workspace $ws1'
+exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; exec i3-sensible-terminal'
+exec --no-startup-id firefox -P 'default'
+exec --no-startup-id gnome-terminal --window-with-profile=weechat -t weechat -e weechat
+exec --no-startup-id thunderbird
 
 # floating windows
 for_window [title="Ranger"] floating enable
 for_window [class="Gedit"] floating enable
-for_window [window_role="Msgcompose"] floating enable, border normal
+for_window [class="(?i)cinnamon-settings.py"] floating enable
+
+for_window [window_role="Msgcompose"] floating enable
+
 for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
+
+# assignments
+assign [class="(?i)thunderbird"] $ws4
+assign [class="(?i)firefox"] $ws2
+assign [class="(?i)spotify"] $ws5
+assign [class="(?gnome-terminal" title="(?i)weechat"] $ws3
 
 # modkey 4=windows, 1=alt
 set $mod Mod4
@@ -32,13 +43,6 @@ set $modA Mod1
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute        exec amixer -D pulse set Master toggle && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute && pkill -RTMIN+10 i3blocks
-
-# 0px Border Windows
-for_window [class="chrome"] border none
-for_window [class="Firefox"] border none
-for_window [class="Spotify"] border none
-for_window [class="Thunderbird"] border none
-for_window [class="Sublime"] border none
 
 # thin borders
 new_window 1pixel
@@ -52,7 +56,7 @@ bindsym $mod+Shift+x border none
 bindsym $mod+Shift+o border 1pixel
 
 # font
-font pango:Droid Sans Bold 9
+font pango: FontAwesome, Droid Sans Bold 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $modA
@@ -63,7 +67,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
+# start dmenu
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -fn 'DroidSans-9:bold' -nb #1f1f1f -nf #6b6c61 -sb #1f1f1f -sf #e1e3ca  -i -l 10 -w 150 -h 21 '
 
 # change focus
@@ -170,7 +174,7 @@ bar {
 	statusline #e1e3ca
  	separator #1f1f1f
 	background #1f1f1f
-	#name 			    #border #bg 	#text 
+	#name 			#border #bg 	#text 
 	focused_workspace 	#1f1f1f #1f1f1f #e1e3ca
 	active_workspace 	#1f1f1f #1f1f1f #6b6c61
 	inactive_workspace 	#1f1f1f #1f1f1f #6b6c61
