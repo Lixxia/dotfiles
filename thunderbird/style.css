@@ -1,5 +1,24 @@
+/* Move up quick-filter and fix background */
+
+#quick-filter-bar {
+  margin-top: -3px !important;
+  background-color: #f7f7f7 !important;
+}
+
+/* Fix top panel background */
+
+#tabpanelcontainer {
+  background-color: #ffffff;
+}
+
+
 /* Designed to work with tab auto-hide */
 
+#threadTree {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+
+}
 
 /* Hide sort and quick filter bar */
 
@@ -9,7 +28,7 @@
 }
 
 #threadContentArea {
-  margin-top: -35px !important;
+  margin-top: -30px !important;
 }
 
 #mail-toolbox {
@@ -25,7 +44,7 @@
 }
 
 vbox#threadContentArea > tree#threadTree > treecols:first-child {
-    height:0 !important;
+    height: 0 !important;
     margin: -5px !important;
     padding: 0 !important;
     visibility: hidden !important;
@@ -40,13 +59,16 @@ vbox#threadContentArea > tree#threadTree > treecols:first-child {
 #header-view-toolbox {
   position: fixed !important;
   top: 3px !important;
-  padding-left: 5px !important;
+  padding-left: -35px !important;
+  margin-left: 3px !important;
+  margin-top: -2px !important;
+
 }
 
 /* header background fix */
 
 #msgHeaderView {
-  background-color: #DEDEDE !important;
+  background-color: #f7f7f7 !important;
 }
 
 /* Tab styling */
@@ -152,6 +174,12 @@ vbox#threadContentArea > tree#threadTree > treecols:first-child {
   border-style: none !important;
   color: inherit !important;
   opacity: 1 !important;
+}
+
+/* Scoot folder pane to fit top */
+
+#folderPaneBox {
+  margin-top: -3px !important;
 }
 
 /* Fix pane splitter borders */

@@ -33,7 +33,8 @@ for_window [window_role="Preferences"] floating enable
 assign [class="(?i)thunderbird"] $ws4
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)spotify"] $ws5
-assign [class="(?gnome-terminal" title="(?i)weechat"] $ws3
+assign [class="(?)gnome-terminal" title="(?i)weechat"] $ws3
+assign [class="(?)chrome"] $ws10
 
 # modkey 4=windows, 1=alt
 set $mod Mod4
@@ -157,11 +158,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Colors
-#name 				        #top 	#border #text
-client.focused 			    #1f1f1f #151515 #e1e3ca
-client.unfocused 		    #1f1f1f #1f1f1f #6b6c61
+#name 				#top 	#border #text
+client.focused 			#1f1f1f #151515 #e1e3ca
+client.unfocused 		#1f1f1f #1f1f1f #6b6c61
 client.focused_inactive 	#1f1f1f #151515 #6b6c61
-client.urgent 			    #1f1f1f #AC4142 #e1e3ca
+client.urgent 			#1f1f1f #AC4142 #e1e3ca
 
 
 # Start i3bar to display a workspace bar + info from i3blocks
