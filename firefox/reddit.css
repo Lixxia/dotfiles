@@ -15,22 +15,33 @@
    
 /* more link */
 #sr-more-link {
-height: 0;
-background: transparent !important;
-box-shadow: none !important;
-border: none !important;
-margin-top: 0px !important;
-cursor: pointer !important;
-margin-right: -40px !important;
+    display: none !important;
+}
+    
+/* height: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin-top: 20px !important;
+    cursor: pointer !important;
+    margin-right: -40px !important;
+    text-decoration: none !important;
 }
     
 #sr-more-link:before {
-content: "" !important;
-color: #34345C !important;
-margin-left: 2px !important;
-margin-right: 10px !important;
-margin-top: 0px !important;
+    content: "" !important;
+    font-size: 15px !important;
+    color: #bbb !important;
+    margin-left: 2px !important;
+    margin-right: 10px !important;
+    margin-top: 0px !important;
 }
+    
+#sr-more-link:hover::before {
+    color: #000 !important;
+    transition: 0.5s color ease;
+    opacity: 1 !important;
+} */
     
 /* nav bar */
 #header {
@@ -46,9 +57,14 @@ margin-top: 0px !important;
     font-size: 8pt !important;
     font-weight: bold !important;
     margin-left: -100px !important;
+    overflow-x: visible !important;
 }
 .sr-list {
-    margin-left: -115px !important;
+    margin-left: -147px !important;
+}
+    
+.sr-list .separator{
+    font-size: 3pt !important;  
 }
     
 #srLeftContainer.sr-bar {
@@ -126,24 +142,49 @@ ul.tabmenu.formtab {
     box-shadow: none !important;
     height: 40px !important;
     padding-top: 5px !important;
+    right: 0px !important;
     width: 100% !important;
 }
 
 #mail {
-    margin-left: 3px !important;
-    margin-right: 6px !important;
+    position: fixed !important;
+    right: 3px !important;
+    top: 5.5% !important;
+}
+    
+.user {
+    display: none !important;
 }
 
-.user,.pref-lang {
-    margin-left: 0px !important;
-    margin-right: 3px !important;
+.pref-lang {
+    position: fixed !important;
+    top: 60px !important;
+    right: -4.75% !important;
+}
+
+.pref-lang:before {
+    content: "" !important;
+    margin-right: 10px !important;
+    color: #bbb !important;
 }
 
 .logout {
-    margin-left: 3px !important;
-    margin-right: 0px !important;
+    position: fixed !important;
+    display: block !important;
+    right: -1.5% !important;
+    top: 9% !important;
 }
 
+.logout a {
+    opacity: 0 !important;
+}
+    
+.logout:before {
+    content: "" !important;
+    margin-right: -12px !important;
+    color: #bbb !important;
+}
+    
 .menuarea {
     width: 100% !important;
     left: 1% !important;
@@ -159,17 +200,18 @@ ul.tabmenu.formtab {
 }
 
 #header-bottom-right {
-    margin-top: 10px !important;
+    margin-top: 0px !important;
     background: transparent !important;
     box-shadow: none !important;
     font-size: 10pt !important;
     font-weight: 300 !important;
     padding: 3px !important;
     width: 84% !important;
-    left: 7% !important;
-    right: 9% !important;
+    left: 50% !important;
+    right: 0% !important;
+    top: 5% !important;
     text-align: center !important;
-    position: relative !important;
+    position: fixed !important;
     font-family: Droid Sans, sans-serif !important;
 }
 
@@ -183,6 +225,10 @@ ul.tabmenu.formtab {
     text-decoration: none !important;
     transition: 0.5s color ease;
 }
+
+#header-bottom-right .separator {
+    display: none !important;
+}
     
 .user .userkarma {
     border: 0 !important;
@@ -193,6 +239,7 @@ ul.tabmenu.formtab {
 .pref-lang {
     font-weight: 300 !important;
 }
+    
 /* body */
 
 body {
@@ -255,42 +302,42 @@ body {
 -------------
 */
 
-.side {
-/*display: none !important;*/
-    
-background: #FFF !important;
-box-shadow: none !important;
-border: 1px solid #888 !important;
-position: fixed !important;
-padding: 16px !important;
-float: right !important;
-width: 400px !important;
-height: 600px !important;
-right: 0% !important;
-margin-right: 10px !important;
-top: -1000% !important;
-z-index: 1000 !important;
+.side {   
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    position: fixed !important;
+    padding: 0px !important;
+    float: right !important;
+    width: 400px !important;
+    height: 600px !important;
+    right: 0% !important;
+    margin-right: -14px !important;
+    margin-top: -12px !important;
+    top: -1000% !important;
+    z-index: 1000 !important;
 }
 
 .side::before {
     content: '';
     font-family: Droid Sans !important;
+    font-size: 13pt !important;
     color: #bbb !important;
     text-align: center !important;
     background: transparent!important;
     position: fixed !important;
-    top: 2px !important;
-    right: 0% !important;
+    top: 19px !important;
+    right: -8px !important;
     margin-right: 10px !important;
     padding: 2px !important;
     padding-top: 1px !important;
     z-index: 5;
-    opacity: 0;
+    opacity: 1;
 }
 
 .side:hover::before {
-    color: #fff !important;
-    background: #888 !important;
+    color: #000 !important;
+    background: transparent !important;
     border-radius: 3px !important;
     transition: 0.5s color ease;
     opacity: 1 !important;
@@ -316,7 +363,10 @@ z-index: 1000 !important;
 .side .usertext .md{
     min-height: 550px !important;
     overflow-x: hidden !important;
+    overflow-y: auto !important;
+    background: #fff !important;
 }
+
 
 .hover-bubble {
     z-index: 1001 !important;
