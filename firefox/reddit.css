@@ -147,9 +147,8 @@ ul.tabmenu.formtab {
 }
 
 #mail {
-    position: fixed !important;
-    right: 3px !important;
-    top: 5.5% !important;
+    position: relative !important;
+    padding-bottom: 3px !important;
 }
     
 .user {
@@ -157,9 +156,8 @@ ul.tabmenu.formtab {
 }
 
 .pref-lang {
-    position: fixed !important;
-    top: 60px !important;
-    right: -4.75% !important;
+    position: relative !important;
+    padding-left: 2px !important;
 }
 
 .pref-lang:before {
@@ -169,10 +167,10 @@ ul.tabmenu.formtab {
 }
 
 .logout {
-    position: fixed !important;
+    position: relative !important;
     display: block !important;
-    right: -1.5% !important;
-    top: 9% !important;
+    padding-top: 2px !important;
+    padding-left: 2px !important;
 }
 
 .logout a {
@@ -205,12 +203,12 @@ ul.tabmenu.formtab {
     box-shadow: none !important;
     font-size: 10pt !important;
     font-weight: 300 !important;
-    padding: 3px !important;
-    width: 84% !important;
-    left: 50% !important;
-    right: 0% !important;
+    padding: 0px !important;
+    width: 100px !important;
+    height: 100px !important;
+    left: 98.8% !important;
     top: 5% !important;
-    text-align: center !important;
+    text-align: left !important;
     position: fixed !important;
     font-family: Droid Sans, sans-serif !important;
 }
