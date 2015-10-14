@@ -17,32 +17,7 @@
 #sr-more-link {
     display: none !important;
 }
-    
-/* height: 0;
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-    margin-top: 20px !important;
-    cursor: pointer !important;
-    margin-right: -40px !important;
-    text-decoration: none !important;
-}
-    
-#sr-more-link:before {
-    content: "" !important;
-    font-size: 15px !important;
-    color: #bbb !important;
-    margin-left: 2px !important;
-    margin-right: 10px !important;
-    margin-top: 0px !important;
-}
-    
-#sr-more-link:hover::before {
-    color: #000 !important;
-    transition: 0.5s color ease;
-    opacity: 1 !important;
-} */
-    
+       
 /* nav bar */
 #header {
     background: transparent!important;
@@ -74,9 +49,11 @@
 .dropdown.srdrop {
     display: none !important;
 }
+    
 .sr-bar a {
     color: #c5c5c5 !important; 
 }
+    
 .subbarlink.RESShortcutsCurrentSub {
     color: #af4a52 !important;
     font-weight: bold !important;  
@@ -86,6 +63,7 @@
     display: none !important
 
 }
+    
 .tabmenu {
     vertical-align: 0px !important;
     margin-left: 2px !important;
@@ -720,7 +698,7 @@ a.author:hover, a .author:hover {
 
 .commentarea {
     float: none !important;
-    width: 84.4% !important;
+    width: 84.5% !important;
     margin-right: 7% !important;
     margin-left: 8% !important;
     border: 1px solid #eee !important;
@@ -731,6 +709,8 @@ div.usertext, .usertext-edit textarea {
     max-width: 100% !important;
     font-family: Droid Sans !important;
     font-size: 12pt !important;
+    background: #fffff !important;
+    border: 1px solid #eee !important;
 }
 
 .usertext button, .usertext a.reddiquette, .usertext .help-toggle {
@@ -742,7 +722,7 @@ div.usertext, .usertext-edit textarea {
     border-radius: 2px !important;
     padding: 2px !important;
     cursor: pointer !important;
-    margin-left: 22px !important;
+    font-size: 12pt !important;
 }
 
 .commentarea .entry {
@@ -945,6 +925,7 @@ Other pages
 
 .nextprev {
     text-align: center !important;
+    font-size: 0pt !important;
 }
 
 .nextprev a {
@@ -956,6 +937,27 @@ Other pages
     border-radius: 2px !important;
     padding: 2px !important;
     padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    cursor: pointer !important;
+    margin-left: 4px !important;
+}
+    
+.next-suggestions {
+    position: relative !important;
+    text-align: center !important;
+    font-size: 0pt !important; 
+}
+
+.next-suggestions a {
+    background: #b8bfcc !important;
+    font-size: 10pt !important;
+    opacity: 0.45 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 2px !important;
+    padding: 2px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
     cursor: pointer !important;
     margin-left: 4px !important;
 }
