@@ -1,4 +1,4 @@
-/*edit of https://github.com/phallus/user-styles/tree/master/styles-clean*/
+/*heavy edit of https://github.com/phallus/user-styles/tree/master/styles-clean*/
 @namespace url(http://www.w3.org/1999/xhtml);
 
 @-moz-document url-prefix(http://ssl.reddit.com),
@@ -17,37 +17,13 @@
 #sr-more-link {
     display: none !important;
 }
-    
-/* height: 0;
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-    margin-top: 20px !important;
-    cursor: pointer !important;
-    margin-right: -40px !important;
-    text-decoration: none !important;
-}
-    
-#sr-more-link:before {
-    content: "" !important;
-    font-size: 15px !important;
-    color: #bbb !important;
-    margin-left: 2px !important;
-    margin-right: 10px !important;
-    margin-top: 0px !important;
-}
-    
-#sr-more-link:hover::before {
-    color: #000 !important;
-    transition: 0.5s color ease;
-    opacity: 1 !important;
-} */
-    
+       
 /* nav bar */
 #header {
     background: transparent!important;
     border-bottom: none !important;
     height: 70px !important;
+    max-width: 98.5% !important;
 }
 #sr-header-area {
     background: transparent !important;  
@@ -55,16 +31,29 @@
     text-transform: none !important;
     font-family: Droid Sans !important;
     font-size: 8pt !important;
-    font-weight: bold !important;
-    margin-left: -100px !important;
-    overflow-x: visible !important;
-}
-.sr-list {
-    margin-left: -147px !important;
+    text-align: left !important;
+    line-height: 13px !important;
 }
     
+.sr-list {
+    margin-left: 3px !important;
+    margin-top: 2px !important;
+}
+ 
 .sr-list .separator{
-    font-size: 3pt !important;  
+    display: none !important;
+}
+        
+.sr-bar li {
+/*     float:left !important; */
+    padding-right: 3px !important;
+}
+    
+.sr-bar {
+    text-align: center !important;
+}
+.sr-bar:first-child {
+    display: none !important;
 }
     
 #srLeftContainer.sr-bar {
@@ -74,9 +63,19 @@
 .dropdown.srdrop {
     display: none !important;
 }
+    
 .sr-bar a {
     color: #c5c5c5 !important; 
+    text-decoration: none !important;
+    transition: 0.5s color ease;
 }
+    
+.sr-bar a:hover {
+    color: #667f8c !important;
+    text-decoration: none !important;
+    transition: 0.5s color ease;
+}
+    
 .subbarlink.RESShortcutsCurrentSub {
     color: #af4a52 !important;
     font-weight: bold !important;  
@@ -86,6 +85,7 @@
     display: none !important
 
 }
+    
 .tabmenu {
     vertical-align: 0px !important;
     margin-left: 2px !important;
@@ -147,9 +147,8 @@ ul.tabmenu.formtab {
 }
 
 #mail {
-    position: fixed !important;
-    right: 3px !important;
-    top: 5.5% !important;
+    position: relative !important;
+    padding-bottom: 3px !important;
 }
     
 .user {
@@ -157,9 +156,8 @@ ul.tabmenu.formtab {
 }
 
 .pref-lang {
-    position: fixed !important;
-    top: 60px !important;
-    right: -4.75% !important;
+    position: relative !important;
+    padding-left: 2px !important;
 }
 
 .pref-lang:before {
@@ -169,10 +167,10 @@ ul.tabmenu.formtab {
 }
 
 .logout {
-    position: fixed !important;
+    position: relative !important;
     display: block !important;
-    right: -1.5% !important;
-    top: 9% !important;
+    padding-top: 2px !important;
+    padding-left: 2px !important;
 }
 
 .logout a {
@@ -205,12 +203,12 @@ ul.tabmenu.formtab {
     box-shadow: none !important;
     font-size: 10pt !important;
     font-weight: 300 !important;
-    padding: 3px !important;
-    width: 84% !important;
-    left: 50% !important;
-    right: 0% !important;
-    top: 5% !important;
-    text-align: center !important;
+    padding: 0px !important;
+    width: 100px !important;
+    height: 100px !important;
+    top: 2.5% !important;
+    right: -81px !important;
+    text-align: left !important;
     position: fixed !important;
     font-family: Droid Sans, sans-serif !important;
 }
@@ -313,7 +311,7 @@ body {
     height: 600px !important;
     right: 0% !important;
     margin-right: -14px !important;
-    margin-top: -12px !important;
+    margin-top: -23px !important;
     top: -1000% !important;
     z-index: 1000 !important;
 }
@@ -326,7 +324,7 @@ body {
     text-align: center !important;
     background: transparent!important;
     position: fixed !important;
-    top: 19px !important;
+    top: -1px !important;
     right: -8px !important;
     margin-right: 10px !important;
     padding: 2px !important;
@@ -396,6 +394,7 @@ body {
 .titlebox {
     font-size: larger;
     text-align: center !important;
+    background-color: rgba(255,255,255,.7) !important;
 }
 
 .sidebox a {
@@ -722,7 +721,7 @@ a.author:hover, a .author:hover {
 
 .commentarea {
     float: none !important;
-    width: 84.4% !important;
+    width: 84.5% !important;
     margin-right: 7% !important;
     margin-left: 8% !important;
     border: 1px solid #eee !important;
@@ -733,6 +732,8 @@ div.usertext, .usertext-edit textarea {
     max-width: 100% !important;
     font-family: Droid Sans !important;
     font-size: 12pt !important;
+    background: #fffff !important;
+    border: 1px solid #eee !important;
 }
 
 .usertext button, .usertext a.reddiquette, .usertext .help-toggle {
@@ -744,7 +745,7 @@ div.usertext, .usertext-edit textarea {
     border-radius: 2px !important;
     padding: 2px !important;
     cursor: pointer !important;
-    margin-left: 22px !important;
+    font-size: 12pt !important;
 }
 
 .commentarea .entry {
@@ -947,6 +948,7 @@ Other pages
 
 .nextprev {
     text-align: center !important;
+    font-size: 0pt !important;
 }
 
 .nextprev a {
@@ -958,8 +960,13 @@ Other pages
     border-radius: 2px !important;
     padding: 2px !important;
     padding-top: 0px !important;
+    padding-bottom: 0px !important;
     cursor: pointer !important;
     margin-left: 4px !important;
+}
+    
+.next-suggestions {
+    display: none !important;
 }
 
 /* reddits */
@@ -1041,7 +1048,7 @@ Other pages
     color: #af4a52 !important;
 }
 #sr-header-area .selected a {
-    color: #af4a52 !important;
+    color: #90a4ae !important;
     font-weight: bold !important;
 }
 
@@ -1098,6 +1105,3 @@ a.helplink,
 }
 
 }
-
-
-
