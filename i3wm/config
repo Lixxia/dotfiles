@@ -69,7 +69,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -fn 'DroidSans-9:bold' -nb #1f1f1f -nf #6b6c61 -sb #1f1f1f -sf #e1e3ca  -i -l 10 -w 150 -h 21 '
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -fn 'DroidSans-9:bold' -nb '#1f1f1f' -sb '#1f1f1f' -sf '#e1e3ca' -nf '#6b6c61' -h 21 -i"
 
 # change focus
 bindsym $mod+Left focus left
