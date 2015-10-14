@@ -1,4 +1,4 @@
-/*edit of https://github.com/phallus/user-styles/tree/master/styles-clean*/
+/*heavy edit of https://github.com/phallus/user-styles/tree/master/styles-clean*/
 @namespace url(http://www.w3.org/1999/xhtml);
 
 @-moz-document url-prefix(http://ssl.reddit.com),
@@ -23,6 +23,7 @@
     background: transparent!important;
     border-bottom: none !important;
     height: 70px !important;
+    max-width: 98.5% !important;
 }
 #sr-header-area {
     background: transparent !important;  
@@ -30,16 +31,29 @@
     text-transform: none !important;
     font-family: Droid Sans !important;
     font-size: 8pt !important;
-    font-weight: bold !important;
-    margin-left: -100px !important;
-    overflow-x: visible !important;
-}
-.sr-list {
-    margin-left: -147px !important;
+    text-align: left !important;
+    line-height: 13px !important;
 }
     
+.sr-list {
+    margin-left: 3px !important;
+    margin-top: 2px !important;
+}
+ 
 .sr-list .separator{
-    font-size: 3pt !important;  
+    display: none !important;
+}
+        
+.sr-bar li {
+/*     float:left !important; */
+    padding-right: 3px !important;
+}
+    
+.sr-bar {
+    text-align: center !important;
+}
+.sr-bar:first-child {
+    display: none !important;
 }
     
 #srLeftContainer.sr-bar {
@@ -52,6 +66,14 @@
     
 .sr-bar a {
     color: #c5c5c5 !important; 
+    text-decoration: none !important;
+    transition: 0.5s color ease;
+}
+    
+.sr-bar a:hover {
+    color: #667f8c !important;
+    text-decoration: none !important;
+    transition: 0.5s color ease;
 }
     
 .subbarlink.RESShortcutsCurrentSub {
@@ -184,8 +206,8 @@ ul.tabmenu.formtab {
     padding: 0px !important;
     width: 100px !important;
     height: 100px !important;
-    left: 98.8% !important;
-    top: 5% !important;
+    top: 2.5% !important;
+    right: -81px !important;
     text-align: left !important;
     position: fixed !important;
     font-family: Droid Sans, sans-serif !important;
@@ -289,7 +311,7 @@ body {
     height: 600px !important;
     right: 0% !important;
     margin-right: -14px !important;
-    margin-top: -12px !important;
+    margin-top: -23px !important;
     top: -1000% !important;
     z-index: 1000 !important;
 }
@@ -302,7 +324,7 @@ body {
     text-align: center !important;
     background: transparent!important;
     position: fixed !important;
-    top: 19px !important;
+    top: -1px !important;
     right: -8px !important;
     margin-right: 10px !important;
     padding: 2px !important;
@@ -372,6 +394,7 @@ body {
 .titlebox {
     font-size: larger;
     text-align: center !important;
+    background-color: rgba(255,255,255,.7) !important;
 }
 
 .sidebox a {
@@ -943,23 +966,7 @@ Other pages
 }
     
 .next-suggestions {
-    position: relative !important;
-    text-align: center !important;
-    font-size: 0pt !important; 
-}
-
-.next-suggestions a {
-    background: #b8bfcc !important;
-    font-size: 10pt !important;
-    opacity: 0.45 !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 2px !important;
-    padding: 2px !important;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-    cursor: pointer !important;
-    margin-left: 4px !important;
+    display: none !important;
 }
 
 /* reddits */
@@ -1041,7 +1048,7 @@ Other pages
     color: #af4a52 !important;
 }
 #sr-header-area .selected a {
-    color: #af4a52 !important;
+    color: #90a4ae !important;
     font-weight: bold !important;
 }
 
@@ -1098,6 +1105,3 @@ a.helplink,
 }
 
 }
-
-
-
