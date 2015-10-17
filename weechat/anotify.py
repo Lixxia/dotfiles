@@ -144,7 +144,6 @@ def cb_irc_server_connected(data, signal, signal_data):
     if weechat.config_get_plugin('show_server') == 'on':
         a_notify(
             'Server',
-            'Server Connected',
             'Connected to network {0}.'.format(signal_data))
     return weechat.WEECHAT_RC_OK
 
@@ -154,7 +153,6 @@ def cb_irc_server_disconnected(data, signal, signal_data):
     if weechat.config_get_plugin('show_server') == 'on':
         a_notify(
             'Server',
-            'Server Disconnected',
             'Disconnected from network {0}.'.format(signal_data))
     return weechat.WEECHAT_RC_OK
 
@@ -163,7 +161,6 @@ def notify_highlighted_message(prefix, message):
     if weechat.config_get_plugin("show_highlighted_message") == "on":
         a_notify(
             'Highlight',
-            'Highlighted Message',
             "{0}: {1}".format(prefix, message),
             priority=pynotify.URGENCY_CRITICAL)
 
@@ -204,7 +201,6 @@ def notify_private_message_or_action(prefix, message, highlighted):
             elif weechat.config_get_plugin("show_private_message") == "on":
                 a_notify(
                     'Private',
-                    'Private Message',
                     '{0}: {1}'.format(prefix, message))
 
 
@@ -298,7 +294,7 @@ def cb_process_message(
     return weechat.WEECHAT_RC_OK
 
 
-def a_notify(notification, title, description, priority=pynotify.URGENCY_LOW):
+def a_notify(notification, description, priority=pynotify.URGENCY_LOW):
     '''Returns whether notifications should be sticky.'''
     is_away = STATE['is_away']
     icon = STATE['icon']
@@ -309,7 +305,7 @@ def a_notify(notification, title, description, priority=pynotify.URGENCY_LOW):
         time_out = 0
     try:
         pynotify.init("wee-notifier")
-        wn = pynotify.Notification(title, description, icon)
+        wn = pynotify.Notification(description) #title,description,icon
         wn.set_urgency(priority)
         wn.set_timeout(time_out)
         wn.show()
@@ -319,7 +315,7 @@ def a_notify(notification, title, description, priority=pynotify.URGENCY_LOW):
 
 def set_urgent():
     os.system("wurgent")
-    
+	
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
@@ -368,3 +364,4 @@ if __name__ == '__main__' and IMPORT_OK and weechat.register(
     ''
 ):
     main()
+
