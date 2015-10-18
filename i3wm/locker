@@ -1,2 +1,1 @@
-#!/bin/sh
-i3lock -i ~/.i3/lockscreen.png -e
+i3lock -i /home/lixxia/.i3/background.png -c '#000000' -o '#191d0f' -w '#572020' -l '#ffffff' -e
