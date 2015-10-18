@@ -184,5 +184,4 @@ bar {
 }
 
 # wallpaper
-exec_always --no-startup-id sh /home/lixxia/.fehbg &
-
+exec_always --no-startup-id feh --image-bg black --bg-center ~/.i3/background.png &
