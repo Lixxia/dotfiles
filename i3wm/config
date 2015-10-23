@@ -7,16 +7,17 @@ set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
-set $ws9 "9:"
+set $ws9 "9:"
 set $ws10 "10:"
 
 # startup programs
-exec compton --config ~/.i3/.compton.conf
+exec --no-startup-id compton --config ~/.i3/.compton.conf -b
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; exec i3-sensible-terminal'
 exec --no-startup-id firefox -P 'default'
-exec --no-startup-id gnome-terminal --window-with-profile=weechat --title=weechat -e weechat
+exec --no-startup-id gnome-terminal --title=weechat -e weechat
 exec --no-startup-id thunderbird
+#exec --no-startup-id nm-applet
 
 # floating windows
 for_window [title="Ranger"] floating enable
@@ -31,11 +32,11 @@ for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 
 # assignments
+assign [class="(?i)gnome-terminal" title="weechat"] $ws3
 assign [class="(?i)thunderbird"] $ws4
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)spotify"] $ws5
-assign [class="(?)gnome-terminal" title="(?i)weechat"] $ws3
-assign [class="(?)chrome"] $ws10
+assign [class="(?i)chrome"] $ws10
 
 # modkey 4=windows, 1=alt
 set $mod Mod4
@@ -47,12 +48,13 @@ bindsym XF86AudioMute        exec amixer -D pulse set Master toggle && pkill -RT
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute && pkill -RTMIN+10 i3blocks
 
 # thin borders
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 smart_borders on
 
 # gaps
 smart_gaps on
 gaps inner 5
+gaps outer 2
 
 # lock screen
 bindsym $mod+Ctrl+l exec ./.i3/locker
@@ -166,9 +168,9 @@ bindsym $mod+r mode "resize"
 # Colors
 #name 				#top 	#border #text
 client.focused 			#1f1f1f #6b6c61 #e1e3ca
-client.unfocused 		#1f1f1f #6b6c61 #6b6c61
-client.focused_inactive 	#1f1f1f #6b6c61 #6b6c61
-client.urgent 			#1f1f1f #6b6c61 #e1e3ca
+client.unfocused 		#1f1f1f #1f1f1f #6b6c61
+client.focused_inactive 	#1f1f1f #1f1f1f #6b6c61
+client.urgent 			#1f1f1f #AC4142 #e1e3ca
 
 
 # Start i3bar to display a workspace bar + info from i3blocks

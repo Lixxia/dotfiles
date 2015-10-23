@@ -6,7 +6,7 @@
     indicate_hidden = true
     idle_threshold = 0
     # geometry [{width}]x{height}][+/-{x}+/-{y}]
-    geometry = "200x21-5+27"
+    geometry = "300x21-5+27"
     alignment = center
     show_age_threshold = -1
     sticky_history = no
