@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Copyright (C) 2014 Julien Bonjean <julien@bonjean.info>
 
 # This program is free software: you can redistribute it and/or modify
@@ -14,10 +14,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-case $BLOCK_BUTTON in
-	1) cinnamon-settings network >> /dev/null
-esac
-
+#case $BLOCK_BUTTON in
+#	1) killall -e -USR1 lt-nm-applet ;;
+#    3) killall -e -USR2 lt-nm-applet ;;
+#esac
 
 INTERFACE="${BLOCK_INSTANCE:-eth0}"
 
@@ -30,15 +30,7 @@ if [ "$state" != "up" ]; then
 	exit 0
 fi
 
-speed="$(cat /sys/class/net/$INTERFACE/speed 2> /dev/null)"
-
-ipaddr="$(ip addr show $INTERFACE | perl -n -e'/inet (.+)\// && print $1')"
-ipaddr="${ipaddr:-0.0.0.0}"
-
 name="$(iwgetid -r)"
-# full text
-echo -n "$name"
-[ -n "$speed" ] && echo " ($speed Mbits/s)" || echo
 
 # short text
 echo "$name"

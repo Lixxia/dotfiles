@@ -13,11 +13,12 @@ set $ws10 "10:"
 # startup programs
 exec --no-startup-id compton --config ~/.i3/.compton.conf -b
 exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg 'workspace $ws1; exec gnome-terminal; exec gnome-terminal; 
+exec --no-startup-id i3-msg 'workspace $ws1; split v; exec gnome-terminal;'
 exec --no-startup-id firefox -P 'default'
 exec --no-startup-id gnome-terminal --title=weechat -e weechat
 exec --no-startup-id thunderbird
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 
 # floating windows
 for_window [title="Ranger"] floating enable
@@ -177,7 +178,6 @@ client.urgent 			#1f1f1f #AC4142 #e1e3ca
 bar {
     status_command i3blocks
 	position top
-	tray_output none
 	strip_workspace_numbers yes
 	colors {
 	statusline #e1e3ca
