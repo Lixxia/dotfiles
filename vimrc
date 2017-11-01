@@ -59,24 +59,18 @@ set expandtab
 set autoindent
 
 " Command history.
-set history=1000
+set history=500
 
 " Ignore character case when searching.
 set ignorecase
 
 "" UI
 
-" Show line numbers.
-set number
-
 " Show cursor position.
 set ruler
 
 " Show current command.
 set showcmd
-
-" Show colored column.
-set colorcolumn=80
 
 " Highlight current line.
 set cursorline
