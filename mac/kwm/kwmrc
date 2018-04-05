@@ -1,0 +1,30 @@
+kwmc config tiling bsp
+kwmc config padding 31 8 8 8
+kwmc config gap 8 8
+kwmc config split-ratio 0.5
+kwmc config spawn left
+
+kwmc config float-non-resizable on
+kwmc config lock-to-container on
+kwmc config focus-follows-mouse off
+kwmc config standby-on-float on
+kwmc config center-on-float on
+kwmc config mouse-follows-focus on
+kwmc config mouse-drag on
+kwmc config cycle-focus on
+kwmc config mouse-drag mod shift+ctrl
+
+# focused windows 
+kwmc config border focused on
+kwmc config border focused size 2
+kwmc config border focused color 0xFF202020
+kwmc config border focused radius 1
+
+# marked windows 
+kwmc config border marked on
+kwmc config border marked size 2
+kwmc config border marked color 0xFFFFFFFF
+kwmc config border marked radius 1
+
+include space
+include rules
