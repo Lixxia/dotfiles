@@ -1,0 +1,20 @@
+!                  background     border   separator
+rofi.color-window: argb:dd383838, argb:00000000, argb:00000000
+
+! State:           background     fg       bgalt          hlbg           hlfg
+rofi.color-normal: argb:00000000, #b8b8b8, argb:00000000, argb:00000000, #f8f8f8
+rofi.color-urgent: argb:00000000, #ab4642, argb:00000000, argb:00000000, #f8f8f8
+rofi.color-active: argb:00000000, #a1b56c, argb:00000000, argb:00000000, #f8f8f8
+
+rofi.width: 2560
+rofi.location: 0
+rofi.lines: 5
+rofi.padding: 1080
+rofi.bw: 0
+rofi.separator-style: none
+rofi.hide-scrollbar: true
+rofi.eh: 2
+rofi.font: ubuntu 14
+rofi.terminal: urxvt
+rofi.modi: window,run,drun
+rofi.drun-icon-theme: Numix-Circle

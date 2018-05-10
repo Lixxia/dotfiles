@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# relative to home
+repo_path=repos/dotfiles
+
+home_setup() {
+    local cur=$pwd
+    local home_links=(.bashrc .colors .tmux.conf .urxvt .vim .vimrc .Xresources)
+    
+    echo "Creating home links"
+    
+    cd $HOME
+    for f in ${home_links[@]}; do
+        echo "Creating link for $f"
+        ln -sn ${repo_path}/$f $f
+    done
+    
+    cd $cur
+}
+
+systemd_setup() {
+    if [[ "$EUID" -ne 0 ]]; then
+        echo "Systemd setup needs to be run with sudo."
+        exit 1
+    fi
+    local user=$(who -m | awk '{print $1}')
+    local systemd_path=/etc/systemd/system
+    if [[ ! -h ${systemd_path}/suspend@.service ]]; then
+        echo "Creating systemd link"
+        ln -s $HOME/${repo_path}/systemd/suspend@.service ${systemd_path}/suspend@.service
+        echo "Enabling and starting service for ${user}"
+        systemctl enable suspend@${user}.service
+        systemctl start suspend@${user}.service
+    else
+        echo "Link already exists."
+        exit 0
+    fi
+}
+
+touchpad_setup() {
+    if [[ "$EUID" -ne 0 ]]; then
+        echo "Touchpad setup needs to be run with sudo."
+        exit 1
+    fi
+    local xorg_path=/usr/share/X11/xorg.conf.d
+    ln -s $HOME/${repo_path}/xorg.conf.d/30-touchpad.conf ${xorg_path}/30-touchpad.conf
+}
+
+usage="$0 [-home] || [-systemd] || [-touchpad]"
+
+if [ "$#" -ne 1 ]; then echo "$usage"; exit 1; fi
+
+case "$1" in
+  "--home")
+    home_setup
+    ;;
+  "--systemd")
+    systemd_setup
+    ;;
+  "--touchpad")
+    touchpad_setup
+    ;;
+  *)
+    echo "$usage"
+    exit 1
+    ;;
+esac

@@ -1,0 +1,53 @@
+[global]
+    font = "Ubuntu 11"
+    allow_markup = no
+    format = "<b>%s</b>\n%b"
+    sort = yes
+    indicate_hidden = true
+    show_age_threshold = 60
+    idle_threshold = 120
+    geometry = "300x8-6+37"
+    alignment = center
+    shrink = yes
+    show_age_threshold = 60
+    sticky_history = no
+    follow = mouse
+    show_indicators = yes
+    word_wrap = yes
+    line_height = 0
+    separator_height = 0
+    separator_color = auto
+    padding = 16
+    horizontal_padding = 16
+    startup_notification = false
+    dmenu = /usr/local/bin/rofi -dmenu -p dunst:
+    browser = /usr/bin/google-chrome
+    icon_position = left
+    icon_folders = /usr/share/icons/Numix/48/status/:/usr/share/icons/Numix/48/devices/:/usr/share/icons/Numix/48/notifications/:/usr/share/icons/Numix/24/status/
+    max_icon_size = 48
+    transparency = 20
+
+[frame]
+    width = 2
+    color = "#181818"
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#181818"
+    foreground = "#d8d8d8"
+    timeout = 5 
+
+[urgency_normal]
+    background = "#181818"
+    foreground = "#d8d8d8"
+    timeout = 10
+
+[urgency_critical]
+    background = "#181818"
+    foreground = "#d8d8d8"
+    timeout = 15

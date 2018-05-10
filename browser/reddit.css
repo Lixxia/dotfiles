@@ -68,7 +68,7 @@ body {
     background-attachment: fixed !important;
     background-color: #fff !important;
     font-family: Helvetica !important;
-    font-size: 7pt !important;
+    font-size: 12pt !important;
     margin-left: 0 !important;
 }
 .content {
@@ -196,7 +196,7 @@ body {
 .tabmenu li a {
     background: transparent !important;
     color: #909090 !important;
-    font-size: 8pt !important;
+    font-size: 12pt !important;
     font-weight: 300 !important;
     padding: 0px 0px !important;
     transition: 0.5s color ease;
@@ -256,7 +256,7 @@ ul.tabmenu.formtab {
     margin-top: 10px !important;
     background: transparent !important;
     box-shadow: none !important;
-    font-size: 8pt !important;
+    font-size: 12pt !important;
     font-weight: 300 !important;
     padding: 3px !important;
     width: 84% !important;
@@ -264,7 +264,7 @@ ul.tabmenu.formtab {
     right: 9% !important;
     text-align: center !important;
     position: relative !important;
-    font-family: Helvetica Neue, sans-serif !important;
+    font-family: Helvetica, sans-serif !important;
 }
 #header-bottom-right a {
     color: #909090 !important;
@@ -417,7 +417,7 @@ ul.tabmenu.formtab {
 }
 .md {
     max-width: 100% !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     font-family: Helvetica, sans-serif !important;
     color: #646464 !important;
 }
@@ -430,7 +430,7 @@ ul.tabmenu.formtab {
 .titlebox h1 {
     color: black !important;
     font-family: Helvetica, sans-serif !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     text-align: center !important;
     width: 100% !important;
     position: absolute;
@@ -450,7 +450,7 @@ ul.tabmenu.formtab {
     font-family: Helvetica !important;
 }
 .titlebox .bottom {
-  border: none !important;   
+ 	border: none !important;   
 }
 .md h2 {
     font-size: 10px !important;
@@ -473,7 +473,7 @@ ul.tabmenu.formtab {
     z-index: inherit !important;
 }
 .linkinfo {
-  border-bottom: 0px none !important;
+ 	border-bottom: 0px none !important;
     text-align: center !important;
     border: 1px solid #eee!important;
     height: auto !important;
@@ -486,12 +486,12 @@ ul.tabmenu.formtab {
 }
 .linkinfo .score .word {
     font-family: Helvetica, sans-serif !important;
-    font-size: 11pt !important;
+    font-size: 12pt !important;
     font-weight: bold;
     color: #1c1c1c !important;
 }
 .linkinfo .score .number {
-    font-size: 11pt !important;
+    font-size: 12pt !important;
     font-weight: bold;
     font-family: Helvetica, sans-serif !important;
     color: #1c1c1c !important;
@@ -499,7 +499,7 @@ ul.tabmenu.formtab {
 .linkinfo .upvotes,
 .linkinfo .downvotes {
     font-family: Helvetica !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     color: #646464 !important;
 }
 .linkinfo .shortlink input {
@@ -538,7 +538,7 @@ ul.tabmenu.formtab {
     margin-right: 2px !important;
 }
 .link .score {
-    font-size: 10pt !important;
+    font-size: 12pt !important;
 }
 .link.promotedlink,
 .organic-listing .link.promotedlink,
@@ -582,7 +582,7 @@ organic-listing,
     text-indent: 155px;
     text-shadow: none !important;
     transition: 0.5s ease all;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
 }
 .thing .title.loggedin:hover,
 .link .title:hover {
@@ -597,7 +597,7 @@ organic-listing,
 .domain a {
     font-family: Helvetica !important;
     font-weight: bold !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     color: #bf7c83 !important;
     transition: 0.5s color ease;
 }
@@ -610,7 +610,7 @@ organic-listing,
 .tagline {
     margin-left: 10px !important;
     color: #888!important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     font-family: Helvetica, sans-serif !important;
     margin-top: 7px !important;
     opacity: .8;
@@ -618,7 +618,7 @@ organic-listing,
 .link .flat-list {
     margin-top: 3px !important;
     margin-left: 2px !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
 }
 .link .entry {
     display: inline-block !important;
@@ -629,7 +629,7 @@ organic-listing,
 }
 .entry .buttons li a {
     color: #999 !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     font-weight: normal !important;
     padding: 0 8px 3px !important;
     transition: 0.5s ease all;
@@ -679,17 +679,17 @@ a .author:hover {
 }
 /* spoilers */
 a[href$="/spoiler"] {
-  background: #000 !important;
-  color: #000 !important;
-  border: 1px solid black;
-  padding-right: 1px !important;
-  -moz-border-radius: 2px !important;
-  -webkit-border-radius: 2px !important;
-  border-radius: 4px !important;
+ 	background: #000 !important;
+	color: #000 !important;
+	border: 1px solid black;
+	padding-right: 1px !important;
+	-moz-border-radius: 2px !important;
+	-webkit-border-radius: 2px !important;
+	border-radius: 4px !important;
 }
 
 a[href$="/spoiler"]:hover {
-  background: #FFF !important;
+ 	background: #FFF !important;
     border: none !important;
 }
 
@@ -717,8 +717,8 @@ div.usertext,
     width: 100% !important;
     max-width: 100% !important;
     font-family: Helvetica !important;
-    font-size: 12pt !important;
-    background: #fffff !important;
+    font-size: 14pt !important;
+    background: #ffffff !important;
     border: 1px solid #eee !important;
 }
 
@@ -733,8 +733,8 @@ div.usertext,
    border-radius: 2px !important;
    padding: 2px !important;
    cursor: pointer !important;
-   font-size: 12pt !important;
-   font: Helvetica !important;
+   font-size: 14pt !important;
+   font-family: Helvetica !important;
 }
 
 .commentarea .entry {
@@ -764,7 +764,7 @@ div.usertext,
 .usertext a.reddiquette, 
 .usertext .help-toggle {
    margin-top: 5px !important;
-   font-size: 12pt !important;
+   font-size: 14pt !important;
    padding: 3px !important;
 }
 
@@ -921,7 +921,7 @@ div .textarea {
 }
 .nextprev a {
     background: #b8bfcc !important;
-    font-size: 10pt !important;
+    font-size: 12pt !important;
     opacity: 0.65 !important;
     color: #fff !important;
     border: none !important;
@@ -986,7 +986,7 @@ div .textarea {
     color: #646464 !important;
 }
 #searchexpando input[type=checkbox], form input[type=radio] {
-  width: auto !important; 
+ 	width: auto !important; 
     height: auto !important;
 }
 .searchpane {
@@ -996,13 +996,13 @@ div .textarea {
     margin-left: 20% !important;
 }
 .combined-search-page #search {
-  padding: 0px !important;  
+ 	padding: 0px !important;  
 }
 .combined-search-page #search input[type=text] {
-    width: 100% !important;  
+  	width: 100% !important;  
 } 
 #previoussearch label {
-  width: 10px !important;   
+ 	width: 10px !important;   
 }
 .search-result-group {
     max-width: 100% !important;
@@ -1024,7 +1024,7 @@ div .textarea {
     margin-left: 8% !important;
 }
 .search-result-group-header {
-  position: relative !important;
+ 	position: relative !important;
     width: 85.2% !important;
     margin-right: 7% !important;
     margin-left: 8% !important;   
@@ -1089,3 +1089,4 @@ h1 {
 .organic-listing {
     border: 0px none !important;
 }
+

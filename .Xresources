@@ -1,0 +1,51 @@
+#include ".colors/base16"
+
+! Fonts
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+urxvt.font: xft:UbuntuMono Nerd Font Mono:style=Regular:size=12
+font: xft:UbuntuMono-Regular:normal:size=12
+URxvt*italicFont: xft:Ubuntu Mono:italic::pixelsize=12
+urxvt.boldFont: xft:Ubuntu Mono:bold:size=12
+URxvt.letterSpace: -1
+
+! Appearance
+urxvt*scrollBar: false
+urxvt*scrollBar_right: false
+urxvt*shading: 20
+urxvt*blurRadius: 10
+urxvt*termname: rxvt-unicode-256color
+urxvt*savelines: 1000
+urxvt*underlineColor: yellow
+urxvt*inheritPixmap: true
+urxvt*transparent: true
+URxvt.internalBorder: 20
+URxvt.iconFile: /usr/share/icons/Numix-Circle/48/apps/xterm-color_48x48.svg
+
+! Extensions
+URxvt.perl-ext-common: default,tabbedex,selection-to-clipboard,matcher
+
+! URLs
+URxvt.url-launcher: /usr/bin/google-chrome
+URxvt.matcher.button: 1
+
+! Tabbedex colors
+URxvt.tabbed.tabbedex-rs-prefix: %
+URxvt.tabbedex.tabbar-bg: -1
+URxvt.tabbedex.tabbar-fg: 8
+URxvt.tabbedex.tab-fg: 15
+URxvt.tabbedex.tab-bg: -1
+URxvt.tabbedex.bell-tab-fg: 15
+URxvt.tabbedex.bell-tab-bg: -1
+URxvt.tabbedex.title-bg: -1
+URxvt.tabbedex.bell-fg: 15
+URxvt.tabbedex.bell-bg: -1
+
+! Disable annoying keybind
+URxvt.iso14755:    false
+URxvt.iso14755_52: false
+

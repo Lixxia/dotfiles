@@ -1,0 +1,206 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #cc222222
+background-alt = #66111111
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+;primary = #ffb52a
+primary = ${xrdb:color4}
+secondary = #e60053
+;alert = #bd2c40
+alert = ${xrdb:color9}
+
+[bar/main]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 30
+;radius = 6.0
+fixed-center = true
+
+;border-bottom-size = 2
+;border-bottom-color = #333333
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Ubuntu:fontformat=truetype:size=11:weight:bold;2
+font-1 = "Font Awesome 5 Free:pixelsize=10;3"
+font-2 = "Font Awesome 5 Brands:pixelsize=10;3"
+font-3 = "Font Awesome 5 Free Solid:pixelsize=10;3"
+font-4 = "Font Awesome 5 Free Solid:pixelsize=13;3"
+
+modules-left = i3
+modules-center = xwindow
+modules-right = volume battery date
+
+tray-position = right
+tray-padding = 2
+tray-detached = false
+;tray-transparent = true
+;tray-background = ${colors.background-alt}
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+strip-wsnumbers = true
+pin-workspaces = true
+
+ws-icon-0 = "1;"
+ws-icon-1 = "2;"
+;ws-icon-2 = "3;"
+ws-icon-2 = "3;"
+ws-icon-3 = "4;"
+ws-icon-4 = "5;"
+ws-icon-5 = "6;"
+ws-icon-6 = "7;"
+ws-icon-7 = "8;"
+ws-icon-8 = "9;"
+ws-icon-9 = "10;"
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-foreground = #6b6c61
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-foreground = ${colors.alert}
+label-urgent-padding = ${self.label-focused-padding}
+
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <label-connected>
+label-connected = 
+
+label-disconnected = 
+label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected = <label-disconnected>
+
+[module/eth]
+type = internal/network
+interface = lo
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = ""
+date-alt = "%a %b %d"
+
+time = %l:%M%p
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date% %time%
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+label-volume-foreground = ${root.foreground}
+label-volume = %percentage%%
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = muted
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging =  <label-charging>
+
+format-discharging = <ramp-capacity> <label-discharging>
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground}
+
+ramp-capacity-0 = %{T5}%{T-}
+ramp-capacity-1 = %{T5}%{T-}
+ramp-capacity-2 = %{T5}%{T-}
+ramp-capacity-3 = %{T5}%{T-}
+ramp-capacity-4 = %{T5}%{T-}
+ramp-capacity-foreground = ${colors.foreground}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
