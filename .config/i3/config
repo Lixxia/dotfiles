@@ -15,8 +15,8 @@ exec --no-startup-id compton --config $HOME/.config/compton.conf -b
 exec --no-startup-id libinput-gestures-setup start 
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id i3-msg 'workspace $ws1; exec urxvt;'
-exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome;'
-#exec --no-startup-id gnome-terminal --title=weechat -e weechat
+exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome'
+#exec --no-startup-id i3-msg 'workspace $ws3; exec google-chrome --usr-data-dir="~/.confifg/google-chrome/Profile 1";'
 exec --no-startup-id geary
 exec --no-startup-id nm-applet
 
@@ -27,12 +27,14 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
+for_window [workspace="9"] floating enable
+#for_window [window_class="PrimaryAuthManager"] floating enable
 
 # assignments
 #assign [class="(?i)google-chrome"] $ws2
 #assign [class="(?i)urxvt" title="weechat"] $ws3
 assign [class="(?i)geary"] $ws4
-assign [class="(?i)spotify"] $ws5
+for_window [class="Spotify"] move to workspace $WS5
 assign [class="(?i)discord"] $ws6
 assign [class="(?i)firefox"] $ws10
 
@@ -51,16 +53,15 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86MonBrightnessUp exec light -A 10 
 bindsym XF86MonBrightnessDown exec light -U 10
 
+# headset switch 
+bindsym $mod+Shift+s exec pacmd set-default-source "alsa_input.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-mono" && pacmd set-default-sink "alsa_output.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-stereo"
+
 # thin borders
 for_window [class="^.*"] border pixel 2
-#smart_borders on
 
 # gaps
-#smart_gaps on
 gaps inner 5
 gaps outer 2
-
-
 
 # aesthetics
 bindsym $mod+Shift+n border normal
@@ -80,7 +81,11 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # start menu
-bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
+#bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
+# Bring up launcher
+bindsym $mod+d exec --no-startup-id $HOME/.config/i3/polywrap rofi
+# Search open windows
+bindsym $mod+grave exec --no-startup-id $HOME/.config/i3/polywrap search
 
 # change focus
 bindsym $mod+Left focus left
@@ -180,7 +185,7 @@ set_from_resource $red color1 #ab4642
 set_from_resource $green color2 #a1b56c 
 
 # class                 border backgr text indicator
-client.focused          $bg    $bg    $fb  $bg 
+client.focused          $bg    $bg    $fg  $bg 
 client.unfocused        $bg    $bg    $fg  $bg 
 client.focused_inactive $bg    $bg    $fg  $bg 
 client.urgent           $bg    $bg    $fg  $bg 
@@ -190,4 +195,6 @@ bindsym $mod+Ctrl+l exec i3lock -n -i $HOME/.config/i3/background.png -c '$fg' -
 
 # wallpaper & bar
 exec_always --no-startup-id feh --image-bg black --bg-scale $HOME/.config/i3/background.png &
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/i3/polywrap launch
+

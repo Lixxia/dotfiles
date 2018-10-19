@@ -17,17 +17,19 @@ URxvt.letterSpace: -1
 urxvt*scrollBar: false
 urxvt*scrollBar_right: false
 urxvt*shading: 20
-urxvt*blurRadius: 10
+!urxvt*blurRadius: 10
 urxvt*termname: rxvt-unicode-256color
 urxvt*savelines: 1000
 urxvt*underlineColor: yellow
 urxvt*inheritPixmap: true
 urxvt*transparent: true
 URxvt.internalBorder: 20
-URxvt.iconFile: /usr/share/icons/Numix-Circle/48/apps/xterm-color_48x48.svg
+URxvt.iconFile: /usr/share/icons/Numix-Circle/48/apps/xterm_48x48.svg
+
+urxvt*urgentOnBell: true
 
 ! Extensions
-URxvt.perl-ext-common: default,tabbedex,selection-to-clipboard,matcher
+URxvt.perl-ext-common: default,tabbedex,selection-to-clipboard
 
 ! URLs
 URxvt.url-launcher: /usr/bin/google-chrome

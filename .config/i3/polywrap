@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Adapted from https://github.com/ntcarlson/dotfiles/blob/gamma/i3/scripts/polybar_wrapper
+
+IPC_SEARCH=/tmp/polybar_mqueue_search
+WINDOW_ID_SEARCH=/tmp/window_id_search
+
+IPC_ROFI=/tmp/polybar_mqueue_rofi
+WINDOW_ID_ROFI=/tmp/window_id_rofi
+
+create_bar() {
+    polybar $1 &
+    BAR_ID=$!
+    echo PID = $BAR_ID
+    WIN_ID=$(xdotool search --sync --pid $BAR_ID)
+    echo $WIN_ID > $2
+    xdotool windowunmap $WIN_ID
+}
+
+animation_open() {
+    for BAR_ID in $@; do
+        xdotool windowmap $BAR_ID
+    done
+    for y in `seq -300 10 0`; do
+        for BAR_ID in $@; do
+            xdotool windowmove $BAR_ID x $y
+        done
+        sleep 0.001
+    done
+}
+
+animation_close() {
+    for y in `seq 0 -10 -300`; do
+        for BAR_ID in $@; do
+            xdotool windowmove $BAR_ID x $y
+        done
+    done
+    for BAR_ID in $@; do
+        xdotool windowunmap $BAR_ID
+    done
+}
+
+launch() {
+    killall -q polybar
+    while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+      export MONITOR=$m
+      polybar main &
+      BAR_ID=$!
+    done
+    echo "$BAR_ID"
+    rm -f /tmp/polybar_mqueue_full
+    ln -s /tmp/polybar_mqueue.$BAR_ID /tmp/polybar_mqueue_full
+    create_bar left $WINDOW_ID_SEARCH &
+    sleep 0.2
+    create_bar center $WINDOW_ID_ROFI &
+}
+
+rofi_open() {
+    BAR_ID=$(cat $WINDOW_ID_ROFI)
+    animation_open $BAR_ID
+    rofi -show drun -location 2 -show-icons
+    animation_close $BAR_ID
+}
+
+search_open() {
+    BAR_ID=$(cat $WINDOW_ID_SEARCH)
+    animation_open $BAR_ID
+    rofi -show window -location 1 -width 28
+    animation_close $BAR_ID
+}
+
+case "$1" in
+    rofi)
+        rofi_open;;
+    search)
+        search_open;;
+    launch)
+        launch;;
+esac
