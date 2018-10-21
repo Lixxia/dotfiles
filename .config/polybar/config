@@ -45,7 +45,7 @@ overline-color = ${colors.background}
 
 # Fonts - Offset for bottom text
 font-0 = Ubuntu:fontformat=truetype:size=11:weight:bold;140
-font-1 = "Font Awesome 5 Free:pixelsize=10;140"
+font-1 = "Font Awesome 5 Free Solid:pixelsize=10;140"
 font-2 = "Font Awesome 5 Brands:pixelsize=10;140"
 font-3 = "Font Awesome 5 Free Solid:pixelsize=10;140"
 font-4 = "Font Awesome 5 Free Solid:pixelsize=13;140"
@@ -84,7 +84,7 @@ font-4 = "Font Awesome 5 Free Solid:pixelsize=13;3"
 # Modules
 modules-left = i3
 modules-center = xwindow
-modules-right = volume battery date
+modules-right = notifications volume battery date
 
 # Tray
 tray-position = right
@@ -170,7 +170,7 @@ inherit = section/base
 padding-right = 7
 width = 30%
 offset-x = 1374
-modules-right = volume battery date
+modules-right = notifications volume battery date
 
 # Right Modules
 [module/wlan]
@@ -248,6 +248,12 @@ ramp-capacity-2 = %{T5}%{T-}
 ramp-capacity-3 = %{T5}%{T-}
 ramp-capacity-4 = %{T5}%{T-}
 ramp-capacity-foreground = ${colors.foreground}
+
+[module/notifications]
+type = custom/script
+exec = tail -F /tmp/.dunst-notification
+exec-if = [ -f /tmp/.dunst-notification ]
+tail = true
 
 [settings]
 screenchange-reload = true
