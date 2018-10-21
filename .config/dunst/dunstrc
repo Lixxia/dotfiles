@@ -3,10 +3,10 @@
     allow_markup = no
     format = "<b>%s</b>\n%b"
     sort = yes
-    indicate_hidden = true
+    indicate_hidden = false
     show_age_threshold = 60
     idle_threshold = 120
-    geometry = "300x8-6+37"
+    geometry = "0x0-0+0"
     alignment = center
     shrink = yes
     show_age_threshold = 60
@@ -25,7 +25,7 @@
     icon_position = left
     icon_folders = /usr/share/icons/Numix/48/status/:/usr/share/icons/Numix/48/devices/:/usr/share/icons/Numix/48/notifications/:/usr/share/icons/Numix/24/status/
     max_icon_size = 48
-    transparency = 20
+    transparency = 100
 
 [frame]
     width = 2
@@ -33,7 +33,7 @@
 
 [shortcuts]
     close = ctrl+space
-    close_all = ctrl+shift+space
+    #close_all = ctrl+shift+space
     history = ctrl+grave
     context = ctrl+shift+period
 
