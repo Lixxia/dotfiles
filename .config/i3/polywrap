@@ -10,20 +10,21 @@ WINDOW_ID_ROFI=/tmp/window_id_rofi
 
 create_bar() {
     polybar $1 &
-    BAR_ID=$!
-    echo PID = $BAR_ID
-    WIN_ID=$(xdotool search --sync --pid $BAR_ID)
-    echo $WIN_ID > $2
-    xdotool windowunmap $WIN_ID
+    local bar_id=$!
+    echo "Polybar PID: $bar_id"
+    local win_id=$(xdotool search --sync --pid $bar_id)
+    echo $win_id > $2
+    xdotool windowunmap $win_id
 }
 
 animation_open() {
-    for BAR_ID in $@; do
-        xdotool windowmap $BAR_ID
+    local bar_id;
+    for bar_id in $@; do
+        xdotool windowmap $bar_id
     done
     for y in `seq -300 10 0`; do
-        for BAR_ID in $@; do
-            xdotool windowmove $BAR_ID x $y
+        for bar_id in $@; do
+            xdotool windowmove $bar_id x $y
         done
         sleep 0.001
     done
@@ -31,12 +32,12 @@ animation_open() {
 
 animation_close() {
     for y in `seq 0 -10 -300`; do
-        for BAR_ID in $@; do
-            xdotool windowmove $BAR_ID x $y
+        for bar_id in $@; do
+            xdotool windowmove $bar_id x $y
         done
     done
-    for BAR_ID in $@; do
-        xdotool windowunmap $BAR_ID
+    for bar_id in $@; do
+        xdotool windowunmap $bar_id
     done
 }
 
@@ -46,28 +47,28 @@ launch() {
     for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
       export MONITOR=$m
       polybar main &
-      BAR_ID=$!
+      bar_id=$!
     done
-    echo "$BAR_ID"
+    echo "$bar_id"
     rm -f /tmp/polybar_mqueue_full
-    ln -s /tmp/polybar_mqueue.$BAR_ID /tmp/polybar_mqueue_full
+    ln -s /tmp/polybar_mqueue.$bar_id /tmp/polybar_mqueue_full
     create_bar left $WINDOW_ID_SEARCH &
     sleep 0.2
     create_bar center $WINDOW_ID_ROFI &
 }
 
 rofi_open() {
-    BAR_ID=$(cat $WINDOW_ID_ROFI)
-    animation_open $BAR_ID
+    local bar_id=$(cat $WINDOW_ID_ROFI)
+    animation_open $bar_id
     rofi -show drun -location 2 -show-icons
-    animation_close $BAR_ID
+    animation_close $bar_id
 }
 
 search_open() {
-    BAR_ID=$(cat $WINDOW_ID_SEARCH)
-    animation_open $BAR_ID
+    local bar_id=$(cat $WINDOW_ID_SEARCH)
+    animation_open $bar_id
     rofi -show window -location 1 -width 28
-    animation_close $BAR_ID
+    animation_close $bar_id
 }
 
 case "$1" in
