@@ -1,12 +1,12 @@
 [global]
-    font = "Ubuntu 11"
-    allow_markup = no
+    font = "Iosevka 12"
+    allow_markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
-    indicate_hidden = false
+    indicate_hidden = true
     show_age_threshold = 60
     idle_threshold = 120
-    geometry = "0x0-0+0"
+    geometry = "300x8-6+37"
     alignment = center
     shrink = yes
     show_age_threshold = 60
@@ -25,29 +25,29 @@
     icon_position = left
     icon_folders = /usr/share/icons/Numix/48/status/:/usr/share/icons/Numix/48/devices/:/usr/share/icons/Numix/48/notifications/:/usr/share/icons/Numix/24/status/
     max_icon_size = 48
-    transparency = 100
+    transparency = 30
 
 [frame]
     width = 2
-    color = "#181818"
+    color = "#282828"
 
 [shortcuts]
     close = ctrl+space
-    #close_all = ctrl+shift+space
+    close_all = ctrl+shift+space
     history = ctrl+grave
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#181818"
-    foreground = "#d8d8d8"
+    background = "#282828"
+    foreground = "#d5c4a1"
     timeout = 5 
 
 [urgency_normal]
-    background = "#181818"
-    foreground = "#d8d8d8"
+    background = "#282828"
+    foreground = "#d5c4a1"
     timeout = 10
 
 [urgency_critical]
-    background = "#181818"
-    foreground = "#d8d8d8"
+    background = "#282828"
+    foreground = "#d5c4a1"
     timeout = 15

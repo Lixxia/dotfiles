@@ -1,1 +1,0 @@
-i3lock -n -i /home/laura/.config/i3/background.png -c '#000000' -o '#A1B56C' -w '#AB4642' -l '#d8d8d8' -e
