@@ -1,4 +1,4 @@
-#include ".colors/base16"
+#include ".colors/base16-gruvbox"
 
 ! Fonts
 Xft.dpi: 96
@@ -7,24 +7,28 @@ Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
 
-urxvt.font: xft:UbuntuMono Nerd Font Mono:style=Regular:size=12
-font: xft:UbuntuMono-Regular:normal:size=12
-URxvt*italicFont: xft:Ubuntu Mono:italic::pixelsize=12
-urxvt.boldFont: xft:Ubuntu Mono:bold:size=12
+urxvt.font: xft:Iosevka-Mono:style=Medium:size=12
+font: xft:Iosevka-Mono:normal:size=12
+URxvt*italicFont: xft:Iosevka-Mono:italic::pixelsize=12
+urxvt.boldFont: xft:Iosevka-Mono:bold:size=12
 URxvt.letterSpace: -1
 
 ! Appearance
 urxvt*scrollBar: false
 urxvt*scrollBar_right: false
-urxvt*shading: 20
 !urxvt*blurRadius: 10
 urxvt*termname: rxvt-unicode-256color
 urxvt*savelines: 1000
 urxvt*underlineColor: yellow
-urxvt*inheritPixmap: true
-urxvt*transparent: true
+URxvt.depth: 32
+URxvt.background: [80]#1d2021
+!URxvt.tintColor: #282828
+!urxvt*shading: 20
+!urxvt*inheritPixmap: true
+!urxvt*transparent: true
 URxvt.internalBorder: 20
 URxvt.iconFile: /usr/share/icons/Numix-Circle/48/apps/xterm_48x48.svg
+URxvt*VT100.charClass: 33:48,35:48,37:48,42:48,45-47:48,64:48,95:48,126:48
 
 urxvt*urgentOnBell: true
 
@@ -38,7 +42,7 @@ URxvt.matcher.button: 1
 ! Tabbedex colors
 URxvt.tabbed.tabbedex-rs-prefix: %
 URxvt.tabbedex.tabbar-bg: -1
-URxvt.tabbedex.tabbar-fg: 8
+URxvt.tabbedex.tabbar-fg: 81
 URxvt.tabbedex.tab-fg: 15
 URxvt.tabbedex.tab-bg: -1
 URxvt.tabbedex.bell-tab-fg: 15

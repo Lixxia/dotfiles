@@ -1,14 +1,14 @@
 ! Colors
 !                  background     border   separator
 ! transparent bg
-!rofi.color-window: argb:cc282828, argb:dd181818, argb:00000000
+rofi.color-window: argb:00282828, argb:00181818, argb:00000000
 ! solid bg
-rofi.color-window: #282828, argb:dd181818, argb:00000000
+!rofi.color-window: #282828, argb:dd181818, argb:00000000
 
 ! State:           background     fg       bgalt          hlbg           hlfg
-rofi.color-normal: argb:00000000, #b8b8b8, argb:00000000, argb:00000000, #f8f8f8
-rofi.color-urgent: argb:00000000, #ab4642, argb:00000000, argb:00000000, #f8f8f8
-rofi.color-active: argb:00000000, #a1b56c, argb:00000000, argb:00000000, #f8f8f8
+rofi.color-normal: argb:00000000, #bdae93, argb:00000000, argb:00000000, #fbf1c7
+rofi.color-urgent: argb:00000000, #cc241d, argb:00000000, argb:00000000, #fbf1c7
+rofi.color-active: argb:00000000, #98971a, argb:00000000, argb:00000000, #fbf1c7
 
 ! Settings
 rofi.drun-icon-theme: Numix-Circle
@@ -21,6 +21,6 @@ rofi.bw: 0                    ! No border
 rofi.width: 18                ! Width as a percentage of total width
 rofi.lines: 9                 ! Show 9 lines without scrolling
 rofi.padding: 8               ! 8 pixel padding
-rofi.font: ubuntu 14
+rofi.font: Iosevka bold 13
 rofi.window-format: {c} {t}
 rofi.terminal: urxvt

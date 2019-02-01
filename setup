@@ -5,16 +5,27 @@ repo_path=repos/dotfiles
 
 home_setup() {
     local cur=$pwd
-    local home_links=(.bashrc .colors .tmux.conf .urxvt .vim .vimrc .Xresources)
+    local home_links=(.bashrc .colors .tmux.conf .urxvt .vim .vimrc .Xresources .scripts)
     
     echo "Creating home links"
     
     cd $HOME
     for f in ${home_links[@]}; do
         echo "Creating link for $f"
-        ln -sn ${repo_path}/$f $f
+        ln -sn $HOME/${repo_path}/$f $f
     done
     
+    cd $cur
+}
+
+config_setup() {
+    local cur=$pwd
+    cd $HOME/$repo_path/.config
+    for f in *; do
+        echo "Creating link for $f"
+        ln -sn $HOME/$repo_path/.config/$f $HOME/.config/$f
+    done
+
     cd $cur
 }
 
@@ -59,6 +70,9 @@ case "$1" in
     ;;
   "--touchpad")
     touchpad_setup
+    ;;
+  "--config")
+    config_setup
     ;;
   *)
     echo "$usage"

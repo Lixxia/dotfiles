@@ -47,7 +47,10 @@ w = worker()
 w.start()
 while True:
   line = sys.stdin.readline()
-  j = json.loads(line)
+  try:
+    j = json.loads(line)
+  except:
+    continue
 
   with open(fname, 'a') as file:
     try:

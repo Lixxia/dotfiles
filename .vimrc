@@ -38,7 +38,7 @@ set cmdheight=1
 " Appearance
 let base16colorspace=256
 set background=dark
-colorscheme base16-default-dark
+colorscheme base16-gruvbox-dark
 hi Normal guibg=none ctermbg=none                                                                   
 hi LineNr guibg=none ctermbg=none
 
