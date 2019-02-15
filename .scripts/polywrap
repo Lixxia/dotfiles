@@ -78,7 +78,7 @@ search_open() {
 wifi_open() {
     local bar_id=$(cat $WINDOW_ID_WIFI)
     animation_open $bar_id
-    python /home/laura/networkmanager_dmenu
+    python $HOME/.scripts/networkmanager_dmenu
     animation_close $bar_id
 }
 

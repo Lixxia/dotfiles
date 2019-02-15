@@ -186,18 +186,22 @@ def ap_security(nm_ap):
     sec_str = ""
     if ((flags & getattr(NM, '80211ApFlags').PRIVACY) and
             (wpa_flags == 0) and (rsn_flags == 0)):
-        sec_str += " WEP"
+        #sec_str += " WEP"
+        sec_str = " ".decode("utf-8")
     if wpa_flags != 0:
-        sec_str += " WPA1"
+        #sec_str += " WPA1"
+        sec_str = " ".decode("utf-8")
     if rsn_flags != 0:
-        sec_str += " WPA2"
+        #sec_str += " WPA2"
+        sec_str = " ".decode("utf-8")
     if ((wpa_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_802_1X) or
             (rsn_flags & getattr(NM, '80211ApSecurityFlags').KEY_MGMT_802_1X)):
-        sec_str += " 802.1X"
+        #sec_str += " 802.1X"
+        sec_str = " ".decode("utf-8")
 
     # If there is no security use "--"
     if sec_str == "":
-        sec_str = "--"
+        sec_str = "".decode("utf-8")
     return sec_str.lstrip()
 
 
@@ -271,7 +275,7 @@ def create_ap_actions(aps, active_ap, active_connection, adapter):  # pylint: di
     active_ap_bssid = active_ap.get_bssid() if active_ap is not None else ""
 
     names = [ssid_to_utf8(ap) for ap in aps]
-    max_len_name = 24
+    max_len_name = 31
     secs = [ap_security(ap) for ap in aps]
     max_len_sec = max([len(sec) for sec in secs]) if secs else 0
 
@@ -283,8 +287,8 @@ def create_ap_actions(aps, active_ap, active_connection, adapter):  # pylint: di
         is_active = nm_ap.get_bssid() == active_ap_bssid
         if len(name) is 0:
           continue
-        elif len(name) > 20:
-          name = name[:20] + "…".decode("utf-8")
+        elif len(name) > 28:
+          name = name[:28] + "…".decode("utf-8")
           action_name = u"{:<{}s}  {:<{}s}  {}".format(name, max_len_name, sec,
                                                      max_len_sec, bars)
         else:

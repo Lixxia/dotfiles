@@ -57,12 +57,12 @@ bindsym XF86MonBrightnessDown exec light -U 5
 bindsym $mod+Shift+s exec pacmd set-default-source "alsa_input.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-mono" && pacmd set-default-sink "alsa_output.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-stereo"
 
 # thin borders
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3
 hide_edge_borders smart
 
 # gaps
 gaps inner 5
-gaps outer 2
+gaps outer 3
 
 # aesthetics
 #bindsym $mod+Shift+n border normal

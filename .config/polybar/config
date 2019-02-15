@@ -83,7 +83,7 @@ font-4 = "Font Awesome 5 Free Solid:pixelsize=13;3"
 # Modules
 modules-left = i3
 modules-center = xwindow
-modules-right = notifications volume battery date 
+modules-right = wlan notifications volume battery date 
 
 # Tray
 #tray-position = right
@@ -103,8 +103,9 @@ offset-x = -40
 padding-left = 5
 modules-left = i3
 
-border-bottom-size = 2
-border-bottom-color = ${colors.foreground}
+border-bottom-size = 3
+border-right-size = 3
+#border-bottom-color = ${colors.foreground}
 
 # Left Module
 [module/i3]
@@ -121,7 +122,7 @@ ws-icon-2 = "3;"
 ws-icon-3 = "4;"
 ws-icon-4 = "5;"
 ws-icon-5 = "6;"
-ws-icon-6 = "7;"
+ws-icon-6 = "7;"
 ws-icon-7 = "8;"
 ws-icon-8 = "9;"
 ws-icon-9 = "10;"
@@ -160,6 +161,10 @@ width = 20%
 offset-x = 40%
 modules-center = xwindow
 
+border-bottom-size = 3
+border-right-size = 3
+border-left-size = 3
+
 # Center Module
 [module/xwindow]
 type = internal/xwindow
@@ -169,10 +174,19 @@ label = %title:0:30:...%
 # Right Bar
 [bar/right]
 inherit = section/base
-padding-right = 2
 width = 20%
-offset-x = 1550
-modules-right = notifications volume battery date
+offset-x = 1544
+
+spacing = 1
+padding-left = 0
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 0
+
+border-bottom-size = 3
+border-left-size = 3
+
+modules-right = wlan notifications volume battery date
 
 # Right Modules
 [module/wlan]
@@ -181,7 +195,7 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <label-connected>
-label-connected = 
+label-connected =  %essid%
 
 label-disconnected = 
 label-disconnected-foreground = ${colors.foreground-alt}
@@ -241,7 +255,7 @@ format-charging =  <label-charging>
 
 format-discharging = <ramp-capacity><label-discharging>
 
-format-full-prefix = ""
+format-full-prefix = "%{T5} %{T-}"
 format-full-prefix-foreground = ${colors.foreground}
 
 ramp-capacity-0 = %{T5}%{T-}
