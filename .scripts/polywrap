@@ -2,13 +2,13 @@
 
 # Adapted from https://github.com/ntcarlson/dotfiles/blob/gamma/i3/scripts/polybar_wrapper
 
-IPC_SEARCH=/tmp/polybar_mqueue_search
 WINDOW_ID_SEARCH=/tmp/window_id_search
 
-IPC_ROFI=/tmp/polybar_mqueue_rofi
 WINDOW_ID_ROFI=/tmp/window_id_rofi
 
 WINDOW_ID_WIFI=/tmp/window_id_wifi
+
+WINDOW_ID_TRAY=/tmp/window_id_tray
 
 create_bar() {
     polybar $1 &
@@ -55,10 +55,12 @@ launch() {
     rm -f /tmp/polybar_mqueue_full
     ln -s /tmp/polybar_mqueue.$bar_id /tmp/polybar_mqueue_full
     create_bar left $WINDOW_ID_SEARCH &
-    sleep 0.2
+    sleep 0.5
     create_bar center $WINDOW_ID_ROFI &
-    sleep 0.2
+    sleep 0.5
     create_bar right $WINDOW_ID_WIFI &
+    sleep 0.5
+    create_bar tray $WINDOW_ID_TRAY &
 }
 
 rofi_open() {
@@ -82,6 +84,15 @@ wifi_open() {
     animation_close $bar_id
 }
 
+tray_open() {
+    local bar_id=$(cat $WINDOW_ID_TRAY | awk '{print $2}')
+         if xprop -id $bar_id | grep "Normal"; then
+              xdotool windowunmap $bar_id
+         elif xprop -id $bar_id | grep "Withdrawn"; then
+              xdotool windowmap $bar_id
+         fi
+}
+
 case "$1" in
     rofi)
         rofi_open;;
@@ -89,6 +100,8 @@ case "$1" in
         search_open;;
     wifi)
         wifi_open;;
+    tray)
+        tray_open;;
     launch)
         launch;;
 esac

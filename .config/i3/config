@@ -89,6 +89,8 @@ bindsym $mod+d exec --no-startup-id $HOME/.scripts/polywrap rofi
 bindsym $mod+grave exec --no-startup-id $HOME/.scripts/polywrap search
 # Wifi Menu 
 bindsym $mod+n exec --no-startup-id $HOME/.scripts/polywrap wifi
+# Tray Toggle
+bindsym $mod+t exec --no-startup-id $HOME/.scripts/polywrap tray
 
 # change focus
 bindsym $mod+Left focus left
@@ -199,5 +201,5 @@ bindsym $mod+Ctrl+l exec i3lock -n -i $HOME/.config/i3/background.png -c '$fg' -
 # wallpaper & bar
 exec_always --no-startup-id feh --image-bg black --bg-scale $HOME/.config/i3/background.png &
 exec_always --no-startup-id $HOME/.scripts/polywrap launch
-exec --no-startup-id $HOME/.scripts/blurme -t 0.0001 &
+exec --no-startup-id $HOME/.local/bin/blurwal
 
