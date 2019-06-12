@@ -46,9 +46,8 @@ animation_close() {
 launch() {
     killall -q polybar
     while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-    for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-      export MONITOR=$m
-      polybar main &
+    for m in $(polybar --list-monitors | cut -d":" -f1); do
+      MONITOR=$m polybar --reload main &
       bar_id=$!
     done
     echo "$bar_id"

@@ -39,8 +39,8 @@ set cmdheight=1
 let base16colorspace=256
 set background=dark
 colorscheme base16-gruvbox-dark
-hi Normal guibg=none ctermbg=none                                                                   
-hi LineNr guibg=none ctermbg=none
+hi Normal guibg=NONE ctermbg=NONE                                                                   
+hi LineNr guibg=NONE ctermbg=NONE
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>

@@ -11,16 +11,19 @@ set $ws9 "9"
 set $ws10 "10"
 
 # startup programs
-exec --no-startup-id compton --config $HOME/.config/compton.conf -b
+exec --no-startup-id $HOME/.local/bin/blurwal
 exec --no-startup-id libinput-gestures-setup start 
 exec --no-startup-id gnome-settings-daemon
-exec --no-startup-id i3-msg 'workspace $ws1; exec urxvt;'
-exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome'
-exec --no-startup-id i3-msg 'workspace $ws10; exec slack'
-exec --no-startup-id i3-msg 'workspace $ws3; exec google-chrome --usr-data-dir="~/.config/google-chrome/Profile 1";'
-exec --no-startup-id geary
 exec --no-startup-id nm-applet
-#exec --no-startup-id "$HOME/.config/dunst/dunst_print | $HOME/.config/dunst/dunst_handler"
+exec --no-startup-id synergyc --enable-crypto babs-desktop
+exec --no-startup-id i3-msg 'workspace $ws2; exec firefox;'
+exec --no-startup-id compton --config $HOME/.config/compton.conf -b
+exec --no-startup-id i3-msg 'workspace $ws1; exec urxvt;'
+#exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome --profile-directory="Default";'
+#exec --no-startup-id i3-msg 'workspace $ws3; exec google-chrome --profile-directory="Profile 1";'
+exec --no-startup-id i3-msg 'workspace $ws4; exec google-chrome --profile-directory="Default" --app="https://mail.google.com/";'
+exec --no-startup-id i3-msg 'workspace $ws4; exec google-chrome --profile-directory="Default" --app="https://messages.google.com/web";'
+exec --no-startup-id i3-msg 'workspace $ws10; exec slack'
 
 # floating windows
 for_window [title="Ranger"] floating enable
@@ -32,11 +35,11 @@ for_window [window_role="Preferences"] floating enable
 for_window [workspace="9"] floating enable
 
 # assignments
-#assign [class="(?i)google-chrome"] $ws2
 assign [class="(?i)geary"] $ws4
-for_window [class="Spotify"] move to workspace $WS5
+assign [class="(?i)mail.google.com"] $ws4
 assign [class="(?i)discord"] $ws6
 assign [class="(?i)slack"] $ws10
+for_window [class="Spotify"] move to workspace $WS5
 
 # modkey 4=windows, 1=alt
 set $mod Mod4
@@ -56,18 +59,14 @@ bindsym XF86MonBrightnessDown exec light -U 5
 # headset switch 
 bindsym $mod+Shift+s exec pacmd set-default-source "alsa_input.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-mono" && pacmd set-default-sink "alsa_output.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-stereo"
 
-# thin borders
-for_window [class="^.*"] border pixel 3
+# borders
+#for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 0
 hide_edge_borders smart
 
 # gaps
 gaps inner 5
 gaps outer 3
-
-# aesthetics
-#bindsym $mod+Shift+n border normal
-#bindsym $mod+Shift+x border none
-#bindsym $mod+Shift+o border 2pixel
 
 # font
 font pango: Ubuntu 11px
@@ -81,8 +80,6 @@ bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start menu
-#bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 # Bring up launcher
 bindsym $mod+d exec --no-startup-id $HOME/.scripts/polywrap rofi
 # Search open windows
@@ -152,8 +149,11 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# second monitor
-bindsym $mod+Shift+m exec xrandr --output DP-1 --above eDP-1 --auto
+# monitor control - extend/mirror/off
+bindsym $mod+Shift+e exec xrandr --output DP-1 --above eDP-1 --auto
+bindsym $mod+Shift+m exec xrandr --output DP-1 --auto --output eDP-1 --panning 2560x1440 && xrandr --output DP-1 --scale 0.9999x0.9999
+bindsym $mod+Shift+o exec xrandr --output eDP-1 --panning 1920x1080 --output DP-1 --off
+
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Down move workspace to output down
 
@@ -161,8 +161,6 @@ bindsym $mod+Ctrl+Down move workspace to output down
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window
 mode "resize" {
@@ -201,5 +199,4 @@ bindsym $mod+Ctrl+l exec i3lock -n -i $HOME/.config/i3/background.png -c '$fg' -
 # wallpaper & bar
 exec_always --no-startup-id feh --image-bg black --bg-scale $HOME/.config/i3/background.png &
 exec_always --no-startup-id $HOME/.scripts/polywrap launch
-exec --no-startup-id $HOME/.local/bin/blurwal
 
