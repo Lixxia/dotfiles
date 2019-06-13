@@ -36,13 +36,13 @@ urxvt*urgentOnBell: true
 URxvt.perl-ext-common: default,tabbedex,selection-to-clipboard
 
 ! URLs
-URxvt.url-launcher: /usr/bin/google-chrome
+URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
 
 ! Tabbedex colors
 URxvt.tabbed.tabbedex-rs-prefix: %
 URxvt.tabbedex.tabbar-bg: -1
-URxvt.tabbedex.tabbar-fg: 81
+URxvt.tabbedex.tabbar-fg: 238
 URxvt.tabbedex.tab-fg: 15
 URxvt.tabbedex.tab-bg: -1
 URxvt.tabbedex.bell-tab-fg: 15

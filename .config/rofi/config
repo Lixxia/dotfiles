@@ -1,9 +1,9 @@
 ! Colors
 !                  background     border   separator
 ! transparent bg
-rofi.color-window: argb:00282828, argb:00181818, argb:00000000
+!rofi.color-window: argb:00282828, argb:00181818, argb:00000000
 ! solid bg
-!rofi.color-window: #282828, argb:dd181818, argb:00000000
+rofi.color-window: argb:cc282828, argb:dd181818, argb:00000000
 
 ! State:           background     fg       bgalt          hlbg           hlfg
 rofi.color-normal: argb:00000000, #bdae93, argb:00000000, argb:00000000, #fbf1c7

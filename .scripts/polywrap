@@ -2,12 +2,7 @@
 
 # Adapted from https://github.com/ntcarlson/dotfiles/blob/gamma/i3/scripts/polybar_wrapper
 
-WINDOW_ID_SEARCH=/tmp/window_id_search
-
 WINDOW_ID_ROFI=/tmp/window_id_rofi
-
-WINDOW_ID_WIFI=/tmp/window_id_wifi
-
 WINDOW_ID_TRAY=/tmp/window_id_tray
 
 create_bar() {
@@ -53,34 +48,21 @@ launch() {
     echo "$bar_id"
     rm -f /tmp/polybar_mqueue_full
     ln -s /tmp/polybar_mqueue.$bar_id /tmp/polybar_mqueue_full
-    create_bar left $WINDOW_ID_SEARCH &
-    sleep 0.5
-    create_bar center $WINDOW_ID_ROFI &
-    sleep 0.5
-    create_bar right $WINDOW_ID_WIFI &
-    sleep 0.5
     create_bar tray $WINDOW_ID_TRAY &
+    sleep 1
+    xdotool windowunmap $(cat $WINDOW_ID_TRAY | awk '{print $2}') # auto hide tray on startup
 }
 
 rofi_open() {
-    local bar_id=$(cat $WINDOW_ID_ROFI)
-    animation_open $bar_id
-    rofi -show drun -location 2 -show-icons
-    animation_close $bar_id
+    rofi -show drun -location 2 -show-icons -yoffset 30
 }
 
 search_open() {
-    local bar_id=$(cat $WINDOW_ID_SEARCH)
-    animation_open $bar_id
-    rofi -show window -location 1 -width 28
-    animation_close $bar_id
+    rofi -show window -location 1 -width 28 -yoffset 30
 }
 
 wifi_open() {
-    local bar_id=$(cat $WINDOW_ID_WIFI)
-    animation_open $bar_id
     python $HOME/.scripts/networkmanager_dmenu
-    animation_close $bar_id
 }
 
 tray_open() {
