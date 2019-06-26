@@ -33,7 +33,7 @@ URxvt*VT100.charClass: 33:48,35:48,37:48,42:48,45-47:48,64:48,95:48,126:48
 urxvt*urgentOnBell: true
 
 ! Extensions
-URxvt.perl-ext-common: default,tabbedex,selection-to-clipboard
+URxvt.perl-ext-common: default,tabbedex,selection-to-clipboard,matcher
 
 ! URLs
 URxvt.url-launcher: /usr/bin/firefox

@@ -151,11 +151,13 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # monitor control - extend/mirror/off
 bindsym $mod+Shift+e exec xrandr --output DP-1 --above eDP-1 --auto
-bindsym $mod+Shift+m exec xrandr --output DP-1 --auto --output eDP-1 --panning 2560x1440 && xrandr --output DP-1 --scale 0.9999x0.9999
-bindsym $mod+Shift+o exec xrandr --output eDP-1 --panning 1920x1080 --output DP-1 --off
+bindsym $mod+Shift+m exec xrandr --output DP-1 --auto --output eDP-1 --panning 2560x1440 && xrandr --output DP-1 --scale 0.9999x0.9999 && i3-msg restart
+bindsym $mod+Shift+o exec xrandr --output eDP-1 --panning 1920x1080 --output DP-1 --off && i3-msg restart
 
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Down move workspace to output down
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

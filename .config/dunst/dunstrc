@@ -6,7 +6,7 @@
     indicate_hidden = true
     show_age_threshold = 60
     idle_threshold = 120
-    geometry = "300x8-6+37"
+    geometry = "300x8-5+18"
     alignment = center
     shrink = yes
     show_age_threshold = 60
@@ -21,11 +21,10 @@
     horizontal_padding = 16
     startup_notification = false
     dmenu = /usr/local/bin/rofi -dmenu -p dunst:
-    browser = /usr/bin/google-chrome
+    browser = /usr/bin/firefox
     icon_position = left
     icon_folders = /usr/share/icons/Numix/48/status/:/usr/share/icons/Numix/48/devices/:/usr/share/icons/Numix/48/notifications/:/usr/share/icons/Numix/24/status/
     max_icon_size = 48
-    transparency = 30
     corner_radius = 10
 
 [frame]

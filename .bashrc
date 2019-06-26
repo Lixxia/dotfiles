@@ -29,7 +29,7 @@ mkcd() {
 
 # git parsing for status
 parse_git_dirty() {
-    if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working directory clean" ]]; then
+    if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
       echo -e '\x1B[1;32m'
     else
       echo -e '\x1B[1;31m'

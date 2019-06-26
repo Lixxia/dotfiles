@@ -54,11 +54,11 @@ launch() {
 }
 
 rofi_open() {
-    rofi -show drun -location 2 -show-icons -yoffset 30
+    rofi -show drun -location 1 -show-icons -yoffset 28 -xoffset 3
 }
 
 search_open() {
-    rofi -show window -location 1 -width 28 -yoffset 30
+    rofi -show window -location 1 -width 28 -yoffset 28 -xoffset 3
 }
 
 wifi_open() {

@@ -2,8 +2,7 @@
 
 # Colors
 [colors]
-background = #cc282828
-#background = ${xrdb:background:#282828}
+background = ${xrdb:background:#282828}
 background-alt = ${xrdb:background:#66111111}
 foreground = ${xrdb:foreground:#dfdfdf}
 foreground-alt = #555
@@ -16,31 +15,6 @@ alert = ${xrdb:color9}
 [global/wm]
 margin-top = 5
 margin-bottom = 5
-
-[section/base]
-monitor = ${env:MONITOR:DP-1}
-enable-ipc = true
-override-redirect = true
-bottom = false
-
-height = 300
-offset-y = -400
-fixed-center = true
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-border-size = 0
-border-color = #00000000
-
-spacing = 1 
-padding-left = 0
-padding-right = 0
-module-margin-left = 2
-module-margin-right = 2
-
-overline-size = 300
-overline-color = ${colors.background}
 
 # Fonts - Offset for bottom text
 font-0 = Iosevka:fontformat=truetype:size=11:weight:bold;140
@@ -55,7 +29,6 @@ font-4 = "Font Awesome 5 Free Solid:pixelsize=13;140"
 monitor = ${env:MONITOR:DP-1}
 width = 100%
 height = 30
-offset-y = 0
 fixed-center = true
 
 background = ${colors.background}
@@ -64,7 +37,10 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 0
+border-top = 5
+border-bottom = 0
+border-left = 5
+border-right = 5
 border-color = #00000000
 
 spacing = 1
@@ -72,6 +48,8 @@ padding-left = 0
 padding-right = 1
 module-margin-left = 2
 module-margin-right = 0
+
+radius = 10
 
 # Fonts
 font-0 = Iosevka:fontformat=truetype:size=11:weight:bold;2
@@ -111,17 +89,6 @@ exec                = printf ""
 interval            = 6000
 
 #---------------------------------------------------#
-# Left Bar
-[bar/left]
-inherit = section/base
-width = 30%
-offset-x = -40
-padding-left = 5
-modules-left = i3
-
-border-bottom-size = 3
-border-right-size = 3
-#border-bottom-color = ${colors.foreground}
 
 # Left Module
 [module/i3]
@@ -170,16 +137,6 @@ label-urgent-foreground = ${colors.alert}
 label-urgent-padding = ${self.label-focused-padding}
 
 #---------------------------------------------------#
-# Center Bar
-[bar/center]
-inherit = section/base
-width = 20%
-offset-x = 40%
-modules-center = xwindow
-
-border-bottom-size = 3
-border-right-size = 3
-border-left-size = 3
 
 # Center Module
 [module/xwindow]
@@ -187,22 +144,6 @@ type = internal/xwindow
 label = %title:0:30:...%
 
 #---------------------------------------------------#
-# Right Bar
-[bar/right]
-inherit = section/base
-width = 20%
-offset-x = 1544
-
-spacing = 1
-padding-left = 0
-padding-right = 2
-module-margin-left = 2
-module-margin-right = 0
-
-border-bottom-size = 3
-border-left-size = 3
-
-modules-right = wlan notifications volume battery date
 
 # Right Modules
 [module/wlan]
@@ -287,6 +228,7 @@ exec = tail -F /tmp/.dunst-notification
 exec-if = [ -f /tmp/.dunst-notification ]
 tail = true
 
+#---------------------------------------------------#
 [settings]
 screenchange-reload = true
-pseudo-transparency = true
+pseudo-transparency = false
