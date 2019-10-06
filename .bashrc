@@ -27,17 +27,44 @@ mkcd() {
   mkdir -p "$@" && cd "$@"
 }
 
+cdt() {
+    if [[ $(git rev-parse --show-toplevel 2> /dev/null) ]]; then
+        cd $(git rev-parse --show-toplevel)
+    fi
+}
+
 # git parsing for status
 parse_git_dirty() {
     if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
-      echo -e '\x1B[1;32m'
+      echo -e '\u2009\x1B[1;32m'
     else
-      echo -e '\x1B[1;31m'
+      echo -e '\u2009\x1B[1;31m'
     fi
 }
 
 parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/╺─╸$(parse_git_dirty)\1/"
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/╺─╸$(parse_git_dirty)\1/"
+}
+
+# K8S
+
+kube_ps1() {
+    kube_context=$(cat ~/.kube/config | grep "current-context:" | sed "s/current-context: //")
+    kube_context="${kube_context:-}"
+    kube_namespace=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+    kube_namespace="${kube_namespace:-default}"
+
+    if [[ "$KUBE_PS1_ENABLED" == "on" ]]; then
+        echo -e "\e[1;33m${kube_context}\e[0m╸\e[1;34m${kube_namespace}\e[0m]╺─╸"
+    fi
+}
+
+kubeoff() {
+    export KUBE_PS1_ENABLED="off"
+}
+
+kubeon() {
+    export KUBE_PS1_ENABLED="on"
 }
 
 extract() {
@@ -92,5 +119,5 @@ export GREP_COLOR='1;33'
 if [ -n "$SSH_CONNECTION" ]; then
   export PS1='┌─╸\[\e[1;32m\]\u@\h\[\e[0;37m\]╺─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└───╸\[\e[0m\]'
 else
-  export PS1='┌─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└───╸\[\e[0m\]'
+  export PS1='┌─╸[\[\e[1;34m\]\w\[\e[1;37m\]] $(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└───╸\[\e[0m\]'
 fi

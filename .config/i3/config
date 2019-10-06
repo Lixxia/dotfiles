@@ -23,6 +23,7 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec urxvt;'
 #exec --no-startup-id i3-msg 'workspace $ws3; exec google-chrome --profile-directory="Profile 1";'
 exec --no-startup-id i3-msg 'workspace $ws4; exec google-chrome --profile-directory="Default" --app="https://mail.google.com/";'
 exec --no-startup-id i3-msg 'workspace $ws4; exec google-chrome --profile-directory="Default" --app="https://messages.google.com/web";'
+exec --no-startup-id i3-msg 'workspace $ws5; exec spotify;'
 exec --no-startup-id i3-msg 'workspace $ws10; exec slack'
 
 # floating windows
@@ -79,6 +80,7 @@ bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
 # Bring up launcher
 bindsym $mod+d exec --no-startup-id $HOME/.scripts/polywrap rofi
@@ -155,9 +157,13 @@ bindsym $mod+Shift+m exec xrandr --output DP-1 --auto --output eDP-1 --panning 2
 bindsym $mod+Shift+o exec xrandr --output eDP-1 --panning 1920x1080 --output DP-1 --off && i3-msg restart
 
 bindsym $mod+Ctrl+Up move workspace to output up
-bindsym $mod+Ctrl+Down move workspace to output down
 bindsym $mod+Ctrl+Left move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Down move workspace to output down
+
+# pause/resume notifications
+bindsym $mod+Shift+p exec killall -SIGUSR1 dunst
+bindsym $mod+Ctrl+Shift+p exec killall -SIGUSR2 dunst
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -196,7 +202,7 @@ client.focused_inactive $fg    $fg    $fg  $bg
 client.urgent           $bg    $bg    $fg  $bg 
 
 # lock screen
-bindsym $mod+Ctrl+l exec i3lock -n -i $HOME/.config/i3/background.png -c '$fg' -o '$red' -w '$green' -l '$fg' -e
+bindsym $mod+Ctrl+l exec killall -SIGUSR1 dunst && i3lock -n -i $HOME/.config/i3/background.png -c '$fg' -o '$red' -w '$green' -l '$fg' -e && killall -SIGUSR2 dunst
 
 # wallpaper & bar
 exec_always --no-startup-id feh --image-bg black --bg-scale $HOME/.config/i3/background.png &
