@@ -1,0 +1,5 @@
+"xte 'keydown Control_L' 'keydown bracketleft' 'keyup bracketleft' 'keyup Control_L'"
+     b:6
+
+"xte 'keydown Control_L' 'keydown bracketright' 'keyup bracketright' 'keyup Control_L'"
+     b:7

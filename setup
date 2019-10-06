@@ -5,7 +5,7 @@ repo_path=repos/dotfiles
 
 home_setup() {
     local cur=$pwd
-    local home_links=(.bashrc .colors .tmux.conf .urxvt .vim .vimrc .Xresources .scripts)
+    local home_links=(.bashrc .colors .tmux.conf .urxvt .vim .vimrc .Xresources .scripts .xbindkeysrc)
     
     echo "Creating home links"
     
@@ -57,7 +57,33 @@ touchpad_setup() {
     ln -s $HOME/${repo_path}/xorg.conf.d/30-touchpad.conf ${xorg_path}/30-touchpad.conf
 }
 
-usage="$0 [-home] || [-systemd] || [-touchpad]"
+packages_setup() {
+    apt install \
+        libanyevent-i3-perl \
+        libanyevent-perl \
+        libasync-interrupt-perl \
+        libcommon-sense-perl \
+        libev-perl \
+        libev4 \
+        libguard-perl \
+        libjson-xs-perl \
+        libtypes-serialiser-perl \
+        libxcb-cursor0 \
+        libxcb-xinerama0 \
+        libinput-tools xserver-xorg-input-libinput \
+        xdotool wmctrl \
+        git \
+        vim 
+}
+
+font_setup() {
+    mkdir -p ~/.local/share/fonts
+    cd ~/.local/share/fonts && curl -fLo "Iosevka Medium Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Iosevka/Medium/complete/Iosevka%20Medium%20Nerd%20Font%20Complete%20Mono.ttf
+    cd ~/.local/share/fonts && curl -fLo "Iosevka Nerd Font Complete Mono.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Iosevka/Regular/complete/Iosevka%20Nerd%20Font%20Complete%20Mono.ttf
+    ln -s ~/.local/share/fonts ~/.fonts
+}
+
+usage="$0 [--home] || [--systemd] || [--touchpad] || [--packages] || [--fonts]"
 
 if [ "$#" -ne 1 ]; then echo "$usage"; exit 1; fi
 
@@ -73,6 +99,12 @@ case "$1" in
     ;;
   "--config")
     config_setup
+    ;;
+  "--packages")
+    packages_setup
+    ;;
+  "--fonts")
+    font_setup
     ;;
   *)
     echo "$usage"
