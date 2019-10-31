@@ -83,7 +83,15 @@ font_setup() {
     ln -s ~/.local/share/fonts ~/.fonts
 }
 
-usage="$0 [--home] || [--systemd] || [--touchpad] || [--packages] || [--fonts]"
+wifi_setup() {
+    if [[ "$EUID" -ne 0 ]]; then
+        echo "Wifi script setup needs to be run with sudo."
+        exit 1
+    fi
+    cp $HOME/${repo_path}/.scripts/70-wifi-wired-exclusive /etc/NetworkManager/dispatcher.d/70-wifi-wired-exclusive
+}
+
+usage="$0 [--home] || [--systemd] || [--touchpad] || [--packages] || [--fonts] || [--wifi]"
 
 if [ "$#" -ne 1 ]; then echo "$usage"; exit 1; fi
 
@@ -105,6 +113,9 @@ case "$1" in
     ;;
   "--fonts")
     font_setup
+    ;;
+  "--wifi")
+    wifi_setup
     ;;
   *)
     echo "$usage"

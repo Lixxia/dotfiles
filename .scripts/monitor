@@ -1,0 +1,28 @@
+#!/bin/bash
+
+extend() {
+    xrandr --output DP-2 --above eDP-2 --auto
+}
+
+mirror() {
+    xrandr --output DP-2 --auto --output eDP-1 --panning 2560x1440 && xrandr --output DP-2 --scale 0.9999x0.9999
+    sleep 0.2
+    i3-msg restart
+    sleep 0.2
+    xbindkeys -f $HOME/.xbindkeysrc
+}
+
+laptop() {
+    xrandr --output eDP-1 --panning 1920x1080 --output DP-2 --off
+    sleep 0.2
+    i3-msg restart
+    sleep 0.2
+    pkill xbindkeys
+}
+
+case "$1" in
+    mirror)
+        mirror;;
+    laptop)
+        laptop;;
+esac

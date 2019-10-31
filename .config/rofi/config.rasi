@@ -39,7 +39,7 @@ configuration {
     lines: 9;
     width: 18;
     terminal: "urxvt";
-    font: "Iosevka bold 13";
+    font: "Iosevka Bold 13";
     modi: "window,run,drun";
 }
 window {

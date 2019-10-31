@@ -7,11 +7,11 @@ Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
 
-urxvt.font: xft:Iosevka-Mono:style=Medium:size=12
-font: xft:Iosevka-Mono:normal:size=12
-URxvt*italicFont: xft:Iosevka-Mono:italic::pixelsize=12
-urxvt.boldFont: xft:Iosevka-Mono:bold:size=12
-URxvt.letterSpace: -1
+urxvt.font: xft:Iosevka:style=Medium:pixelsize=16
+font: xft:Iosevka:normal:pixelsize=16
+URxvt.italicFont: xft:Iosevka:italic::pixelsize=16
+urxvt.boldFont: xft:Iosevka:bold:pixelsize=16
+URxvt.letterSpace: -7
 
 ! Appearance
 urxvt*scrollBar: false
@@ -26,7 +26,7 @@ URxvt.background: [80]#1d2021
 !urxvt*shading: 20
 !urxvt*inheritPixmap: true
 !urxvt*transparent: true
-URxvt.internalBorder: 20
+URxvt.internalBorder: 40
 URxvt.iconFile: /usr/share/icons/Numix-Circle/48/apps/xterm_48x48.svg
 URxvt*VT100.charClass: 33:48,35:48,37:48,42:48,45-47:48,64:48,95:48,126:48
 

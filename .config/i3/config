@@ -86,10 +86,10 @@ bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus par
 bindsym $mod+d exec --no-startup-id $HOME/.scripts/polywrap rofi
 # Search open windows
 bindsym $mod+grave exec --no-startup-id $HOME/.scripts/polywrap search
-# Wifi Menu 
-bindsym $mod+n exec --no-startup-id $HOME/.scripts/polywrap wifi
 # Tray Toggle
 bindsym $mod+t exec --no-startup-id $HOME/.scripts/polywrap tray
+# Power menu
+bindsym $mod+p exec --no-startup-id $HOME/.scripts/polywrap power
 
 # change focus
 bindsym $mod+Left focus left
@@ -152,9 +152,9 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # monitor control - extend/mirror/off
-bindsym $mod+Shift+e exec xrandr --output DP-1 --above eDP-1 --auto
-bindsym $mod+Shift+m exec xrandr --output DP-1 --auto --output eDP-1 --panning 2560x1440 && xrandr --output DP-1 --scale 0.9999x0.9999 && i3-msg restart
-bindsym $mod+Shift+o exec xrandr --output eDP-1 --panning 1920x1080 --output DP-1 --off && i3-msg restart
+bindsym $mod+Shift+e exec $HOME/.scripts/monitor extend
+bindsym $mod+Shift+m exec $HOME/.scripts/monitor mirror
+bindsym $mod+Shift+o exec $HOME/.scripts/monitor laptop
 
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Left move workspace to output left
@@ -202,7 +202,7 @@ client.focused_inactive $fg    $fg    $fg  $bg
 client.urgent           $bg    $bg    $fg  $bg 
 
 # lock screen
-bindsym $mod+Ctrl+l exec killall -SIGUSR1 dunst && i3lock -n -i $HOME/.config/i3/background.png -c '$fg' -o '$red' -w '$green' -l '$fg' -e && killall -SIGUSR2 dunst
+bindsym $mod+Ctrl+l exec $HOME/.scripts/locker
 
 # wallpaper & bar
 exec_always --no-startup-id feh --image-bg black --bg-scale $HOME/.config/i3/background.png &

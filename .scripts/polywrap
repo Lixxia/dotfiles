@@ -2,7 +2,6 @@
 
 # Adapted from https://github.com/ntcarlson/dotfiles/blob/gamma/i3/scripts/polybar_wrapper
 
-WINDOW_ID_ROFI=/tmp/window_id_rofi
 WINDOW_ID_TRAY=/tmp/window_id_tray
 
 create_bar() {
@@ -12,30 +11,6 @@ create_bar() {
     local win_id=$(xdotool search --sync --pid $bar_id)
     echo $win_id > $2
     xdotool windowunmap $win_id
-}
-
-animation_open() {
-    local bar_id;
-    for bar_id in $@; do
-        xdotool windowmap $bar_id
-    done
-    for y in `seq -300 10 0`; do
-        for bar_id in $@; do
-            xdotool windowmove $bar_id x $y
-        done
-        sleep 0.001
-    done
-}
-
-animation_close() {
-    for y in `seq 0 -10 -300`; do
-        for bar_id in $@; do
-            xdotool windowmove $bar_id x $y
-        done
-    done
-    for bar_id in $@; do
-        xdotool windowunmap $bar_id
-    done
 }
 
 launch() {
@@ -61,10 +36,6 @@ search_open() {
     rofi -show window -location 1 -width 28 -yoffset 28 -xoffset 3
 }
 
-wifi_open() {
-    python $HOME/.scripts/networkmanager_dmenu
-}
-
 tray_open() {
     local bar_id=$(cat $WINDOW_ID_TRAY | awk '{print $2}')
          if xprop -id $bar_id | grep "Normal"; then
@@ -74,15 +45,51 @@ tray_open() {
          fi
 }
 
+power_open() {
+    local theme="~/.config/rofi/powermenu.rasi"
+    
+    local power_off=""
+    local reboot="ﰇ"
+    local lock=""
+    local suspend="鈴"
+    local log_out=""
+    local options="$power_off\n$reboot\n$lock\n$suspend\n$log_out"
+
+    local launch="$(echo -e "$options" | rofi -theme $theme -dmenu -selected-row 2)"
+
+    case $launch in
+        $power_off)
+    	    systemctl poweroff
+            ;;
+        $reboot)
+            systemctl reboot
+            ;;
+        $lock)
+            $HOME/.scripts/locker
+            ;;
+        $suspend)
+            systemctl suspend
+            ;;
+        $log_out)
+            i3-msg exit
+            ;;
+    esac
+}
+
 case "$1" in
     rofi)
-        rofi_open;;
+        rofi_open
+        ;;
     search)
-        search_open;;
-    wifi)
-        wifi_open;;
+        search_open
+        ;;
     tray)
-        tray_open;;
+        tray_open
+        ;;
+    power)
+        power_open
+        ;;
     launch)
-        launch;;
+        launch
+        ;;
 esac

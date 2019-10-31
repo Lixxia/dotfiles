@@ -1,1 +1,5 @@
-i3lock -n -i /home/laura/.config/i3/background.png -c '#000000' -o '#A1B56C' -w '#AB4642' -l '#d8d8d8' -e
+#!/bin/bash
+
+killall -SIGUSR1 dunst
+i3lock -n -i $HOME/.config/i3/background.png -c '#181818' -o '#ab4642' -w '#a1b56c' -l '#d5c4a1' -e
+killall -SIGUSR2 dunst
