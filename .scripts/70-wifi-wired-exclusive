@@ -27,8 +27,8 @@ disable_wifi() {
    nmcli radio wifi off
 }
 
-if [ "$iface_type" = "ethernet" ] && [ "$iface_mode" = "down" ]; then
+if [[ "$interface" =~ "enx" ]] && [ "$iface_mode" = "down" ]; then
   enable_wifi
-elif [ "$iface_type" = "ethernet" ] && [ "$iface_mode" = "up"  ] && [ "$iface_state" = "connected" ]; then
+elif [[ "$interface" =~ "enx" ]] && [ "$iface_mode" = "up"  ] && [ "$iface_state" = "connected" ]; then
   disable_wifi
 fi

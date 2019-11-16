@@ -1,3 +1,65 @@
+if empty (glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'Lixxia/gruvbox'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
+Plug 'hashivim/vim-terraform'
+Plug 'towolf/vim-helm'
+Plug 'raimondi/delimitMate'
+Plug 'itchyny/lightline.vim'
+call plug#end()
+
+" Comments
+nmap <C-_> <Plug>CommentaryLine
+vmap <C-_> <Plug>Commentary
+
+" Nerdtree
+nmap <C-n> :NERDTreeToggle<CR>
+
+let g:NERDTreeShowHidden=1
+let g:NERDTreeLimitedSyntax = 1
+let g:NERDTreeHighlightCursorline = 0
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+
+" Autoclose if nerdtree is alone
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Git status icons
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "",
+    \ "Renamed"   : "",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "",
+    \ "Dirty"     : "",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : "",
+    \ "Unknown"   : "?"
+    \ }
+
+set wildmenu
+
+" Mouse enabled
+set mouse=a
+
+" Swaps
+set dir=~/.vimswap,/tmp,.
+
 " Set compatibility to Vim only.
 set nocompatible
 
@@ -10,14 +72,14 @@ syntax on
 " Turn off modelines
 set modelines=0
 
-" Uncomment below to set the max textwidth. Use a value corresponding to the width of your screen.
-" set textwidth=80
 set formatoptions=tcqrn1
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
 set noshiftround
+set autoindent
+set smarttab
 
 " Searching
 set ignorecase
@@ -36,84 +98,53 @@ set showcmd
 set cmdheight=1
 
 " Appearance
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
 let base16colorspace=256
 set background=dark
-colorscheme base16-gruvbox-dark
-hi Normal guibg=NONE ctermbg=NONE                                                                   
-hi LineNr guibg=NONE ctermbg=NONE
+
+hi clear SignColumn
+hi Normal ctermbg=NONE guibg=NONE
+
+hi LineNr          ctermfg=019   ctermbg=NONE guibg=NONE
+hi CursorLineNr    ctermfg=white ctermbg=NONE guibg=NONE
+
+hi GitGutterAdd    ctermfg=2 ctermbg=NONE guibg=NONE
+hi GitGutterChange ctermfg=3 ctermbg=NONE guibg=NONE
+hi GitGutterDelete ctermfg=1 ctermbg=NONE guibg=NONE
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
 
-" Line num
-highlight LineNr ctermfg=black
-
-" Statusline
-let g:currentmode={
-    \ 'n'  : 'Normal ',
-    \ 'no' : 'N·Operator Pending ',
-    \ 'v'  : 'Visual ',
-    \ 'V'  : 'V·Line ',
-    \ '' : 'V·Block ',
-    \ 's'  : 'Select ',
-    \ 'S'  : 'S·Line ',
-    \ '^S' : 'S·Block ',
-    \ 'i'  : 'Insert ',
-    \ 'R'  : 'Replace ',
-    \ 'Rv' : 'V·Replace ',
-    \ 'c'  : 'Command ',
-    \ 'cv' : 'Vim Ex ',
-    \ 'ce' : 'Ex ',
-    \ 'r'  : 'Prompt ',
-    \ 'rm' : 'More ',
-    \ 'r?' : 'Confirm ',
-    \ '!'  : 'Shell ',
-    \ 't'  : 'Terminal '
-    \}
-
-" Automatically change the statusline color depending on mode
-function! ChangeStatuslineColor()
-  if (mode() =~# '\v(n|no)')
-    exe 'hi! StatusLine ctermfg=000 ctermbg=008'
-  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-    exe 'hi! StatusLine ctermbg=003 ctermfg=000'
-  elseif (mode() ==# 'i')
-    exe 'hi! StatusLine ctermbg=004 ctermfg=000'
-  elseif (mode() ==# 'R')
-    exe 'hi! StatusLine ctermbg=001 ctermfg=000'
-  else
-    exe 'hi! StatusLine ctermfg=000 ctermbg=008'
-  endif
-
-  return ''
-endfunction
-
-function! ReadOnly()
-  if &readonly || !&modifiable
-    return ''
-  else
-    return ''
-endfunction
-
 " Set status line display
-set laststatus=2
-hi StatusLine ctermfg=000 ctermbg=008 cterm=NONE
-hi StatusLineNC ctermfg=black ctermbg=000 cterm=NONE
-set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
-set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
-set statusline+=%{&paste?'PASTE':''}\                     " Paste warning
-set statusline+=%2*\ %<%f\ %{ReadOnly()}\ %m\ %w\        " File+path
-set statusline+=%1*\ %=                                  " Space/switch right
-set statusline+=%2*\ %Y\                                 " FileType
-set statusline+=%2*\ %{(&fenc!=''?&fenc:&enc)}\ %{&ff}\  " Encoding & Fileformat
-set statusline+=%3*\ %3p%%\                              " Percent file
-set statusline+=%0*\ %l:%c\                              " Rownumber/total (%)
+function! LightlineReadonly()
+  return &readonly && &filetype !=# 'help' ? '' : ''
+endfunction
 
-hi User1 ctermfg=007
-hi User2 ctermfg=008
-hi User3 ctermfg=008 ctermbg=019
+set laststatus=2
+
+let g:lightline = {
+      \ 'component_function': {
+      \   'readonly': 'LightlineReadonly',
+      \ },
+      \ 'colorscheme': 'gruvbox',
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+
+" Set transparent background for middle and fix right side cutoff
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
+let s:palette.insert.middle = s:palette.normal.middle
+let s:palette.visual.middle = s:palette.normal.middle
+let s:palette.replace.middle = s:palette.normal.middle
+call insert(s:palette.normal.right, s:palette.normal.left[1], 0)
+call insert(s:palette.insert.right, s:palette.insert.left[1], 0)
+call insert(s:palette.visual.right, s:palette.visual.left[1], 0)
+call insert(s:palette.replace.right, s:palette.replace.left[1], 0)
 
 set noshowmode
-set noswapfile
 " Encoding
 set encoding=utf-8

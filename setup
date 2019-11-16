@@ -91,6 +91,27 @@ wifi_setup() {
     cp $HOME/${repo_path}/.scripts/70-wifi-wired-exclusive /etc/NetworkManager/dispatcher.d/70-wifi-wired-exclusive
 }
 
+slack_taskbar_icon() {
+    #TODO Script out
+
+    #tmp_dir=$(mktemp -d -t slack-XXXXXXXXXX)
+    #cd $tmp_dir
+
+    #cp /usr/lib/slack/resources/app.asar.unpacked/dist/static/*.ico .
+
+    #for image in *.ico; do echo $image; convert $image $(echo $image | awk -F. '{print $1".png"}'); done
+
+    #for image in *.png; do echo $image; convert $image -fuzz 10% -fill "#d5c4a1" -opaque "#FFFFFF" ${image}; done
+
+    #for image in *unread-*png; do echo $image; convert $image -fuzz 25% -fill "#458588" -opaque "#5dbcd2" $image; done
+
+    #for image in *highlight-*png; do echo $image; convert $image -fuzz 25% -fill "#cc241d" -opaque "#e74487" $image; done
+
+    #for ico in highlight rest unread; do convert slack-taskbar-${ico}-0.png slack-taskbar-${ico}-1.png slack-taskbar-${ico}-2.png slack-taskbar-${ico}-3.png slack-taskbar-${ico}.ico; done
+
+    echo -e "Base64 the slack icon-2 pngs.\nExtract app.asar using:\n\tnpx asar extract /usr/lib/slack/resources/app.asar <destination>\nEdit <destination>/dist/main.1.sha.js replacing webpack functions (start of file) with the base64 versions generated earlier.\n Repack the asar using:\n\tnpx asar pack <destination> app.asar\nMove the files back using:\n\t sudo mv app.asar /usr/lib/slack/resources/"
+}
+
 usage="$0 [--home] || [--systemd] || [--touchpad] || [--packages] || [--fonts] || [--wifi]"
 
 if [ "$#" -ne 1 ]; then echo "$usage"; exit 1; fi

@@ -29,6 +29,17 @@ color18="50/49/45" # Base 01
 color19="7c/6f/64" # Base 02
 color20="bd/ae/93" # Base 04
 color21="eb/db/b2" # Base 06
+color22="32/30/2f" # Dark Soft
+color23="1d/20/21" # Dark Hard
+color24="3c/38/36" # Dark 1
+color25="50/49/45" # Dark 2
+color26="66/5c/54" # Dark 3
+color27="7c/6f/64" # Dark 4
+color28="92/83/74" # Gray
+color29="f2/e5/bc" # Light Soft
+color30="f9/f5/d7" # Light Hard
+color31="fe/80/19" # Bright Orange
+color32="af/3a/03" # Orange
 color_foreground="eb/db/b2" # Base 05
 #color_background="1d/20/21" # Base 00
 color_cursor="d6/5d/0e" # Base 05
@@ -76,6 +87,43 @@ printf $printf_template 19 $color19
 printf $printf_template 20 $color20
 printf $printf_template 21 $color21
 
+printf $printf_template 236 $color22
+printf $printf_template 234 $color23
+
+printf $printf_template 235 $color00
+printf $printf_template 237 $color24
+printf $printf_template 239 $color25
+printf $printf_template 241 $color26
+printf $printf_template 243 $color27
+
+printf $printf_template 244 $color28
+printf $printf_template 245 $color28
+
+printf $printf_template 228 $color29
+printf $printf_template 230 $color30
+
+printf $printf_template 229 $color15
+printf $printf_template 223 $color08
+printf $printf_template 250 $color05
+printf $printf_template 248 $color20
+printf $printf_template 246 $color17
+
+printf $printf_template 167 $color09
+printf $printf_template 142 $color10
+printf $printf_template 214 $color11
+printf $printf_template 109 $color12
+printf $printf_template 175 $color13
+printf $printf_template 108 $color14
+printf $printf_template 208 $color31
+
+printf $printf_template 88 $color01
+printf $printf_template 100 $color02
+printf $printf_template 136 $color03
+printf $printf_template 24 $color04
+printf $printf_template 96 $color05
+printf $printf_template 65 $color06
+printf $printf_template 130 $color32
+
 # foreground / background / cursor color
 if [ -n "$ITERM_SESSION_ID" ]; then
   # iTerm2 proprietary escape codes
@@ -117,6 +165,17 @@ unset color18
 unset color19
 unset color20
 unset color21
+unset color22
+unset color23
+unset color24
+unset color25
+unset color26
+unset color27
+unset color28
+unset color29
+unset color30
+unset color31
+unset color32
 unset color_foreground
 #unset color_background
 unset color_cursor
