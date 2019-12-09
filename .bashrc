@@ -36,14 +36,18 @@ cdt() {
 # git parsing for status
 parse_git_dirty() {
     if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
-      echo -e '\u2009\x1B[1;32m'
+      echo -e "$(tput setaf 10)  "
     else
-      echo -e '\u2009\x1B[1;31m'
+      echo -e "$(tput setaf 9)  "
     fi
 }
 
 parse_git_branch() {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/╺─╸$(parse_git_dirty)\1/"
+}
+
+working_directory() {
+    echo -e "$(tput setaf 12)$(pwd | sed "s/${HOME//\//\\\/}//; s/\//  /g")\e[0m"
 }
 
 # K8S
@@ -55,7 +59,7 @@ kube_ps1() {
     kube_namespace="${kube_namespace:-default}"
 
     if [[ "$KUBE_PS1_ENABLED" == "on" ]]; then
-        echo -e "\e[1;33m${kube_context}\e[0m╸\e[1;34m${kube_namespace}\e[0m]╺─╸"
+        echo -e "ﴱ\e[1;33m${kube_context}\e[0m╸\e[1;34m${kube_namespace}\e[0m]╺─╸"
     fi
 }
 
@@ -117,7 +121,7 @@ fi
 export GREP_COLOR='1;33'
 
 if [ -n "$SSH_CONNECTION" ]; then
-  export PS1='┌─╸\[\e[1;32m\]\u@\h\[\e[0;37m\]╺─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└───╸\[\e[0m\]'
+  export PS1='┌─╸\[\e[1;32m\]\u@\h\[\e[0;37m\]╺─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸\[\e[0m\]'
 else
-  export PS1='┌─╸[\[\e[1;34m\]\w\[\e[1;37m\]] $(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└───╸\[\e[0m\]'
+  export PS1=$'┌─╸ $(working_directory) $(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸\[\e[0m\]'
 fi
