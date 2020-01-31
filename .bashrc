@@ -47,7 +47,7 @@ parse_git_branch() {
 }
 
 working_directory() {
-    echo -e "$(tput setaf 12)$(pwd | sed "s/${HOME//\//\\\/}//; s/\//  /g")\e[0m"
+    echo -e "$(tput setaf 12)$(pwd | sed "s/${HOME//\//\\\/}/ /; s/\//  /g")\e[0m"
 }
 
 # K8S
@@ -123,5 +123,5 @@ export GREP_COLOR='1;33'
 if [ -n "$SSH_CONNECTION" ]; then
   export PS1='┌─╸\[\e[1;32m\]\u@\h\[\e[0;37m\]╺─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸\[\e[0m\]'
 else
-  export PS1=$'┌─╸ $(working_directory) $(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸\[\e[0m\]'
+  export PS1=$'┌─╸ $(working_directory) $(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸ \[\e[0m\]'
 fi

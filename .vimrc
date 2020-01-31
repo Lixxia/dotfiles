@@ -1,3 +1,9 @@
+"       (_)                   
+" __   ___ _ __ ___  _ __ ___ 
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__ 
+"   \_/ |_|_| |_| |_|_|  \___|
+
 if empty (glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -28,12 +34,14 @@ nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeLimitedSyntax = 1
 let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeMinimalUI = v:true
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
 
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
 
 " Autoclose if nerdtree is alone
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -52,10 +60,28 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-set wildmenu
+" Turn on syntax highlighting.
+syntax on
 
-" Mouse enabled
-set mouse=a
+augroup nerdtreesettings
+	autocmd!
+
+    " Set common options.
+    autocmd FileType nerdtree
+    	\ setlocal
+    		\ nolist
+    		\ nocursorline
+    		\ signcolumn=no
+    		\ conceallevel=3 concealcursor=nvic
+    
+    " Hide current working directory line.
+    autocmd FileType nerdtree syntax match NERDTreeHideCWD #^[</].*$# conceal
+    
+    " Hide slashes after each directory node.
+    autocmd FileType nerdtree syntax match NERDTreeDirSlash #/$# conceal containedin=NERDTreeDir contained
+augroup end
+
+set wildmenu
 
 " Swaps
 set dir=~/.vimswap,/tmp,.
@@ -65,9 +91,6 @@ set nocompatible
 
 " Show cursor position
 set ruler
-
-" Turn on syntax highlighting.
-syntax on
 
 " Turn off modelines
 set modelines=0
@@ -84,8 +107,6 @@ set smarttab
 " Searching
 set ignorecase
 set smartcase
-"set incsearch
-"set hlsearch
 
 " Display 5 lines above/below the cursor when scrolling with a mouse.
 set scrolloff=5
@@ -128,8 +149,8 @@ let g:lightline = {
       \   'readonly': 'LightlineReadonly',
       \ },
       \ 'colorscheme': 'gruvbox',
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 " Set transparent background for middle and fix right side cutoff
