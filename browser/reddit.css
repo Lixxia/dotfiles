@@ -18,10 +18,22 @@
 {
 */
 
+:root{
+    --main-bg: #282828; 
+    --alt-bg: #353535;
+    --main-fg: #d5c4a1;
+    --alt-fg: #5E594E;
+    --light-fg: #ddcfb3;
+    --main-border: #343434;
+    --main-accent: #458588;
+    --dark-accent: #2b5355;
+}
+
 /* things to hide */
 
 body.with-listing-chooser .listing-chooser.initialized,
 .goldvertisement,
+.premium-banner,
 #ad-frame,
 .infobar.welcome,
 a.helplink,
@@ -56,7 +68,10 @@ a.discuss-ad,
 .sr-interest-bar .bubble p,
 .next-suggestions,
 .search-summary,
-#header-img {
+#sr-header-area, 
+#sr-more-link,
+#header-img,
+#chat {
     display: none !important;
 }
 /* body */
@@ -66,115 +81,21 @@ body {
     left: 0% !important;
     right: 0% !important;
     background-attachment: fixed !important;
-    background-color: #fff !important;
+    background-color: var(--main-bg) !important;
     font-family: Helvetica !important;
     font-size: 12pt !important;
     margin-left: 0 !important;
 }
+a {
+    color: var(--main-accent) !important;
+}
 .content {
     margin-left: 0px !important;
 }
-
-/* Header + navigation
--------------------------
-*/
-/* turn the nav bar into a drop-down menu */
-
 #header {
     background: transparent!important;
     border-bottom: none !important;
-    height: 70px !important;
-}
-#sr-header-area {
-    position: fixed !important;
-    right: 0% !important;
-    margin-right: 60px !important;
-    width: 100px !important;
-    top: -1000% !important;
-    font-weight: normal !important;
-    font-family: Helvetica !important;
-    text-align: left !important;
-    background: #fff !important;
-    height: 200px !important;
-    line-height: 12px !important;
-    padding-top: 0px !important;
-    border: 1px solid #888 !important;
-    z-index: 1001 !important;
-    border-radius: 1px !important;
-    border-top-right-radius: 0px !important;
-    padding-left: 3px !important;
-    padding-right: 3px !important;
-    box-shadow: none !important;
-    overflow: scroll !important;
-}
-#sr-header-area .flat-list li {
-    display: block !important;
-    overflow: scroll !important;
-    padding-left: 2px !important;
-}
-#sr-header-area:active,
-#sr-header-area:hover {
-    top: 15px !important;
-}
-#sr-header-area:hover #sr-more-link:before {
-    background: #888 !important;
-    border-radius: 3px !important;
-}
-#sr-header-area .sr-list a[class="current"],
-#sr-header-area .selected a {
-    color: #888!important;
-    font-weight: normal !important;
-    text-shadow: none !important;
-}
-#sr-header-area a {
-    color: #bbb !important;
-    font-size: 9px !important;
-    text-decoration: none !important;
-    transition: 0.5s color ease;
-    top: -2px !important;
-}
-#sr-header-area a:hover {
-    color: #aaa !important;
-    transition: 0.5s color ease;
-}
-.sr-bar .separator {
-    color: #909090 !important
-}
-#sr-more-link {
-    background: inherit!important;
-    color: #FFF !important;
-    font-weight: normal !important;
-    text-align: center !important;
-    position: fixed !important;
-    right: -1000px !important;
-    ;
-    padding-top: 1px !important;
-}
-#sr-more-link:before {
-    content: 'reddits' !important;
-    text-align: center !important;
-    background: transparent !important;
-    position: fixed !important;
-    top: 3px !important;
-    right: 0% !important;
-    padding: 16px !important;
-    padding-top: 1px !important;
-    padding-bottom: 0px !important;
-    margin-right: 60px;
-    text-transform: none !important;
-    font-family: Helvetica !important;
-    border-bottom-right-radius: 0px !important;
-    opacity: 0;
-}
-#sr-more-link:hover:before,
-#sr-header-area:hover #sr-more-link:before {
-    color: #fff !important;
-    opacity: 1 !important;
-}
-#sr-more-link:hover:before,
-#sr-header-area:hover::after {
-    color: #fff !important;
-    border-radius: 3px !important;
+    height: 85px !important;
 }
 .tabmenu {
     vertical-align: 0px !important;
@@ -186,7 +107,7 @@ body {
     top: 0px !important;
     margin-top: 2px !important;
     position: absolute !important;
-    font-family: Helvetica !important;
+    
     opacity: 0;
     height: 24px;
 }
@@ -195,21 +116,21 @@ body {
 }
 .tabmenu li a {
     background: transparent !important;
-    color: #909090 !important;
+    color: var(--main-fg) !important;
     font-size: 12pt !important;
     font-weight: 300 !important;
     padding: 0px 0px !important;
     transition: 0.5s color ease;
     border: 0px none !important;
     margin-left: -1px !important;
-    font-family: Helvetica !important;
+    
 }
 .tabmenu li a:hover {
-    color: #3f3f3f !important;
+    color: var(--main-fg) !important;
     transition: 0.5s color ease;
 }
 .tabmenu li.selected a {
-    color: #3f3f3f !important;
+    color: var(--main-fg) !important;
     background: transparent !important;
     border: 0px none !important;
 }
@@ -231,6 +152,7 @@ ul.tabmenu.formtab {
 #mail {
     margin-left: 3px !important;
     margin-right: 6px !important;
+    filter: sepia(40%) !important;
 }
 .user,
 .pref-lang {
@@ -253,7 +175,7 @@ ul.tabmenu.formtab {
     margin-right: 3px !important;
 }
 #header-bottom-right {
-    margin-top: 10px !important;
+    margin-top: 20px !important;
     background: transparent !important;
     box-shadow: none !important;
     font-size: 12pt !important;
@@ -264,20 +186,19 @@ ul.tabmenu.formtab {
     right: 9% !important;
     text-align: center !important;
     position: relative !important;
-    font-family: Helvetica, sans-serif !important;
 }
 #header-bottom-right a {
-    color: #909090 !important;
+    color: var(--main-fg) !important;
     transition: 0.5s color ease;
 }
 #header-bottom-right a:hover {
-    color: #3f3f3f !important;
+    color: var(--main-fg) !important;
     text-decoration: none !important;
     transition: 0.5s color ease;
 }
 .user .userkarma {
     border: 0 !important;
-    color: #646464;
+    color: var(--main-fg);
     font-weight: 300 !important;
 }
 .pref-lang {
@@ -299,21 +220,22 @@ ul.tabmenu.formtab {
     margin-top: 16px !important;
 }
 .pagename a {
-    color: #444 !important;
+    color: var(--main-fg) !important;
     text-decoration: none !important;
     font: normal 24pt Helvetica, sans-serif !important;
 }
 .pagename a:hover {
-    color: #444 !important;
+    color: var(--main-fg) !important;
     transition: 0.5s color ease;
 }
 
 /* sidebox */
 
 .side {
-    background: #FFF !important;
+    background: var(--main-bg) !important;
     box-shadow: none !important;
-    border: 1px solid #888 !important;
+    border: 2px solid var(--main-fg) !important;
+    border-radius: 10px !important;
     position: fixed !important;
     padding: 16px !important;
     float: right !important;
@@ -326,8 +248,8 @@ ul.tabmenu.formtab {
 }
 .side::before {
     content: 'sidebox';
-    font-family: Helvetica !important;
-    color: #bbb !important;
+    
+    color: var(--main-fg) !important;
     text-align: center !important;
     background: transparent!important;
     position: fixed !important;
@@ -340,8 +262,8 @@ ul.tabmenu.formtab {
     opacity: 0;
 }
 .side:hover::before {
-    color: #fff !important;
-    background: #888 !important;
+    color: var(--main-bg) !important;
+    background: var(--main-fg) !important;
     border-radius: 3px !important;
     transition: 0.5s color ease;
     opacity: 1 !important;
@@ -376,9 +298,9 @@ ul.tabmenu.formtab {
     border: 0px solid black;
     font-size: 80%;
     padding: 1px;
-    color: #f9f9f9;
+    color: var(--main-fg);
     font-weight: bold;
-    background: #95a5a6;
+    background: var(--main-bg);
     min-width: 120px;
     text-align: center;
     border-radius: 0px;
@@ -399,27 +321,26 @@ ul.tabmenu.formtab {
     right: 4% !important;
     left: auto !important;
     top: 325px !important;
-    font-family: Helvetica !important;
+    
 }
 .flairselector li.selected {
     border: none !important;
-    color: #444 !important;
-    background: #ccc !important;
+    color: var(--main-fg) !important;
+    background: var(--main-bg) !important;
 }
 .titlebox {
     font-size: larger;
     text-align: center !important;
 }
 .sidebox a {
-    color: #1a1a1a !important;
+    color: var(--main-fg) !important;
     font-weight: normal !important;
     text-decoration: none !important;
 }
 .md {
     max-width: 100% !important;
     font-size: 12pt !important;
-    font-family: Helvetica, sans-serif !important;
-    color: #646464 !important;
+    color: var(--main-fg) !important;
 }
 .panestack-title {
     width: 100% !important;
@@ -429,7 +350,6 @@ ul.tabmenu.formtab {
 }
 .titlebox h1 {
     color: black !important;
-    font-family: Helvetica, sans-serif !important;
     font-size: 12pt !important;
     text-align: center !important;
     width: 100% !important;
@@ -446,15 +366,15 @@ ul.tabmenu.formtab {
     max-height: 100px !important;
     padding: 3px !important;
     text-align: left !important;
-    border: 1px solid #ddd !important;
-    font-family: Helvetica !important;
+    border: 1px solid var(--main-bg) !important;
+    
 }
 .titlebox .bottom {
  	border: none !important;   
 }
 .md h2 {
     font-size: 10px !important;
-    font-family: Helvetica !important;
+    
 }
 .morelink {
     text-align: center;
@@ -475,35 +395,30 @@ ul.tabmenu.formtab {
 .linkinfo {
  	border-bottom: 0px none !important;
     text-align: center !important;
-    border: 1px solid #eee!important;
+    border: 1px solid var(--main-border)!important;
     height: auto !important;
     padding: 5px 0px 0px 0px !important;
     width: 100% !important;
-    color: #646464 !important;   
+    color: var(--main-fg) !important;   
 }
-.linkinfo .date {
-    font-family: Helvetica !important;
-}
+
 .linkinfo .score .word {
-    font-family: Helvetica, sans-serif !important;
     font-size: 12pt !important;
     font-weight: bold;
-    color: #1c1c1c !important;
+    color: var(--main-fg) !important;
 }
 .linkinfo .score .number {
     font-size: 12pt !important;
     font-weight: bold;
-    font-family: Helvetica, sans-serif !important;
-    color: #1c1c1c !important;
+    color: var(--main-fg) !important;
 }
 .linkinfo .upvotes,
 .linkinfo .downvotes {
-    font-family: Helvetica !important;
     font-size: 12pt !important;
-    color: #646464 !important;
+    color: var(--main-fg) !important;
 }
 .linkinfo .shortlink input {
-    border: 1px solid gray;
+    border: 1px var(--main-border);
     padding: 3px 3px;
     width: 140px !important;
 }
@@ -522,10 +437,10 @@ ul.tabmenu.formtab {
 /* links */
 
 .link {
-    color: #777 !important;
-    border: 1px solid #eee !important;
+    color: var(--main-fg) !important;
+    border: 2px solid var(--main-border) !important;
     min-height: 50px !important;
-    padding: 12px 4px !important;
+    padding: 21px 0px 21px 5px !important;
     position: relative !important;
     background: transparent !important;
     margin-bottom: -1px !important;
@@ -533,12 +448,26 @@ ul.tabmenu.formtab {
     right: 8% !important;
     left: 8% !important;
 }
+.link:first-of-type {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.link:last-of-class {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 .link .rank {
+    margin-top: 40px !important;
     margin-left: 4px !important;
     margin-right: 2px !important;
+    color: var(--main-fg) !important;
+}
+.link .midcol {
+    margin-top: 20px !important;
 }
 .link .score {
     font-size: 12pt !important;
+    color: var(--main-fg) !important;
 }
 .link.promotedlink,
 .organic-listing .link.promotedlink,
@@ -554,8 +483,8 @@ organic-listing,
     margin-right: -20px !important;
 }
 .link.last-clicked {
-    color: #3f3f3f !important;
-    background: #fcfcfc !important;
+    color: var(--alt-fg) !important;
+    background: var(--main-bg) !important;
 }
 .link .title {
     font-weight: bold !important;
@@ -565,56 +494,82 @@ organic-listing,
     margin-right: auto!important;
     width: auto !important;
 }
+.thumbnail {
+    width: auto !important;
+}
 .link .thumbnail img {
     border: none!important;
+    border-radius: 10px !important;
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px !important;
-    width: auto !important;
+    width: 100px !important;
     margin-right: 3px !important;
-    min-height: 50px !important;
+    min-height: 100px !important;
+}
+.thumbnail.default {
+    filter: sepia(40%) !important;
+    width: 70px !important;
+    margin-top: 25px !important;
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+}
+.thumbnail.self {
+    filter: sepia(40%) !important;
+    width: 70px !important;
+    margin-top: 25px !important;
+    margin-left: 15px !important;
+    margin-right: 15px !important;
 }
 .thing p.title {
     padding-bottom: 0px !important;
 }
 .thing .title.loggedin,
 .thing.p.title a {
-    color: #677996 !important;
+    color: var(--main-fg) !important;
     line-height: 14px !important;
     text-indent: 155px;
     text-shadow: none !important;
-    transition: 0.5s ease all;
     font-size: 12pt !important;
-}
-.thing .title.loggedin:hover,
-.link .title:hover {
-    color: #444 !important;
-    transition: 0.5s color ease;
+    transition: 0.5s ease all;
 }
 .thing .title.loggedin:visited {
     box-shadow: none !important;
-    color: #677996 !important;
+    color: var(--alt-fg) !important;
+}
+.thing .title.loggedin:hover,
+.link .title:hover {
+    color: var(--light-fg) !important;
+    transition: 0.5s color ease;
+}
+.arrow.up {
+    filter: sepia(80%) !important;
+}
+.arrow.down {
+    filter: sepia(80%) !important;
 }
 .domain,
 .domain a {
-    font-family: Helvetica !important;
     font-weight: bold !important;
     font-size: 12pt !important;
-    color: #bf7c83 !important;
+    color: var(--main-accent) !important;
     transition: 0.5s color ease;
 }
 .domain:hover,
 .domain a:hover {
-    color: #ae5a63 !important;
+    color: var(--dark-accent) !important;
     text-decoration: none !important;
     transition: 0.5s color ease;
 }
 .tagline {
     margin-left: 10px !important;
-    color: #888!important;
+    color: var(--alt-fg)!important;
     font-size: 12pt !important;
-    font-family: Helvetica, sans-serif !important;
     margin-top: 7px !important;
     opacity: .8;
 }
+.tagline a {
+    color: var(--main-accent) !important;
+}
+
 .link .flat-list {
     margin-top: 3px !important;
     margin-left: 2px !important;
@@ -627,19 +582,21 @@ organic-listing,
     margin-left: 5px !important;
     max-width: 60% !important;
 }
+
 .entry .buttons li a {
-    color: #999 !important;
+    color: var(--alt-fg) !important;
     font-size: 12pt !important;
     font-weight: normal !important;
     padding: 0 8px 3px !important;
     transition: 0.5s ease all;
-    font-family: Helvetica !important;
+    
 }
 .entry .buttons li a:hover {
-    color: #1c1c1c !important;
+    color: var(--main-fg) !important;
     text-decoration: none !important;
     transition: 0.5s color ease;
 }
+.flair,
 .linkflairlabel {
     height: 10px !important;
     padding: 2px !important;
@@ -651,31 +608,33 @@ organic-listing,
 .flair,
 .linkflairlabel {
     padding-top: 0px !important;
+    padding-bottom: 8px !important;
+    color: var(--alt-fg);
 }
 .title {
-    color: #677996 !important;
+    color: var(--main-accent) !important;
     background: none !important;
     text-align: left;
     margin-left: 2px !important;
 }
 .title.click {
-    color: #1c1c1c !important;
+    color: var(--alt-fg) !important;
     background: none !important;
 }
 a.author {
     margin-right: 0.5em;
     font-weight: normal;
-    color: #7b80a2 !important;
+    color: var(--main-accent) !important;
     transition: 0.5s color ease;
 }
 a.author:hover,
 a .author:hover {
-    color: #444 !important;
+    color: var(--main-fg) !important;
     text-decoration: none !important;
     transition: 0.5s color ease;
 }
 .tagline .submitter {
-    color: #999;
+    color: var(--main-accent);
 }
 /* spoilers */
 a[href$="/spoiler"] {
@@ -689,10 +648,18 @@ a[href$="/spoiler"] {
 }
 
 a[href$="/spoiler"]:hover {
- 	background: #FFF !important;
+ 	background: var(--main-bg) !important;
     border: none !important;
 }
 
+/* posts */
+.pinnable-content.pinned {
+ 	background: var(--main-bg) !important;
+}
+.pinnable-content.pinned .reddit-video-player-root {
+    max-width: 160px !important;
+    margin-left: -110px !important;
+}
 /* comments */
 
 .noncollapsed {
@@ -709,32 +676,39 @@ a[href$="/spoiler"]:hover {
    width: 84.5% !important;
    margin-right: 7% !important;
    margin-left: 8% !important;
-   border: 1px solid #eee !important;
+   border: 1px solid var(--main-border) !important;
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
+}
+
+.cloneable {
+    display: none !important;
 }
 
 div.usertext, 
 .usertext-edit textarea {
     width: 100% !important;
     max-width: 100% !important;
-    font-family: Helvetica !important;
     font-size: 14pt !important;
-    background: #ffffff !important;
-    border: 1px solid #eee !important;
+    background: var(--main-bg) !important;
+    border: 1px solid var(--main-border) !important;
+}
+.usertext-body {
+    background: var(--main-bg) !important;
 }
 
 .usertext button, 
 .usertext a.reddiquette, 
 .usertext .help-toggle {
    -moz-appearance: none !important;
-   background: #b8bfcc !important;
+   background: var(--main-bg) !important;
    opacity: 0.65 !important;
-   color: #fff !important;
+   color: var(--main-bg) !important;
    border: none !important;
    border-radius: 2px !important;
    padding: 2px !important;
    cursor: pointer !important;
    font-size: 14pt !important;
-   font-family: Helvetica !important;
 }
 
 .commentarea .entry {
@@ -752,7 +726,7 @@ div.usertext,
 
 .comment .author {
    font-weight: normal;
-   color: #666 !important;
+   color: var(--alt-fg) !important;
 }
 
 .usertext .bottom-area {
@@ -770,18 +744,18 @@ div.usertext,
 
 .usertext .toggle .option, 
 .usertext .toggle .option.active {
-   color: #fff !important;
+   color: var(--main-bg) !important;
 }
 
 .usertext.grayed {
-   background: #fff !important;
+   background: var(--main-bg) !important;
    margin-left: 10px !important;
 }
 
 .comment .child, 
 .comment .showreplies {
    margin-left: 5px !important;
-   border-left: 1px solid #eee !important;
+   border-left: 1px solid var(--main-border) !important;
 }
 
 .footer-parent {
@@ -790,10 +764,18 @@ div.usertext,
    margin-left: auto !important;
 }
 
+.footer {
+    display: none !important;
+}
+
+.footer:hover {
+    display: inline !important;
+}
+
 .comment .midcol {
    margin-top: 14px !important;
    padding-bottom: 4px !important;
-   background: #fff !important;
+   background: var(--main-bg) !important;
 }
 
 /*
@@ -804,38 +786,38 @@ Other pages
 /* submitting a link */
 
 .roundfield {
-    background: #fbfbfb!important;
+    background: var(--main-bg)!important;
     -webkit-border-radius: 10px;
     border-radius: 10px !important;
     margin: 0 auto !important;
-    border: 1px solid #909090 !important;
+    border: 1px solid var(--main-fg) !important;
 }
 .roundfield textarea {
     width: 492px!important;
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    color: #3f3f3f !important;
-    background: #fff !important;
-    border-color: #c3c3c3 !important;
+    color: var(--main-fg) !important;
+    background: var(--main-bg) !important;
+    border-color: var(--main-border) !important;
 }
 .roundfield .title {
-    color: #3f3f3f !important;
+    color: var(--main-fg) !important;
 }
 .roundfield .content {
-    background: #fff !important;
+    background: var(--main-bg) !important;
 }
 .textarea,
 div .textarea {
-    color: #3f3f3f !important;
-    background: #fff !important;
-    border: 1px solid #eee !important;
+    color: var(--main-fg) !important;
+    background: var(--main-bg) !important;
+    border: 1px solid var(--main-border) !important;
     font-size: 10px !important;
-    font-family: Helvetica !important;
+    
 }
 #link-desc.infobar {
     background-color: transparent !important;
-    color: #646464 !important;
-    border-color: #909090 !important;
+    color: var(--main-fg) !important;
+    border-color: var(--main-fg) !important;
     -webkit-border-radius: 0px;
     border-radius: 10px;
     border: none !important;
@@ -860,26 +842,27 @@ div .textarea {
     margin-left: 6em !important;
 }
 .infobar {
-    background: #f5f5f5 !important;
-    border: #333 1px solid !important;
+    background: var(--main-bg) !important;
+    border: var(--main-border) 1px !important;
     -webkit-border-radius: 10px;
     border-radius: 10px;
     display: none !important;
+}
+.subreddit {
+    border: 1px solid var(--main-border) !important;
+    padding: 4px !important;
+    width: 82% !important;
+    margin-left: 9% !important;
+    margin-top: -11px !important;
+    color: var(--main-accent) !important;
 }
 .subreddit.hover {
     margin-left: auto !important;
     border: none !important;
 }
-.subreddit {
-    border: 1px solid #eee !important;
-    padding: 4px !important;
-    width: 82% !important;
-    margin-left: 9% !important;
-    margin-top: -11px !important;
-}
 .subreddit:hover {
     text-decoration: none !important;
-    color: #404040 !important;
+    color: var(--light-fg) !important;
 }
 .subreddit:first-of-type {
     padding-top: 10px !important;
@@ -889,26 +872,26 @@ div .textarea {
     margin-top: 5px !important;
 }
 #url {
-    color: #3f3f3f !important;
-    background: #fff !important;
+    color: var(--main-fg) !important;
+    background: var(--main-bg) !important;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    border-color: #c3c3c3 !important;
+    border-color: var(--main-border) !important;
 }
 #sr-autocomplete {
-    color: #3f3f3f !important;
-    background: #fff !important;
+    color: var(--main-fg) !important;
+    background: var(--main-bg) !important;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    border-color: #c3c3c3 !important;
+    border-color: var(--main-border) !important;
 }
 #newlink.submit.content .btn {
     margin-left: 0 !important;
     margin-top: 1em !important;
 }
 #text-desc.infobar {
-    background: #f5f5f5 !important;
-    color: #3f3f3f !important;
+    background: var(--main-bg) !important;
+    color: var(--main-fg) !important;
 }
 .nav-buttons {
     margin-top: 20px !important;
@@ -920,10 +903,10 @@ div .textarea {
     font-size: 0pt !important;
 }
 .nextprev a {
-    background: #b8bfcc !important;
+    background: var(--main-bg) !important;
     font-size: 12pt !important;
     opacity: 0.65 !important;
-    color: #fff !important;
+    color: var(--main-fg) !important;
     border: none !important;
     border-radius: 2px !important;
     padding: 2px !important;
@@ -946,13 +929,13 @@ div .textarea {
 }
 .sr-interest-bar .query-box {
     position: relative;
-    border: 1px solid #eee!important;
+    border: 1px solid var(--main-border)!important;
     height: auto !important;
     margin-top: -10px !important;
 }
 .sr-interest-bar .query-box:active,
 .sr-interest-bar .query-box:hover {
-    border: 1px solid #ccc !important;
+    border: 1px solid var(--main-border) !important;
 }
 .sr-interest-bar .query {
     font-size: 10px !important;
@@ -972,6 +955,8 @@ div .textarea {
 /* search */
 #search input {
     width: 100% !important;
+    background-color: var(--main-bg) !important;
+    color: var(--main-fg) !important;
 }
 #search input[type=submit] {
     display: none !important;   
@@ -979,11 +964,11 @@ div .textarea {
 #searchexpando { 
     border-bottom: 0px none !important;
     text-align: center !important;
-    border: 1px solid #eee!important;
+    border: 1px solid var(--main-border)!important;
     height: auto !important;
     padding: 5px 0px 0px 0px !important;
     width: 100% !important;
-    color: #646464 !important;
+    color: var(--main-fg) !important;
 }
 #searchexpando input[type=checkbox], form input[type=radio] {
  	width: auto !important; 
@@ -1011,8 +996,8 @@ div .textarea {
     padding-right: 20px;
 }
 .search-result {
-    color: #777 !important;
-    border: 1px solid #eee !important;
+    color: var(--main-fg) !important;
+    border: 1px solid var(--main-border) !important;
     min-height: 50px !important;
     padding: 12px 4px !important;
     position: relative !important;
@@ -1032,7 +1017,7 @@ div .textarea {
 .raisedbox h4 {
     font-weight: normal !important;
     text-align: left !important;
-    border: 1px solid #909090 !important;
+    border: 1px solid var(--main-fg) !important;
 }
 
 .menuarea {
@@ -1040,11 +1025,21 @@ div .textarea {
     text-align: center !important;
     padding: 0px 0px 0px 0px !important;
     width: 100% !important;
-    color: #646464 !important;
+    color: var(--main-fg) !important;
 }
 .dropdown.lightdrop .selected {
     text-decoration: none !important;
-    color: #1a1a1a !important;
+    color: var(--main-fg) !important;
+    filter: sepia(70%) !important;
+}
+.drop-choices {
+    background-color: var(--main-bg) !important;
+    border: 1px solid var(--main-border) !important;
+    border-radius: 10px !important;
+
+}
+.drop-choices a.choice:hover {
+    background-color: var(--alt-bg) !important;
 }
 .selected,
 .choice.primary {
@@ -1074,6 +1069,7 @@ div .textarea {
     width: 85.2% !important;
     margin-right: 7% !important;
     margin-left: 8% !important;
+    background-color: inherit;
 }
 /* etc
 ---------
@@ -1090,3 +1086,15 @@ h1 {
     border: 0px none !important;
 }
 
+
+.md blockquote {
+    opacity: .5 !important;
+    color: var(--main-fg) !important;
+}
+
+.md code,
+.md pre {
+    background-color: var(--alt-bg) !important;
+    padding: 0px !important;
+    border-color: var(--alt-fg) !important;
+}

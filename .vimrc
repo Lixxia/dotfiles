@@ -21,8 +21,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'hashivim/vim-terraform'
 Plug 'towolf/vim-helm'
 Plug 'raimondi/delimitMate'
-Plug 'itchyny/lightline.vim'
 call plug#end()
+
+source ~/.vim/statusline.vim
 
 " Comments
 nmap <C-_> <Plug>CommentaryLine
@@ -137,35 +138,6 @@ hi GitGutterDelete ctermfg=1 ctermbg=NONE guibg=NONE
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
 
-" Set status line display
-function! LightlineReadonly()
-  return &readonly && &filetype !=# 'help' ? '' : ''
-endfunction
-
-set laststatus=2
-
-let g:lightline = {
-      \ 'component_function': {
-      \   'readonly': 'LightlineReadonly',
-      \ },
-      \ 'colorscheme': 'gruvbox',
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
-" Set transparent background for middle and fix right side cutoff
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
-let s:palette.insert.middle = s:palette.normal.middle
-let s:palette.visual.middle = s:palette.normal.middle
-let s:palette.replace.middle = s:palette.normal.middle
-call insert(s:palette.normal.right, s:palette.normal.left[1], 0)
-call insert(s:palette.insert.right, s:palette.insert.left[1], 0)
-call insert(s:palette.visual.right, s:palette.visual.left[1], 0)
-call insert(s:palette.replace.right, s:palette.replace.left[1], 0)
-
-set noshowmode
 " Encoding
 set encoding=utf-8
+

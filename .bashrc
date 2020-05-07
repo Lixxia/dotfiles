@@ -22,6 +22,10 @@ man() {
       man "$@"
 }
 
+show_color() {
+    perl -e 'foreach $a(@ARGV){print "\e[48:2::".join(":",unpack("C*",pack("H*",$a)))."m \e[49m "};print "\n"' "$@"
+}
+
 # make and cd dir
 mkcd() {
   mkdir -p "$@" && cd "$@"
@@ -104,6 +108,7 @@ alias ..="cd .."
 alias grep="grep --color=auto"
 alias reset="reset && source ~/.bashrc"
 alias copy="xclip -selection clipboard"
+alias restart-sound="pulseaudio -k && sudo alsa force-reload"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
