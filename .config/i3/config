@@ -16,7 +16,7 @@ exec --no-startup-id libinput-gestures-setup start
 exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id nm-applet
 exec --no-startup-id synergyc --enable-crypto babs-desktop
-exec --no-startup-id i3-msg 'workspace $ws2; exec bash -c "GTK_THEME=Arc firefox";'
+exec --no-startup-id i3-msg 'workspace $ws2; exec firefox;'
 exec --no-startup-id compton --config $HOME/.config/compton.conf -b
 exec --no-startup-id i3-msg 'workspace $ws1; exec kitty;'
 exec --no-startup-id i3-msg 'workspace $ws5; exec spotify;'

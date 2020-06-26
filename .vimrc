@@ -21,6 +21,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'hashivim/vim-terraform'
 Plug 'towolf/vim-helm'
 Plug 'raimondi/delimitMate'
+Plug 'ap/vim-css-color'
 call plug#end()
 
 source ~/.vim/statusline.vim
