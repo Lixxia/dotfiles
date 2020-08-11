@@ -1,0 +1,16 @@
+- name: install baseline packages
+  become: yes
+  apt:
+    name: 
+      - curl
+      - xdotool
+      - wmctrl
+      - git
+      - vim
+      - gcc
+      - make
+      - automake
+      - autoconf
+    state: latest
+
+# pip install meson

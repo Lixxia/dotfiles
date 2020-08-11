@@ -1,0 +1,5 @@
+- name: Symlink Xresources
+  file:
+    src: '{{dotfiles_path}}/roles/x/files/.Xresources'
+    dest: '{{user_home}}/.Xresources'
+    state: link

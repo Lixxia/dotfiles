@@ -1,0 +1,58 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - libxcb1-dev
+      - libxcb-keysyms1-dev
+      - libpango1.0-dev
+      - libxcb-util0-dev
+      - libxcb-icccm4-dev
+      - libyajl-dev
+      - libstartup-notification0-dev
+      - libxcb-randr0-dev
+      - libev-dev
+      - libxcb-cursor-dev
+      - libxcb-xinerama0-dev
+      - libxcb-xkb-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - autoconf
+      - libxcb-xrm0
+      - libxcb-xrm-dev
+      - automake
+      - libxcb-shape0-dev
+
+- name: Clone i3 repo
+  git:
+    repo: https://github.com/resloved/i3
+    dest: '{{user_home}}/repos/i3'
+
+- name: Build i3
+  command: autoreconf --force --install
+  args:
+    chdir: '{{user_home}}/repos/i3'
+
+- name: Remove build dir
+  file:
+    path: '{{user_home}}/repos/i3/build'
+    state: absent
+
+- name: Create new build dir
+  file:
+    path: '{{user_home}}/repos/i3/build'
+    state: directory
+
+- name: Run configure
+  command: '../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers'
+  args:
+    chdir: '{{user_home}}/repos/i3/build'
+
+- name: Make
+  make:
+    chdir: '{{user_home}}/repos/i3/build'
+
+- name: Install
+  become: yes
+  make:
+    chdir: '{{user_home}}/repos/i3/build'
+    target: install

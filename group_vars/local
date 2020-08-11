@@ -1,0 +1,3 @@
+user: "laura"
+user_home: "{{ '~' | expanduser }}"
+dotfiles_path: "{{user_home}}/repos/dotfiles"

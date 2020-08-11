@@ -1,0 +1,21 @@
+- name: Check if polybar is installed
+  stat:
+    path: /usr/local/bin/polybar
+  register: polybar
+
+- name: Install polybar
+  include: install.yaml
+  when: polybar.stat.isreg is not defined or polybar_rebuild|bool
+
+- name: Create polybar directory
+  file:
+    path: '{{user_home}}/.config/polybar'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/polybar/files/{{item}}'
+    dest: '{{user_home}}/.config/polybar/{{item}}'
+    state: link
+  with_items:
+    - 'config'

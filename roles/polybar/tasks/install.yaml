@@ -1,0 +1,58 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - build-essential
+      - cmake
+      - cmake-data
+      - pkg-config
+      - libcairo2-dev
+      - libxcb1-dev
+      - libxcb-util0-dev
+      - libxcb-randr0-dev
+      - libxcb-composite0-dev
+      - python-xcbgen
+      - xcb-proto
+      - libxcb-image0-dev
+      - libxcb-ewmh-dev
+      - libxcb-icccm4-dev
+      - libjsoncpp-dev
+      - libxcb-cursor-dev
+      - libasound2-dev
+      - libpulse-dev
+
+- name: Install pip dependencies
+  become: yes
+  pip:
+    name: sphinx
+    state: present
+
+- name: Clone polybar repo
+  git:
+    repo: https://github.com/polybar/polybar.git
+    dest: '{{user_home}}/repos/polybar'
+
+- name: Remove build dir
+  file:
+    path: '{{user_home}}/repos/polybar/build'
+    state: absent
+
+- name: Create new build dir
+  file:
+    path: '{{user_home}}/repos/polybar/build'
+    state: directory
+
+- name: Run cmake
+  command: 'cmake ..'
+  args:
+    chdir: '{{user_home}}/repos/polybar/build'
+
+- name: Make
+  make:
+    chdir: '{{user_home}}/repos/polybar/build'
+
+- name: Install
+  become: yes
+  make:
+    chdir: '{{user_home}}/repos/polybar/build'
+    target: install

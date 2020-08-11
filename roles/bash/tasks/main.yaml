@@ -1,0 +1,5 @@
+- name: Setup bashrc
+  file:
+    src: '{{dotfiles_path}}/roles/bash/files/.bashrc'
+    dest: '{{user_home}}/.bashrc'
+    state: link

@@ -1,0 +1,22 @@
+- name: Check if kitty is installed
+  stat:
+    path: /usr/local/bin/kitty
+  register: kitty
+
+- name: Install kitty
+  include: install.yaml
+  when: kitty.stat.islnk is not defined or kitty_rebuild|bool
+
+- name: Create kitty directory
+  file:
+    path: '{{user_home}}/.config/kitty'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/kitty/files/{{item}}'
+    dest: '{{user_home}}/.config/kitty/{{item}}'
+    state: link
+  with_items:
+    - 'base16-gruvbox.conf'
+    - 'kitty.conf'

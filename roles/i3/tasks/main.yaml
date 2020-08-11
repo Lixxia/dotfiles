@@ -1,0 +1,22 @@
+- name: Check if i3 is installed
+  stat:
+    path: /usr/bin/i3
+  register: i3
+
+- name: Install i3
+  include: install.yaml
+  when: i3.stat.isreg is not defined or i3_rebuild|bool
+
+- name: Create i3 directory
+  file:
+    path: '{{user_home}}/.config/i3'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/i3/files/{{item}}'
+    dest: '{{user_home}}/.config/i3/{{item}}'
+    state: link
+  with_items:
+    - 'background.png'
+    - 'config'

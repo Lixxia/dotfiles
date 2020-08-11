@@ -1,0 +1,11 @@
+- name: Set up local development environment
+  hosts: local
+  roles:
+    - {role: vim, tags: ['vim']}
+    - {role: kitty, tags: ['kitty']}
+    - {role: i3, tags: ['i3']}
+    - {role: touchpad, tags: ['touchpad']}
+    - {role: bash, tags: ['bash']}
+    - {role: fonts, tags: ['fonts']}
+    - {role: x, tags: ['x']}
+    - {role: polybar, tags: ['polybar']}
