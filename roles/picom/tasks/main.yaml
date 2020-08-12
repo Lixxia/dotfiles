@@ -25,6 +25,12 @@
       - libev-dev 
       - libx11-xcb-dev
 
+- name: Install meson
+  pip:
+    name: meson
+    executable: pip3
+    state: present
+
 - name: Clone picom repo
   git:
     repo: https://github.com/yshui/picom
