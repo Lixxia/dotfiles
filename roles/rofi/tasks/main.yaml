@@ -6,7 +6,6 @@
       - flex
       - librsvg2-dev
       - libjpeg-dev
-      - check
 
 - name: Clone rofi repo
   git:
@@ -24,7 +23,7 @@
     state: directory
 
 - name: Run configure
-  command: '../configure'
+  command: '../configure --disable-check'
   args:
     chdir: '{{user_home}}/repos/rofi/build'
 
