@@ -1,0 +1,93 @@
+:root{
+  --active-tab-color-a     : #2b5355;
+  --active-tab-color-b     : #458588;
+  --active-tab-text-color  : #d5c4a1;
+  --tab-hover-color        : #353535;
+  --tab-text-color         : white;
+  --close-box-background   : #282828;
+}
+
+:root, #background {
+  background: #282828;
+}
+
+#tabbar { 
+  overflow-y: scroll;
+}
+
+:root.right #tabbar {
+  margin-right: -8px;
+}
+
+tab-item {
+  margin       : 2px 1px;
+  margin-right : 0px;
+  border-radius: 5px;
+  padding-right: 10px;
+  transition   : all 0.3s ease-i-out !important;
+}
+
+tab-item .label{   
+  color: var(--active-tab-text-color ) !important;
+}
+
+tab-item.active {
+  background  : linear-gradient(to right, var(--active-tab-color-a), var(--active-tab-color-b)) !important;
+  box-shadow  : 5px 0 15px -1px var(--active-tab-color-shadow);
+  font-weight : bolder;
+  transition  : scale 0.3s ease-i-out !important;
+  color       : var(--tab-text-color ) !important;
+}
+tab-item:hover {
+  background: var(--tab-hover-color ) !important;
+  box-shadow: 0 5px 20px -5px var(--tab-hover-color ) !important;
+}
+
+tab-item:not(:hover) tab-closebox {
+  right    : -30px;
+  transform: scale(110%);
+}
+
+tab-item tab-closebox{
+  position     : absolute;
+  right        : 5px;
+  height       : 25px;
+  padding-top  : 5px;
+  background   : var(--close-box-background);
+  opacity      : 1;
+  border-radius: 50%;
+  transition   : all 0.1s ease-in-out;
+}
+
+:root.right tab-item tab-twisty {
+  display: none;
+}
+
+:root.right tab-item tab-favicon {
+  transform: scale(100%);
+  margin-left: 10px;
+  margin-bottom: 8px;
+  order: 1000;  filter: sepia(40%) opacity(80%);
+  transition: all 0.2s ease-in-out;
+}
+
+:root.right tab-item.active:not(:hover) tab-favicon {
+  transform: scale(120%);
+  margin-right: 0px;
+}
+
+:root.right tab-item:hover tab-favicon, :root.right tab-favicon {
+  transform: translateX(30px);
+}
+
+:root.right tab-item:hover tab-favicon 
+{
+  margin-left: -15px;
+}
+
+.tab:not(.group-tab):not([data-current-uri^="chrome:"]):not([data-current-uri^="about:addons"]):not([data-current-uri^="about:preferences"]) 
+.favicon .favicon-default::before {
+  background: url("chrome://branding/content/identity-icons-brand.svg") no-repeat center / 100% !important;
+  mask: none !important;
+}
+
