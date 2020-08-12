@@ -1,0 +1,26 @@
+- name: Install tweaks
+  become: yes
+  apt:
+    name:
+      - gnome-tweaks
+      - gtk-chtheme
+
+- name: Create directories
+  file:
+    dest: '{{user_home}}/{{item}}'
+    state: directory
+  with_items:
+    - '.themes'
+    - '.icons'
+
+- name: Link theme
+  file:
+    src: '{{dotfiles_path}}/roles/gtk/files/Layan-dark'
+    dest: '{{user_home}}/.themes/Layan-dark'
+    state: link
+
+- name: Link icons
+  file:
+    src: '{{dotfiles_path}}/roles/gtk/files/oomox-gruv'
+    dest: '{{user_home}}/.icons/oomox-gruv'
+    state: link
