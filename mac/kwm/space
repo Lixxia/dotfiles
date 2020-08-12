@@ -1,8 +1,0 @@
-kwmc config space 0 1 name home
-
-kwmc config space 0 2 name term
-
-kwmc config space 0 3 name work
-kwmc config space 0 3 mode monocle
-
-kwmc config space 0 4 name mail

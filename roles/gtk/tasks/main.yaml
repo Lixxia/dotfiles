@@ -4,6 +4,7 @@
     name:
       - gnome-tweaks
       - gtk-chtheme
+      - lxappearance
 
 - name: Create directories
   file:

@@ -13,3 +13,5 @@
     - {role: picom, tags: ['picom']}
     - {role: rofi, tags: ['rofi']}
     - {role: dunst, tags: ['dunst']}
+    - {role: gtk, tags: ['gtk']}
+    - {role: firefox, tags: ['firefox']}

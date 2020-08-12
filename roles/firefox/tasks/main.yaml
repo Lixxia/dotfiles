@@ -1,2 +1,20 @@
-#clone minimalfox
-#setup link/discover user path??
+- name: Install firefox
+  apt:
+    name:
+      - firefox
+
+- name: Clone theme
+  git:
+    repo: https://github.com/Lixxia/MaterialFox
+    dest: '{{user_home}}/repos/MaterialFox'
+
+- name: Find profile
+  shell: 'grep Default= ~/.mozilla/firefox/profiles.ini | grep -v "^Default=1$" | sed s/^Default=//'
+  register: profile_result
+
+- debug: msg="{{profile_result.stdout}}"
+- name: Link theme
+  file:
+    src: '{{user_home}}/repos/MaterialFox'
+    dest: '{{user_home}}/.mozilla/firefox/{{profile_result.stdout}}/chrome'
+    state: link
