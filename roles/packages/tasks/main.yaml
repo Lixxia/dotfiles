@@ -1,4 +1,4 @@
-- name: install baseline packages
+- name: Install misc packages
   become: yes
   apt:
     name: 
@@ -11,6 +11,14 @@
       - make
       - automake
       - autoconf
-    state: latest
+      - python-pip
+      - python3-pip
+      - ruby
+      - pavucontrol
 
-# pip install meson
+- name: Install misc python packages
+  pip:
+    name:
+      - meson
+    executable: pip3
+    state: present

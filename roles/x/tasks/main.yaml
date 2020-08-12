@@ -1,3 +1,9 @@
+- name: Symlink colors
+  file:
+    src: '{{dotfiles_path}}/roles/x/files/.colors'
+    dest: '{{user_home}}/.colors'
+    state: link
+
 - name: Symlink Xresources
   file:
     src: '{{dotfiles_path}}/roles/x/files/.Xresources'

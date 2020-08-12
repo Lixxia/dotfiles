@@ -1,0 +1,43 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - libnotify-dev
+      - libdbus-1-dev
+      - libx11-dev
+      - libxinerama-dev
+      - libxrandr-dev
+      - libxss-dev
+      - libglib2.0-dev
+      - libpango1.0-dev
+      - libgtk-3-dev
+      - libxdg-basedir-dev
+
+- name: Clone repo
+  git:
+    repo: https://github.com/lixxia/dunst
+    dest: '{{user_home}}/repos/dunst'
+
+- name: Make
+  make:
+    chdir: '{{user_home}}/repos/dunst'
+
+- name: Install
+  become: yes
+  make:
+    chdir: '{{user_home}}/repos/dunst'
+    target: install
+
+- name: Setup config dir
+  file:
+    dest: '{{user_home}}/.config/dunst'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/dunst/files/{{item}}'
+    dest: '{{user_home}}/.config/dunst/{{item}}'
+    state: link
+  with_items:
+    - 'reload'
+    - 'dunstrc'

@@ -79,13 +79,13 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, focus parent, kill
 
 # Bring up launcher
-bindsym $mod+d exec --no-startup-id $HOME/.scripts/polywrap rofi
+bindsym $mod+d exec --no-startup-id $HOME/.local/bin/polywrap rofi
 # Search open windows
-bindsym $mod+grave exec --no-startup-id $HOME/.scripts/polywrap search
+bindsym $mod+grave exec --no-startup-id $HOME/.local/bin/polywrap search
 # Tray Toggle
-bindsym $mod+t exec --no-startup-id $HOME/.scripts/polywrap tray
+bindsym $mod+t exec --no-startup-id $HOME/.local/bin/polywrap tray
 # Power menu
-bindsym $mod+p exec --no-startup-id $HOME/.scripts/polywrap power
+bindsym $mod+p exec --no-startup-id $HOME/.local/bin/polywrap power
 
 # change focus
 bindsym $mod+Left focus left
@@ -148,9 +148,9 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # monitor control - extend/mirror/off
-bindsym $mod+Shift+e exec $HOME/.scripts/monitor extend
-bindsym $mod+Shift+m exec $HOME/.scripts/monitor mirror
-bindsym $mod+Shift+o exec $HOME/.scripts/monitor laptop
+bindsym $mod+Shift+e exec $HOME/.local/bin/monitor extend
+bindsym $mod+Shift+m exec $HOME/.local/bin/monitor mirror
+bindsym $mod+Shift+o exec $HOME/.local/bin/monitor laptop
 
 bindsym $mod+Ctrl+Up move workspace to output up
 bindsym $mod+Ctrl+Left move workspace to output left
@@ -198,9 +198,9 @@ client.focused_inactive $fg    $fg    $fg  $bg
 client.urgent           $bg    $bg    $fg  $bg 
 
 # lock screen
-bindsym $mod+Ctrl+l exec $HOME/.scripts/locker
+bindsym $mod+Ctrl+l exec $HOME/.local/bin/locker
 
 # wallpaper & bar
 exec_always --no-startup-id feh --image-bg black --bg-scale $HOME/.config/i3/background.png &
-exec_always --no-startup-id $HOME/.scripts/polywrap launch
+exec_always --no-startup-id $HOME/.local/bin/polywrap launch
 

@@ -12,6 +12,7 @@
       - xdotool
       - wmctrl
       - libinput-tools
+      - xserver-xorg-core
       - xserver-xorg-input-libinput
 
 - name: Clone libinput-gestures

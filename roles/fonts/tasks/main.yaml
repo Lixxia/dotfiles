@@ -5,13 +5,32 @@
 
 - name: Install Iosevka Medium
   get_url:
-      url: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Iosevka/Medium/complete/Iosevka%20Medium%20Nerd%20Font%20Complete%20Mono.ttf
-      dest: "~/.local/share/fonts/Iosevka Medium Nerd Font Complete Mono.ttf"
+      url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Medium/complete/Iosevka%20Medium%20Nerd%20Font%20Complete.ttf
+      dest: "~/.local/share/fonts/Iosevka Medium Nerd Font Complete.ttf"
 
-- name: Install Iosevka Medium
+- name: Install Iosevka Regular Mono
   get_url:
-      url: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Iosevka/Regular/complete/Iosevka%20Nerd%20Font%20Complete%20Mono.ttf
-      dest: "~/.local/share/fonts/Iosevka Nerd Font Complete Mono.ttf"
+      url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Bold/complete/Iosevka%20Bold%20Nerd%20Font%20Complete.ttf
+      dest: "~/.local/share/fonts/Iosevka Bold Nerd Font Complete.ttf"
+
+- name: Install Font Awesome
+  get_url:
+    url: https://use.fontawesome.com/releases/v5.14.0/fontawesome-free-5.14.0-desktop.zip
+    dest: /tmp/fontawesome-free-5.14.0-desktop.zip
+
+- name: Unarchive Font Awesome
+  unarchive:
+    src: /tmp/fontawesome-free-5.14.0-desktop.zip
+    dest: /tmp
+
+- name: Grab otfs
+  copy:
+    src: '/tmp/fontawesome-free-5.14.0-desktop/otfs/{{item}}'
+    dest: '~/.local/share/fonts/{{item}}'
+  with_items: 
+    - 'Font Awesome 5 Brands-Regular-400.otf'
+    - 'Font Awesome 5 Free-Regular-400.otf'
+    - 'Font Awesome 5 Free-Solid-900.otf'
 
 - name: Symlink fonts dir
   file:
@@ -21,6 +40,3 @@
 
 - name: Update font cache
   command: fc-cache -f
-
-# test font with fc-match or fc-list?
-# add fontawesome 5

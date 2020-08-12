@@ -1,11 +1,34 @@
-- name: Check if kitty is installed
-  stat:
-    path: /usr/local/bin/kitty
-  register: kitty
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - libdbus-1-dev
+      - libxcursor-dev
+      - libxrandr-dev
+      - libxi-dev
+      - libxinerama-dev
+      - libgl1-mesa-dev
+      - libxkbcommon-x11-dev
+      - libfontconfig-dev
+      - libpython-dev
+      - libharfbuzz-dev
+      - python3-dev
 
-- name: Install kitty
-  include: install.yaml
-  when: kitty.stat.islnk is not defined or kitty_rebuild|bool
+- name: Clone kitty repo
+  git:
+    repo: https://github.com/Lixxia/kitty.git
+    dest: '{{user_home}}/repos/kitty'
+
+- name: Build kitty
+  make:
+    chdir: '{{user_home}}/repos/kitty'
+
+- name: Setup link
+  become: yes
+  file:
+    src: '{{user_home}}/repos/kitty/kitty/launcher/kitty'
+    dest: /usr/local/bin/kitty
+    state: link
 
 - name: Create kitty directory
   file:

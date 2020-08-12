@@ -1,0 +1,53 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - bison
+      - flex
+      - librsvg2-dev
+      - libjpeg-dev
+      - check
+
+- name: Clone rofi repo
+  git:
+    repo: https://github.com/davatorium/rofi.git
+    dest: '{{user_home}}/repos/rofi'
+
+- name: Autotools
+  command: 'autoreconf -i'
+  args:
+    chdir: '{{user_home}}/repos/rofi'
+
+- name: Create build dir
+  file:
+    path: '{{user_home}}/repos/rofi/build'
+    state: directory
+
+- name: Run configure
+  command: '../configure'
+  args:
+    chdir: '{{user_home}}/repos/rofi/build'
+
+- name: Make
+  make:
+    chdir: '{{user_home}}/repos/rofi/build'
+
+- name: Install
+  become: yes
+  make:
+    chdir: '{{user_home}}/repos/rofi/build'
+    target: install
+
+- name: Create config dir
+  file:
+    path: '{{user_home}}/.config/rofi'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/rofi/files/{{item}}'
+    dest: '{{user_home}}/.config/rofi/{{item}}'
+    state: link
+  with_items:
+    - 'config.rasi'
+    - 'powermenu.rasi'

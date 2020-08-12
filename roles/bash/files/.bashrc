@@ -1,6 +1,12 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export PATH="$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
+
+# Bash Completion
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
 # History
 HISTCONTROL=ignoreboth
 shopt -s histappend
@@ -37,7 +43,11 @@ cdt() {
     fi
 }
 
-# git parsing for status
+working_directory() {
+    echo -e "$(tput setaf 12)$(pwd | sed "s/${HOME//\//\\\/}/ /; s/\//  /g")\e[0m"
+}
+
+# Git functions
 parse_git_dirty() {
     if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
       echo -e "$(tput setaf 10)  "
@@ -50,11 +60,23 @@ parse_git_branch() {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/╺─╸$(parse_git_dirty)\1/"
 }
 
-working_directory() {
-    echo -e "$(tput setaf 12)$(pwd | sed "s/${HOME//\//\\\/}/ /; s/\//  /g")\e[0m"
+push() {
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    if [[ "$branch" != "master" ]]; then
+        git push origin $(git rev-parse --abbrev-ref HEAD)
+    else
+        echo "Will not push to master."
+    fi
 }
 
+
 # K8S
+alias k="kubectl"
+alias ko="kubeon"
+alias koff="kubeoff"
+alias kns="kubens"
+source <(kubectl completion bash)
+complete -F __start_kubectl k
 
 kube_ps1() {
     kube_context=$(cat ~/.kube/config | grep "current-context:" | sed "s/current-context: //")
@@ -63,7 +85,7 @@ kube_ps1() {
     kube_namespace="${kube_namespace:-default}"
 
     if [[ "$KUBE_PS1_ENABLED" == "on" ]]; then
-        echo -e "ﴱ\e[1;33m${kube_context}\e[0m╸\e[1;34m${kube_namespace}\e[0m]╺─╸"
+        echo -e " $(tput setaf 24)ﴱ \e[1;33m${kube_context}\e[0m ╸\e[34m${kube_namespace}\e[0m ╺─╸ "
     fi
 }
 
@@ -99,7 +121,7 @@ extract() {
 # Color fix
 sh ~/.colors/base16-gruvbox-dark.sh
 
-# Aliases
+# Misc aliases
 alias ls="ls -G"
 alias la="ls -A"
 alias ll='ls -alF'
@@ -122,7 +144,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-#export LS_COLORS='di=34;40:ln=35;40:so=32;40:pi=33;40:ex=31;40:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
 export GREP_COLOR='1;33'
 
 if [ -n "$SSH_CONNECTION" ]; then
