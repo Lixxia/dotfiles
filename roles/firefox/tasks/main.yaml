@@ -15,6 +15,6 @@
 - debug: msg="{{profile_result.stdout}}"
 - name: Link theme
   file:
-    src: '{{user_home}}/repos/MaterialFox'
+    src: '{{user_home}}/repos/MaterialFox/chrome'
     dest: '{{user_home}}/.mozilla/firefox/{{profile_result.stdout}}/chrome'
     state: link
