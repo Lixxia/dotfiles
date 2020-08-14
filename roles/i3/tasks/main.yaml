@@ -34,7 +34,7 @@
 
 - name: Clone i3 repo
   git:
-    repo: https://github.com/resloved/i3
+    repo: https://github.com/Airblader/i3
     dest: '{{user_home}}/repos/i3'
 
 - name: Build i3

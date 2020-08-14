@@ -14,4 +14,4 @@
     - {role: rofi, tags: ['rofi']}
     - {role: dunst, tags: ['dunst']}
     - {role: gtk, tags: ['gtk']}
-    - {role: firefox, tags: ['firefox']}
+    - {role: spotify, tags: ['spotify']}

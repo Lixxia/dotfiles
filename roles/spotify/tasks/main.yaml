@@ -1,0 +1,101 @@
+- name: Add spotify gpg key
+  become: yes
+  apt_key:
+    url: https://download.spotify.com/debian/pubkey.gpg
+    state: present
+
+- name: Add spotify repo
+  become: yes
+  apt_repository:
+    repo: deb http://repository.spotify.com stable non-free
+    state: present
+
+- name: Install spotify
+  become: yes
+  apt:
+    name: spotify-client
+    state: present
+    update_cache: yes
+
+- name: Update folder ownership
+  become: yes
+  file:
+    path: /usr/share/spotify
+    state: directory
+    mode: a+wr
+
+- name: Update Apps ownership
+  become: yes
+  file:
+    path: /usr/share/spotify/Apps
+    state: directory
+    recurse: yes
+    mode: a+wr
+
+- name: Get spicetify-cli
+  get_url: 
+    url: https://github.com/khanhas/spicetify-cli/releases/download/v1.1.0/spicetify-1.1.0-linux-amd64.tar.gz
+    dest: /tmp/spicetify-1.1.0-linux-amd64.tar.gz
+
+- name: Create spicetify-cli dir
+  become: yes
+  file:
+    dest: /usr/local/src/spicetify-cli
+    owner: '{{user}}'
+    group: '{{user}}'
+    mode: '0775'
+    state: directory
+
+- name: Unpack spicetify-cli
+  unarchive:
+    src: /tmp/spicetify-1.1.0-linux-amd64.tar.gz
+    dest: /usr/local/src/spicetify-cli
+
+- name: Setup link
+  become: yes
+  file:
+    src: /usr/local/src/spicetify-cli/spicetify
+    dest: /usr/local/bin/spicetify
+    state: link
+
+- name: Get spicetify-themes
+  git:
+    repo: https://github.com/morpheusthewhite/spicetify-themes.git
+    dest: '{{user_home}}/repos/spicetify-themes'
+
+- name: Make config dir
+  file:
+    dest: '{{user_home}}/.config/spicetify'
+    state: directory
+
+- name: Link theme
+  file:
+    src: '{{user_home}}/repos/spicetify-themes/Dribbblish'
+    dest: '{{user_home}}/.config/spicetify/Themes/Dribbblish'
+    state: link
+
+- name: Link extension
+  file:
+    src: '{{user_home}}/.config/spicetify/Themes/Dribbblish/dribbblish.js'
+    dest: '{{user_home}}/.config/spicetify/Extensions/dribbblish.js'
+    state: link
+
+- name: Setup theme
+  command: '{{item}}'
+  with_items:
+    - 'spicetify config extensions dribbblish.js'
+    - 'spicetify config current_theme Dribbblish color_scheme gruvbox'
+    - 'spicetify config inject_css 1 replace_colors 1 overwrite_assets 1'
+
+- name: Check backup
+  stat:
+    path: '{{user_home}}/.config/spicetify/Backup'
+  register: spicetify_backup
+
+- name: Apply and backup
+  command: 'spicetify apply backup'
+  when: not spicetify_backup.stat.exists
+
+- name: Apply
+  command: 'spicetify apply'
+  when: spicetify_backup.stat.exists

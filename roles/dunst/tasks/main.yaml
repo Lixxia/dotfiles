@@ -15,7 +15,7 @@
 
 - name: Clone repo
   git:
-    repo: https://github.com/lixxia/dunst
+    repo: https://github.com/dunst-project/dunst
     dest: '{{user_home}}/repos/dunst'
 
 - name: Make

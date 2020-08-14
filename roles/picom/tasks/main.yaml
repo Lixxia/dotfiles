@@ -34,7 +34,7 @@
 
 - name: Clone picom repo
   git:
-    repo: https://github.com/yshui/picom
+    repo: https://github.com/sdhand/picom
     dest: '{{user_home}}/repos/picom'
 
 - name: Update submodules

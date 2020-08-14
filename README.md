@@ -45,7 +45,7 @@ Roles
     </tr>
     <tr>
       <td><a href="roles/dunst">dunst</a></td>
-      <td>Installs a baby fork of <a href="https://github.com/dunst-project/dunst">dunst</a> for notifications.</td>
+      <td>Installs <a href="https://github.com/dunst-project/dunst">dunst</a> for notifications.</td>
     </tr>
     <tr>
       <td><a href="roles/firefox">firefox</a></td>
@@ -73,7 +73,7 @@ Roles
     </tr>
     <tr>
       <td><a href="roles/picom">picom</a></td>
-      <td>Setup <a href="https://github.com/yshui/picom">picom</a>.</td>
+      <td>Setup <a href="https://github.com/sdhand/picom">picom</a>.</td>
     </tr>
     <tr>
       <td><a href="roles/polybar">polybar</a></td>
@@ -82,6 +82,10 @@ Roles
     <tr>
       <td><a href="roles/rofi">rofi</a></td>
       <td>Setup <a href="https://github.com/davatorium/rofi">rofi</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="roles/spotify">spotify</a></td>
+      <td>Install spotify and theme with <a href="https://github.com/khanhas/spicetify-cli">spicetify</a>.</td>
     </tr>
     <tr>
       <td><a href="roles/touchpad">touchpad</a></td>

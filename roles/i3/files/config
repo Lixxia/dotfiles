@@ -200,7 +200,7 @@ client.urgent           $bg    $bg    $fg  $bg
 # lock screen
 bindsym $mod+Ctrl+l exec $HOME/.local/bin/locker
 
-# wallpaper & bar
+# On restart ensure reload for polywrap, wallpaper and picom
 exec_always --no-startup-id feh --image-bg black --bg-scale $HOME/.config/i3/background.png &
 exec_always --no-startup-id $HOME/.local/bin/polywrap launch
-
+exec_always --no-startup-id touch $HOME/.config/picom.conf

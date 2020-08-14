@@ -73,5 +73,31 @@
 - name: Symlink script
   file:
     src: '{{dotfiles_path}}/roles/polybar/files/polywrap'
-    dest: ~/.local/bin/polywrap
+    dest: '{{user_home}}/.local/bin/polywrap'
     state: link
+
+- name: Install i3-agenda dependencies
+  become: yes
+  pip:
+    name:
+      - python-bidi
+      - google-api-python-client
+      - google-auth-httplib2
+      - google-auth-oauthlib
+
+- name: Clone i3-agenda
+  git:
+    repo: https://github.com/rosenpin/i3-agenda.git
+    dest: '{{user_home}}/repos/i3-agenda'
+
+- name: Little time format change
+  lineinfile:
+    path: '{{user_home}}/repos/i3-agenda/i3_agenda/__init__.py'
+    regexp: '^print(f"{t:%H:%M} "'
+    line: 'print(f"{t:%I:%M%p} " + get_display(closest.summary))'
+
+- name: Install i3-agenda
+  become: yes
+  command: python3 setup.py install
+  args:
+    chdir: '{{user_home}}/repos/i3-agenda'

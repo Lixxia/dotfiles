@@ -1,53 +1,54 @@
 [global]
-    font = "Iosevka Bold 12"
-    allow_markup = yes
-    format = "<b>%s</b>\n%b"
-    sort = yes
-    indicate_hidden = true
-    show_age_threshold = 60
-    idle_threshold = 120
-    geometry = "300x8-5+18"
-    alignment = center
-    shrink = yes
-    show_age_threshold = 60
-    sticky_history = no
-    follow = mouse
-    show_indicators = yes
-    word_wrap = yes
-    line_height = 0
-    separator_height = 0
-    separator_color = auto
-    padding = 16
-    horizontal_padding = 16
-    startup_notification = false
-    dmenu = /usr/local/bin/rofi -dmenu -p dunst:
-    browser = /usr/bin/firefox
-    icon_position = left
-    icon_folders = /usr/share/icons/Numix/48/status/:/usr/share/icons/Numix/48/devices/:/usr/share/icons/Numix/48/notifications/:/usr/share/icons/Numix/24/status/
-    max_icon_size = 48
-    corner_radius = 10
+# Settings
+sort = yes
+indicate_hidden = true
+show_age_threshold = 60
+idle_threshold = 120
+show_age_threshold = 60
+startup_notification = false
+sticky_history = no
+follow = none
+show_indicators = yes
+word_wrap = yes
 
-[frame]
-    width = 2
-    color = "#282828"
+# Format
+font = "Iosevka 12"
+allow_markup = yes
+format = "<b>%s</b>\n%b"
+alignment = center
+
+# Appearance
+geometry = "300x8-5+27"
+separator_height = 0
+separator_color = "#00000000"
+padding = 16
+horizontal_padding = 16
+
+# Apps
+dmenu = /usr/local/bin/rofi -dmenu -p dunst:
+browser = /usr/bin/firefox -new-tab
+
+# Icons
+icon_position = left
+icon_folders = /home/laura/.icons/oomox-gruv/status/scalable/
+max_icon_size = 48
 
 [shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
+close = ctrl+space
+close_all = ctrl+shift+space
+history = ctrl+grave
 
 [urgency_low]
-    background = "#282828"
-    foreground = "#d5c4a1"
-    timeout = 5 
+background = "#282828"
+foreground = "#d5c4a1"
+timeout = 5 
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#d5c4a1"
-    timeout = 10
+background = "#282828"
+foreground = "#d5c4a1"
+timeout = 10
 
 [urgency_critical]
-    background = "#282828"
-    foreground = "#d5c4a1"
-    timeout = 15
+background = "#282828"
+foreground = "#d5c4a1"
+timeout = 15
