@@ -24,15 +24,15 @@ exec --no-startup-id i3-msg 'workspace $ws10; exec slack'
 
 # floating windows
 for_window [title="Ranger"] floating enable
+for_window [title="Calculator"] floating enable
 for_window [title="New Message"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
-for_window [workspace="9"] floating enable
+for_window [class="Gsimplecal"] floating enable, move down 50 px, move left 110 px
 
 # assignments
-assign [class="(?i)geary"] $ws4
 assign [class="(?i)mail.google.com"] $ws4
 assign [class="(?i)discord"] $ws6
 assign [class="(?i)slack"] $ws10
@@ -53,9 +53,6 @@ bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
-# headset switch 
-bindsym $mod+Shift+s exec pacmd set-default-source "alsa_input.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-mono" && pacmd set-default-sink "alsa_output.usb-Kingston_HyperX_Cloud_Flight_Wireless_Headset-00.analog-stereo"
-
 # borders
 #for_window [class="^.*"] border pixel 3
 for_window [class="^.*"] border pixel 0
@@ -66,7 +63,7 @@ gaps inner 5
 gaps outer 3
 
 # font
-font pango: Ubuntu 11px
+font pango: Iosevka 11px
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $modA
@@ -82,8 +79,8 @@ bindsym $mod+Control+Shift+k focus parent, focus parent, focus parent, focus par
 bindsym $mod+d exec --no-startup-id $HOME/.local/bin/polywrap rofi
 # Search open windows
 bindsym $mod+grave exec --no-startup-id $HOME/.local/bin/polywrap search
-# Tray Toggle
-bindsym $mod+t exec --no-startup-id $HOME/.local/bin/polywrap tray
+# Rofi Calculator
+bindsym $mod+c exec --no-startup-id $HOME/.local/bin/polywrap calc
 # Power menu
 bindsym $mod+p exec --no-startup-id $HOME/.local/bin/polywrap power
 

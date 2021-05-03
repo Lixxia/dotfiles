@@ -70,11 +70,14 @@
   with_items:
     - 'config'
 
-- name: Symlink script
+- name: Symlink scripts
   file:
-    src: '{{dotfiles_path}}/roles/polybar/files/polywrap'
-    dest: '{{user_home}}/.local/bin/polywrap'
+    src: '{{dotfiles_path}}/roles/polybar/files/{{item}}'
+    dest: '{{user_home}}/.local/bin/{{item}}'
     state: link
+  with_items:
+    - 'polywrap'
+    - 'stonks.py'
 
 - name: Install i3-agenda dependencies
   become: yes
@@ -101,3 +104,12 @@
   command: python3 setup.py install
   args:
     chdir: '{{user_home}}/repos/i3-agenda'
+
+- name: Install stonks dependencies
+  become: yes
+  pip:
+    name:
+      - yahoo_fin
+      - chardet 
+      - requests
+      - requests_html

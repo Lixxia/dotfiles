@@ -13,6 +13,7 @@
 
 #tabbar { 
   overflow-y: scroll;
+  bottom: 0 !important; /* Eliminate dead space on bottom */
 }
 
 :root.right #tabbar {
@@ -23,7 +24,7 @@ tab-item {
   margin       : 2px 1px;
   margin-right : 0px;
   border-radius: 5px;
-  padding-right: 10px;
+  padding: 3px 10px 3px 10px;
   transition   : all 0.3s ease-i-out !important;
 }
 
@@ -57,6 +58,7 @@ tab-item tab-closebox{
   opacity      : 1;
   border-radius: 50%;
   transition   : all 0.1s ease-in-out;
+
 }
 
 :root.right tab-item tab-twisty {
@@ -91,3 +93,6 @@ tab-item tab-closebox{
   mask: none !important;
 }
 
+.newtab-button-box {
+  display: none;
+}

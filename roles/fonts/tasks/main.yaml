@@ -13,24 +13,11 @@
       url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Bold/complete/Iosevka%20Bold%20Nerd%20Font%20Complete.ttf
       dest: "~/.local/share/fonts/Iosevka Bold Nerd Font Complete.ttf"
 
-- name: Install Font Awesome
-  get_url:
-    url: https://use.fontawesome.com/releases/v5.14.0/fontawesome-free-5.14.0-desktop.zip
-    dest: /tmp/fontawesome-free-5.14.0-desktop.zip
-
-- name: Unarchive Font Awesome
-  unarchive:
-    src: /tmp/fontawesome-free-5.14.0-desktop.zip
-    dest: /tmp
-
-- name: Grab otfs
-  copy:
-    src: '/tmp/fontawesome-free-5.14.0-desktop/otfs/{{item}}'
-    dest: '~/.local/share/fonts/{{item}}'
-  with_items: 
-    - 'Font Awesome 5 Brands-Regular-400.otf'
-    - 'Font Awesome 5 Free-Regular-400.otf'
-    - 'Font Awesome 5 Free-Solid-900.otf'
+- name: Link extra symbol font
+  file:
+    src: '{{dotfiles_path}}/roles/fonts/files/pelo.ttf'
+    dest: '{{user_home}}/.fonts/pelo.ttf'
+    state: link
 
 - name: Symlink fonts dir
   file:

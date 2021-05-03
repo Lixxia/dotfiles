@@ -63,10 +63,14 @@
     repo: https://github.com/morpheusthewhite/spicetify-themes.git
     dest: '{{user_home}}/repos/spicetify-themes'
 
-- name: Make config dir
+- name: Make dirs
   file:
-    dest: '{{user_home}}/.config/spicetify'
+    dest: '{{user_home}}/.config/{{item}}'
     state: directory
+  with_items:
+    - 'spicetify'
+    - 'spicetify/Themes'
+    - 'spicetify/Extensions'
 
 - name: Link theme
   file:
@@ -88,14 +92,14 @@
     - 'spicetify config inject_css 1 replace_colors 1 overwrite_assets 1'
 
 - name: Check backup
-  stat:
+  find:
     path: '{{user_home}}/.config/spicetify/Backup'
   register: spicetify_backup
 
-- name: Apply and backup
-  command: 'spicetify apply backup'
-  when: not spicetify_backup.stat.exists
+- name: Backup and apply
+  command: 'spicetify backup apply'
+  when: spicetify_backup.matched == 0 
 
 - name: Apply
   command: 'spicetify apply'
-  when: spicetify_backup.stat.exists
+  when: spicetify_backup.matched > 0

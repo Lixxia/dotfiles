@@ -32,6 +32,12 @@
     state: present
     executable: pip3
 
+- name: Update blurwal for multi monitor
+  lineinfile:
+    path: '{{user_home}}/.local/lib/python3.6/site-packages/blurwal/backends/feh.py'
+    regexp: "^return [['feh', '--bg-fill'"
+    line: "return [['feh', '--no-xinerama', '--bg-scale', str(path)]]"
+
 - name: Clone i3 repo
   git:
     repo: https://github.com/Airblader/i3

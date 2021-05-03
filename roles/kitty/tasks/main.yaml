@@ -13,6 +13,7 @@
       - libpython-dev
       - libharfbuzz-dev
       - python3-dev
+      - liblcms2-dev
 
 - name: Clone kitty repo
   git:

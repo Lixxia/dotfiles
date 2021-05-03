@@ -15,3 +15,21 @@
       - python3-pip
       - ruby
       - pavucontrol
+
+- name: Install Go
+  get_url:
+    url: https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
+    dest: /tmp/go1.15.2.linux-amd64.tar.gz
+
+- name: Unarchive Go
+  become: yes
+  unarchive:
+    src: /tmp/go1.15.2.linux-amd64.tar.gz
+    dest: /usr/local
+# install go
+
+# install npm
+
+# install terraform (apt repo add + install"")
+# terraform-docs
+# install pre-commit (pip)

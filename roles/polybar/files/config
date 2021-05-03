@@ -8,6 +8,7 @@ foreground = ${xrdb:foreground:#dfdfdf}
 foreground-alt = #5E594E
 primary = ${xrdb:color6}
 secondary = ${xrdb:color4}
+tertiary = ${xrdb:color5}
 alert = ${xrdb:color9}
 
 # Geometry
@@ -27,9 +28,6 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
-
 border-top-size = 5
 border-bottom-size = 0
 border-left-size = 5
@@ -38,27 +36,28 @@ border-color = #00000000
 
 spacing = 1
 padding-left = 0
-padding-right = 9
+padding-right = 10
 module-margin-left = 1
 module-margin-right = 0
 
 radius = 10
 
 tray-position = right
-tray-maxsize = 16
+# tray-maxsize = 16
 tray-detached= true
 tray-padding = 5
 tray-offset-x= -7
 
 # Default Font
-font-0 = Iosevka:fontformat=truetype:size=11:weight:bold;2
+font-0 = Iosevka:fontformat=truetype:size=12:weight:bold;3
 # Icon Font
-font-1 = Iosevka:fontformat=truetype:size=13:weight:bold;3
+font-1 = Iosevka:fontformat=truetype:size=14:weight:bold;3
+font-2 = pelo:size=13:weight:normal;4
 
 # Modules
 modules-left = i3
 modules-center = xwindow
-modules-right = pulseaudio battery date
+modules-right = stonks pulseaudio battery clock
 
 # Mouse 
 cursor-click = pointer
@@ -75,16 +74,21 @@ wrapping-scroll = false
 strip-wsnumbers = true
 pin-workspaces = false
 
-ws-icon-0 = "1; "
-ws-icon-1 = "2; "
-ws-icon-2 = "3; "
-ws-icon-3 = "4; "
-ws-icon-4 = "5; "
-ws-icon-5 = "6; "
-ws-icon-6 = "7; "
+ws-icon-0 = "1;ﲵ %{O-3}"
+ws-icon-1 = "2;%{T1} %{T-}"
+ws-icon-2 = "3; %{O-3}"
+ws-icon-3 = "4; %{O-3}"
+ws-icon-4 = "5;阮 %{O-4}"
+ws-icon-5 = "6; "
+ws-icon-6 = "7; %{O-4}"
 ws-icon-7 = "8; "
-ws-icon-8 = "9; "
-ws-icon-9 = "10; %{O-2}"
+ws-icon-8 = "9;辶 %{O-5}"
+ws-icon-9 = "10;%{T1} %{O-2}%{T-}"
+
+label-focused-font = 2
+label-unfocused-font = ${self.label-focused-font}
+label-urgent-font = ${self.label-focused-font}
+label-visible-font = ${self.label-focused-font}
 
 label-mode-padding = 1
 label-mode-foreground = #000
@@ -122,53 +126,29 @@ label = %title:0:30:...%
 #---------------------------------------------------#
 
 # Right Modules
-[module/wlan]
-type = internal/network
-interface = wlp2s0
-interval = 3.0
-
-format-connected = <label-connected>
-label-connected =  %essid%
-
-label-disconnected = 
-label-disconnected-foreground = ${colors.foreground-alt}
-format-disconnected = <label-disconnected>
-
-[module/eth]
-type = internal/network
-interface = enx00e04c69a4d6
-interval = 3.0
-
-label-connected = 
-
-label-disconnected = 
-label-disconnected-foreground = ${colors.foreground-alt}
-format-disconnected = <label-disconnected>
-
-[module/date]
-type = internal/date
+[module/clock]
+type = custom/script
+exec = /bin/date +%I:%M%p
 interval = 5
 
-time = %l:%M%p
-time-alt = %H:%M:%S
-
-# format-background = ${colors.primary}
+label = %{T2} %{T-}%output%
+format-background = ${colors.tertiary}
 format-padding = 1
 
-label = %{T2}%{T-}%{O8}%time%
+click-left = /usr/bin/gsimplecal
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = "<ramp-volume>%{O3}<label-volume>"
+format-volume-padding = 1
 label-volume-foreground = ${root.foreground}
 label-volume = %percentage%%
-label-volume-padding-right = 1
 
 format-muted-prefix = "%{T2}婢%{T-} "
 format-muted-foreground = ${colors.foreground-alt}
+format-muted-padding = 1
 label-muted = "muted"
-label-muted-padding-right = 1
 
 ramp-volume-0 = "%{T2}%{T-}"
 ramp-volume-1 = "%{T2}%{T-}"
@@ -182,11 +162,14 @@ adapter = AC
 full-at = 98
 
 format-charging = ﮣ%{O3}<label-charging>
+format-charging-padding = 1
 
 format-discharging = <ramp-capacity>%{O-3}<label-discharging>
+format-discharging-padding = 1
 
 format-full-prefix = "%{T2}%{T-}%{O3}"
 format-full-prefix-foreground = ${colors.foreground}
+format-full-padding = 1
 
 ramp-capacity-0 = %{T2}%{T-}
 ramp-capacity-1 = %{T2}%{T-}
@@ -198,16 +181,27 @@ ramp-capacity-6 = %{T2}%{T-}
 ramp-capacity-7 = %{T2}%{T-}
 ramp-capacity-8 = %{T2}%{T-}
 ramp-capacity-foreground = ${colors.foreground}
-# ramp-capacity-padding-left = 1
 ramp-capacity-0-foreground = ${colors.alert}
 ramp-capacity-1-foreground = ${colors.alert}
-# ramp-capacity-padding = 0
+
+[module/stonks]
+type = custom/script
+
+exec = python3 ~/.local/bin/stonks.py "PTON"
+# label = %{T2} %{T-}%{O3}%output%
+label = %{T3}%{T-}%{O4}%output%
+format-padding = 1
+
+interval = 3600
 
 [module/agenda]
 type = custom/script
+
 exec = i3-agenda -c ~/.config/.g-credentials.json -i "" --today -ttl 60 --hide-event-after 5
-label = "%{T2} %{T-}%output%
 interval = 60
+
+label = %{T2} %{T-}%{O3}%output%
+format-padding = 1
 
 #---------------------------------------------------#
 [settings]

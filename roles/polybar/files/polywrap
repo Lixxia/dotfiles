@@ -17,6 +17,10 @@ rofi_open() {
     rofi -show drun 
 }
 
+rofi_calc_open() {
+    rofi -show calc -modi calc -no-show-match -no-sort -terse -no-history
+}
+
 search_open() {
     rofi -show window -width 28
 }
@@ -58,6 +62,9 @@ case "$1" in
         ;;
     search)
         search_open
+        ;;
+    calc)
+        rofi_calc_open
         ;;
     power)
         power_open

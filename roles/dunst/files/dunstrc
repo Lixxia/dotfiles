@@ -18,7 +18,7 @@ format = "<b>%s</b>\n%b"
 alignment = center
 
 # Appearance
-geometry = "300x8-5+27"
+geometry = "300x8-5+40"
 separator_height = 0
 separator_color = "#00000000"
 padding = 16
