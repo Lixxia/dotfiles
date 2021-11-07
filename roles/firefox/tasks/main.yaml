@@ -5,8 +5,8 @@
 
 - name: Clone theme
   git:
-    repo: https://github.com/Lixxia/MaterialFox
-    dest: '{{user_home}}/repos/MaterialFox'
+    repo: https://github.com/Lixxia/FlyingFox
+    dest: '{{user_home}}/repos/FlyingFox'
 
 - name: Find profile
   shell: 'grep Default= ~/.mozilla/firefox/profiles.ini | grep -v "^Default=1$" | sed s/^Default=//'
@@ -15,6 +15,6 @@
 - debug: msg="{{profile_result.stdout}}"
 - name: Link theme
   file:
-    src: '{{user_home}}/repos/MaterialFox/chrome'
+    src: '{{user_home}}/repos/FlyingFox/chrome'
     dest: '{{user_home}}/.mozilla/firefox/{{profile_result.stdout}}/chrome'
     state: link

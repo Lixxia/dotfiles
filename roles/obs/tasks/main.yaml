@@ -1,0 +1,6 @@
+# install obs-studio
+# install obs-v4l2sink
+# install v4l2loopback
+# directory fuckery (see camera script)
+# setup looback for device
+# autostart in obs

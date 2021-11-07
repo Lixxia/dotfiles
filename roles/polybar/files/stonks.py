@@ -9,7 +9,6 @@ args = parser.parse_args()
 
 try:
     r = si.get_live_price(args.ticker)
-except ConnectionError as e:
-    print(e)
-    r = "0"
+except DeprecationWarning as e:
+    pass
 print(str(round(r,3)))
