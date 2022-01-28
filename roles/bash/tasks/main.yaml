@@ -1,3 +1,12 @@
+- name: Check bashrc
+  stat:
+    path: '{{user_home}}/.bashrc'
+  register: st
+
+- name: Backup bashrc
+  command: mv '{{user_home}}/.bashrc' '{{user_home}}/.bahsrc_old'
+  when: not st.stat.islnk
+
 - name: Setup bashrc
   file:
     src: '{{dotfiles_path}}/roles/bash/files/.bashrc'

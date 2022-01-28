@@ -23,55 +23,43 @@
       - libxcb-xrm-dev
       - automake
       - libxcb-shape0-dev
+      - ninja-build
+      - light
 
 - name: Install python deps
   pip:
     name:
       - blurwal
       - autorandr
+      - meson
     state: present
     executable: pip3
-
-- name: Update blurwal for multi monitor
-  lineinfile:
-    path: '{{user_home}}/.local/lib/python3.6/site-packages/blurwal/backends/feh.py'
-    regexp: "^return [['feh', '--bg-fill'"
-    line: "return [['feh', '--no-xinerama', '--bg-scale', str(path)]]"
 
 - name: Clone i3 repo
   git:
     repo: https://github.com/Airblader/i3
     dest: '{{user_home}}/repos/i3'
 
-- name: Build i3
-  command: autoreconf --force --install
-  args:
-    chdir: '{{user_home}}/repos/i3'
-
-- name: Remove build dir
-  file:
-    path: '{{user_home}}/repos/i3/build'
-    state: absent
-
 - name: Create new build dir
   file:
     path: '{{user_home}}/repos/i3/build'
     state: directory
 
-- name: Run configure
-  command: '../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers'
+- name: Meson
+  command: 'meson ..'
   args:
     chdir: '{{user_home}}/repos/i3/build'
 
-- name: Make
-  make:
+- name: Ninja
+  command: ninja
+  args:
     chdir: '{{user_home}}/repos/i3/build'
 
 - name: Install
   become: yes
-  make:
+  command: ninja install
+  args:
     chdir: '{{user_home}}/repos/i3/build'
-    target: install
 
 - name: Create i3 directory
   file:
@@ -92,3 +80,10 @@
     src: '{{dotfiles_path}}/roles/i3/files/monitor'
     dest: '{{user_home}}/.local/bin/monitor'
     state: link
+
+- name: Add user to video group for backlight
+  become: yes
+  user:
+    name: '{{user}}'
+    groups: video
+    append: yes

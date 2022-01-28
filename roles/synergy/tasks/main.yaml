@@ -1,0 +1,14 @@
+- name: Prompt Install
+  pause:
+    prompt: "Login and download from https://symless.com/synergy/downloads. Press Enter to continue"
+
+- name: Setup Folder
+  file:
+    path: '{{user_home}}/.synergy'
+    state: directory
+
+- name: Configure Synergy
+  command: synergy
+
+- name: Start process
+  command: synergyc --enable-crypto babs-desktop

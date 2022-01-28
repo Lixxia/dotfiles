@@ -1,0 +1,8 @@
+* {
+    foreground:          rgba ( 189, 174, 147, 100% );
+    lightfg:             rgba ( 251, 241, 199, 100% );
+    background:          rgba ( 40, 40, 40, 100 % );
+    red:                 #cc241d;
+    green:               #98971a;
+    accent:              #d79921;
+}

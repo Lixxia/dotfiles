@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-container">
+            <div class="pic">
+                <img src="/home/laura/.config/i3/background.png" />
+            </div>
+        </div>
+
+        <div class="right-container">
+            <div class="head">
+                <p><span class="prompt">></span> date +"%r"
+                <br>
+                &ensp; <span id="time">_</span>
+                <br>
+                <span class="prompt">></span> cd ~/<span class="blinking">_</span></p>
+            </div>
+
+            <script>
+                var dt = new Date();
+                document.getElementById("time").innerHTML = dt.toLocaleTimeString();
+            </script>
+
+            <div class="bookmarks">
+                <div class="category">
+                    <div class="links">
+                        <li class="title">work</li>
+                        <li><a href="https://gmail.com">mail</a></li>
+                        <li><a href="https://calendar.google.com">calendar</a></li>
+                        <li><a href="https://linkedin.com">linkedin</a></li>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="links">
+                        <li class="title">dev</li>
+                        <li><a href="https://github.com/">github</a></li>
+                        <li><a href="https://kubernetes.io/docs/home/">k8s</a></li>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="links">
+                        <li class="title">reddit</li>
+                        <li><a href="https://libreddit.spike.codes/r/unixporn/">unix</a></li>
+                        <li><a href="https://libreddit.spike.codes/r/mechanicalkeyboards/">mech key</a></li>
+                        <li><a href="https://libreddit.spike.codes/r/lostarkgame/">lost ark</a></li>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <div class="links">
+                        <li class="title">play</li>
+                        <li><a href="https://youtube.com/">youtube</a></li>
+                        <li><a href="https://twitch.tv/">twitch</a></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

@@ -1,7 +1,7 @@
 - name: Add spotify gpg key
   become: yes
   apt_key:
-    url: https://download.spotify.com/debian/pubkey.gpg
+    url: https://download.spotify.com/debian/pubkey_0D811D58.gpg
     state: present
 
 - name: Add spotify repo
@@ -34,8 +34,8 @@
 
 - name: Get spicetify-cli
   get_url: 
-    url: https://github.com/khanhas/spicetify-cli/releases/download/v1.1.0/spicetify-1.1.0-linux-amd64.tar.gz
-    dest: /tmp/spicetify-1.1.0-linux-amd64.tar.gz
+    url: https://github.com/khanhas/spicetify-cli/releases/download/v2.7.2/spicetify-2.7.2-linux-amd64.tar.gz
+    dest: /tmp/spicetify-2.7.2-linux-amd64.tar.gz
 
 - name: Create spicetify-cli dir
   become: yes
@@ -48,7 +48,7 @@
 
 - name: Unpack spicetify-cli
   unarchive:
-    src: /tmp/spicetify-1.1.0-linux-amd64.tar.gz
+    src: /tmp/spicetify-2.7.2-linux-amd64.tar.gz
     dest: /usr/local/src/spicetify-cli
 
 - name: Setup link

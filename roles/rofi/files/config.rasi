@@ -1,21 +1,15 @@
 configuration {
     show-icons:          true;
-    icon-theme:          "Oomox-gruv";
-    lines:               9;
-    width:               20;
+    icon-theme:          "Oomox-catppuccin";
     terminal:            "kitty";
     font:                "Iosevka Bold 13";
     modi:                "window,run,drun";
 }
 
-* {
-    foreground:          rgba ( 189, 174, 147, 100% );
-    lightfg:             rgba ( 251, 241, 199, 100% );
-    background:          rgba ( 40, 40, 40, 100 % );
-    red:                 #cc241d;
-    green:               #98971a;
-    accent:              #d79921;
+@theme "/dev/null"
+@import "catppuccin.rasi"
 
+* {
     selected-foreground: @lightfg;
     normal-foreground:   @foreground;
     urgent-foreground:   @red;
@@ -26,15 +20,32 @@ configuration {
     text-color:          @normal-foreground;
 }
 
-window {
-    border-radius:       0px 0px 10px 10px;
-    x-offset:            3;
-    y-offset:            5;
-    location:            north;
+entry {
+    padding:             4px 0px 4px 4px;
+    border-radius:       10px 10px 0px 0px;
 }
 
-textbox {
-    text-color:          @foreground;
+prompt {
+    background-color:    @accent;
+    text-color:          @background;
+    padding:             4px 10px 4px 10px;
+}
+
+window {
+    border-radius:       10px;
+    x-offset:            3;
+    y-offset:            3;
+    location:            north;
+    width:               25%;
+}
+
+inputbar {
+    children: [ prompt, entry];
+    background-color: @accent;
+    text-color: @fg;
+    expand: false;
+    padding: 2px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 listview {
@@ -43,50 +54,24 @@ listview {
     scrollbar:           false;
     padding:             10px;
     spacing:             8px;
+    lines:               9;
+    columns:             1;
 }
 
-element normal.urgent {
-    text-color:          @urgent-foreground;
-}
-
-element normal.active {
-    text-color:          @active-foreground;
-}
-
-element selected.normal {
-    text-color:          @selected-foreground;
-}
-
-element selected.urgent {
-    text-color:          @selected-foreground;
-}
-
-element selected.active {
-    text-color:          @selected-foreground;
-}
-
-element alternate.urgent {
-    text-color:          @urgent-foreground;
-}
-
-element alternate.active {
-    text-color:          @active-foreground;
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    margin: 3px;
 }
 
 element-icon {
     size:                2ch;
 }
 
+element selected {
+    text-color:    @selected-foreground;
+}
+
 button selected {
     text-color:          @selected-foreground;
-}
-
-entry {
-    padding:             4px 0px 4px 4px;
-}
-
-prompt {
-    background-color:    @accent;
-    text-color:          @background;
-    padding:             4px 10px 4px 10px;
 }

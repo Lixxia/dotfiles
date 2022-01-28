@@ -1,0 +1,27 @@
+- name: Install nvim
+  become: yes
+  command: snap install nvim --classic
+
+- name: Setup config dir
+  file:
+    path: '{{user_home}}/.config/nvim'
+    state: directory
+
+- name: Install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: '{{user_home}}/.local/share/nvim/site/autoload/plug.vim'
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/nvim/files/{{item}}'
+    dest: '{{user_home}}/.config/nvim/{{item}}'
+    state: link
+  with_items:
+    - 'init.vim'
+    - 'colors'
+    - 'statusline.vim'
+    - 'nerdtree.vim'
+
+- name: Install plugins
+  command: nvim +PlugInstall +qall

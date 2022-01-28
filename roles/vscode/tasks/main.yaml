@@ -1,0 +1,19 @@
+- name: Install VSCode
+  become: yes
+  command: snap install --classic code
+
+- name: Clone catppuccin theme repo
+  git:
+    repo: https://github.com/catppuccin/vscode.git
+    dest: '{{user_home}}/.vscode/extensions/catppuccin-vscode'
+
+- name: Install extensions
+  command: 'code --install-extension {{item}}'
+  with_items:
+    - 'vscodevim.vim'
+
+- name: Symlink settings
+  file:
+    src: '{{dotfiles_path}}/roles/vscode/files/settings.json'
+    dest: '{{user_home}}/.config/Code/User/settings.json'
+    state: link

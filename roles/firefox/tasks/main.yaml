@@ -1,4 +1,5 @@
 - name: Install firefox
+  become: yes
   apt:
     name:
       - firefox
@@ -13,8 +14,44 @@
   register: profile_result
 
 - debug: msg="{{profile_result.stdout}}"
-- name: Link theme
+
+- name: Link theme files
   file:
-    src: '{{user_home}}/repos/FlyingFox/chrome'
-    dest: '{{user_home}}/.mozilla/firefox/{{profile_result.stdout}}/chrome'
+    src: '{{user_home}}/repos/FlyingFox/{{item}}'
+    dest: '{{user_home}}/.mozilla/firefox/{{profile_result.stdout}}/{{item}}'
     state: link
+  with_items:
+    - 'chrome'
+    - 'user.js'
+
+- name: Create .config
+  file:
+    dest: '{{user_home}}/.config/firefox'
+    state: directory
+
+- name: Symlink startpage configs
+  file:
+    src: '{{dotfiles_path}}/roles/firefox/files/{{item}}'
+    dest: '{{user_home}}/.config/firefox/{{item}}'
+    state: link
+  with_items:
+    - 'style.css'
+    - 'newtab.html'
+
+- name: Symlink mozilla.cfg
+  become: yes
+  file:
+    src: '{{dotfiles_path}}/roles/firefox/files/{{item}}'
+    dest: '/usr/lib/firefox/{{item}}'
+    state: link
+  with_items:
+    - 'mozilla.cfg'
+
+- name: Symlink local-settings.js
+  become: yes
+  file:
+    src: '{{dotfiles_path}}/roles/firefox/files/{{item}}'
+    dest: '/usr/lib/firefox/defaults/pref/{{item}}'
+    state: link
+  with_items:
+    - 'local-settings.js'

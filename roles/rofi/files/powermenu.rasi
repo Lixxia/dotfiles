@@ -1,24 +1,23 @@
-* {
-	accent:           #689d6a;
-    spacing:          40% 0 0 35%;
+@import "catppuccin.rasi"
 
-    foreground:       rgba (251, 241, 199, 100% );
-    background:       rgba(0, 0, 0, 0.20);
+* {
+    spacing:          3%;
+
     transparent:	  rgba(0, 0, 0, 0);
-    background-solid: rgba(40, 40, 40, 100%);
 
     background-color: @transparent;
     text-color:       @foreground;
     font:             "Iosevka 50";
 }
 
-
 window {
-    background-color: @background;
     width:            100%;
     height:           100%;
     children:         [ horibox ];
-    padding:          @spacing;
+    anchor:           north;
+    location:         center;
+    x-offset:         32%;
+    y-offset:         -5%;
 }
 
 horibox {
@@ -36,6 +35,12 @@ element {
     border-radius:    6px;
 }
 
-element.selected {
-    background-color: @accent;
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element selected {
+    background-color: @blue;
+    text-color: @darkfg;
 }

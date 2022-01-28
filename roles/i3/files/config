@@ -11,6 +11,8 @@ set $ws9 "9"
 set $ws10 "10"
 
 # startup programs
+exec --no-startup-id xrdb $HOME/.Xresources
+exec --no-startup-id xbindkeys
 exec --no-startup-id $HOME/.local/bin/blurwal
 exec --no-startup-id libinput-gestures-setup start 
 exec --no-startup-id gnome-settings-daemon
@@ -83,6 +85,8 @@ bindsym $mod+grave exec --no-startup-id $HOME/.local/bin/polywrap search
 bindsym $mod+c exec --no-startup-id $HOME/.local/bin/polywrap calc
 # Power menu
 bindsym $mod+p exec --no-startup-id $HOME/.local/bin/polywrap power
+# Dunst
+bindsym ctrl+shift+space exec "dunstctl close-all"
 
 # change focus
 bindsym $mod+Left focus left

@@ -1,22 +1,5 @@
-/*edit of https://github.com/phallus/user-styles/tree/master/styles-clean*/
-
+@-moz-document domain("reddit.com") {
 @namespace url(http://www.w3.org/1999/xhtml);
-
-/* applies to:
-@-moz-document url-prefix(http://ssl.reddit.com),
-               url-prefix(http://www.reddit.com),
-               url-prefix(http://www.np.reddit.com),
-               url-prefix(http://np.reddit.com),
-               url-prefix(http://en.reddit.com),
-               url-prefix(http://pay.reddit.com),
-               url-prefix(https://ssl.reddit.com),
-               url-prefix(https://www.reddit.com),
-               url-prefix(https://www.np.reddit.com),
-               url-prefix(https://np.reddit.com),
-               url-prefix(https://pay.reddit.com),
-               url-prefix(https://en.reddit.com)
-{
-*/
 
 :root{
     --main-bg: #282828; 
@@ -1097,4 +1080,5 @@ h1 {
     background-color: var(--alt-bg) !important;
     padding: 0px !important;
     border-color: var(--alt-fg) !important;
+}
 }

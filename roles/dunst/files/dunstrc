@@ -1,28 +1,32 @@
 [global]
-# Settings
+# General
 sort = yes
 indicate_hidden = true
 show_age_threshold = 60
 idle_threshold = 120
 show_age_threshold = 60
-startup_notification = false
 sticky_history = no
 follow = none
 show_indicators = yes
-word_wrap = yes
 
-# Format
+# Text
 font = "Iosevka 12"
-allow_markup = yes
 format = "<b>%s</b>\n%b"
-alignment = center
+alignment = left
+vertical_alignment = center
+word_wrap = yes
+ignore_newline = no
 
 # Appearance
-geometry = "300x8-5+40"
+width = 300
+# height = 100
+origin = top-right
+offset = 7x42
 separator_height = 0
-separator_color = "#00000000"
 padding = 16
 horizontal_padding = 16
+corner_radius = 10
+frame_width = 0
 
 # Apps
 dmenu = /usr/local/bin/rofi -dmenu -p dunst:
@@ -30,25 +34,21 @@ browser = /usr/bin/firefox -new-tab
 
 # Icons
 icon_position = left
-icon_folders = /home/laura/.icons/oomox-gruv/status/scalable/
+icon_path = /home/laura/.icons/oomox-catppuccin/actions/24:/home/laura/.icons/oomox-catppuccin/devices/symbolic:/home/laura/.icons/oomox-catppuccin/status/48
 max_icon_size = 48
-
-[shortcuts]
-close = ctrl+space
-close_all = ctrl+shift+space
-history = ctrl+grave
+min_icon_size = 48
 
 [urgency_low]
-background = "#282828"
-foreground = "#d5c4a1"
+background = "#1E1E28"
+foreground = "#DADAE8"
 timeout = 5 
 
 [urgency_normal]
-background = "#282828"
-foreground = "#d5c4a1"
+background = "#1E1E28"
+foreground = "#DADAE8"
 timeout = 10
 
 [urgency_critical]
-background = "#282828"
-foreground = "#d5c4a1"
+background = "#1E1E28"
+foreground = "#DADAE8"
 timeout = 15

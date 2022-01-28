@@ -28,26 +28,16 @@ man() {
       man "$@"
 }
 
+# PROMPT
+
 show_color() {
     perl -e 'foreach $a(@ARGV){print "\e[48:2::".join(":",unpack("C*",pack("H*",$a)))."m \e[49m "};print "\n"' "$@"
-}
-
-# make and cd dir
-mkcd() {
-  mkdir -p "$@" && cd "$@"
-}
-
-cdt() {
-    if [[ $(git rev-parse --show-toplevel 2> /dev/null) ]]; then
-        cd $(git rev-parse --show-toplevel)
-    fi
 }
 
 working_directory() {
     echo -e "$(tput setaf 12)$(pwd | sed "s/${HOME//\//\\\/}/ /; s/\//  /g")\e[0m"
 }
 
-# Git functions
 parse_git_dirty() {
     if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
       echo -e "$(tput setaf 10)  "
@@ -60,6 +50,8 @@ parse_git_branch() {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/╺─╸$(parse_git_dirty)\1/"
 }
 
+# MISC
+
 push() {
     branch=$(git rev-parse --abbrev-ref HEAD)
     if [[ "$branch" != "master" ]]; then
@@ -69,14 +61,35 @@ push() {
     fi
 }
 
+cdt() {
+    if [[ $(git rev-parse --show-toplevel 2> /dev/null) ]]; then
+        cd $(git rev-parse --show-toplevel)
+    fi
+}
+
+userdata_diff() {
+    local before=${1:?Userdata required}
+    local after=${1:?Userdata required}
+
+    diff <(echo "$before" | base64 -d | gzip -cd) <(echo "$after" | base64 -d | gzip -cd)
+}
+
+ttf() {
+    curl -o /dev/null -H 'Cache-Control: no-cache' -s -w "Connect: %{time_connect} TTFB: %{time_starttransfer} Total time: %{time_total} \n" $1
+}
 
 # K8S
 alias k="kubectl"
 alias ko="kubeon"
 alias koff="kubeoff"
-alias kns="kubens"
+alias kns="kubens 2> /dev/null"
+alias kgn="kubectl get nodes -L node.kubernetes.io/type --sort-by=.metadata.creationTimestamp"
 source <(kubectl completion bash)
 complete -F __start_kubectl k
+
+sort_by() {
+    echo "--sort-by=.metadata.creationTimestamp"
+}
 
 kube_ps1() {
     kube_context=$(cat ~/.kube/config | grep "current-context:" | sed "s/current-context: //")
@@ -118,10 +131,7 @@ extract() {
      fi
 }
 
-# Color fix
-sh ~/.colors/base16-gruvbox-dark.sh
-
-# Misc aliases
+# ALIASES
 alias ls="ls -G"
 alias la="ls -A"
 alias ll='ls -alF'
@@ -131,6 +141,9 @@ alias grep="grep --color=auto"
 alias reset="reset && source ~/.bashrc"
 alias copy="xclip -selection clipboard"
 alias restart-sound="pulseaudio -k && sudo alsa force-reload"
+alias vi="nvim"
+alias vim="nvim"
+alias vvim="vim"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

@@ -1,0 +1,35 @@
+@-moz-document domain("libredd.it"), domain("reddi.tk") {
+:root,
+.dark {
+
+    --darkreader-text--accent: #C9CBFF !important;
+    --darkreader-bg--accent: #C9CBFF !important;
+    --darkreader-text--foreground: #1A1826 !important;
+    --accent: #C9CBFF !important;
+    --darkreader-text--green: #ABE9B3 !important;
+    --green: #ABE9B3 !important;
+    --darkreader-text--text: #D9E0EE !important;
+    --text: #D9E0EE !important;
+    --darkreader-bg--foreground: #1A1826 !important;
+    --foreground: #1A1826 !important;
+    --darkreader-bg--background: #1E1E2E !important;
+    --background: #1E1E2E !important;
+    --darkreader-bg--outside: #1A1826 !important;
+    --outside: #1A1826 !important;
+    --darkreader-bg--post: #1A1826 !important;
+    --post: #1A1826 !important;
+    --darkreader-border--panel-border: none !important;
+    --panel-border: none !important;
+    --darkreader-border--highlighted: #302D41 !important;
+    --highlighted: #302D41 !important;
+    --darkreader-text--visited: #988BA2 !important;
+    --visited: #988BA2 !important;
+    --darkreader-bg--shadow: 0 0 0 transparent !important;
+    --shadow: 0 0 0 transparent !important;
+
+    --darkreader-text--nsfw: #F8BD96 !important;
+    --nsfw: #F8BD96 !important;
+    --darkreader-text--admin: #E8A2AF !important;
+    --admin: #E8A2AF !important;
+}
+}

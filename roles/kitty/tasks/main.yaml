@@ -1,33 +1,26 @@
-- name: Install dependencies
-  become: yes
-  apt:
-    name:
-      - libdbus-1-dev
-      - libxcursor-dev
-      - libxrandr-dev
-      - libxi-dev
-      - libxinerama-dev
-      - libgl1-mesa-dev
-      - libxkbcommon-x11-dev
-      - libfontconfig-dev
-      - libpython-dev
-      - libharfbuzz-dev
-      - python3-dev
-      - liblcms2-dev
+- name: Get kitty
+  get_url:
+    url: https://github.com/kovidgoyal/kitty/releases/download/v0.24.1/kitty-0.24.1-x86_64.txz
+    dest: /tmp/kitty-0.24.1-x86_64.txz
 
-- name: Clone kitty repo
-  git:
-    repo: https://github.com/kovidgoyal/kitty.git
-    dest: '{{user_home}}/repos/kitty'
-
-- name: Build kitty
-  make:
-    chdir: '{{user_home}}/repos/kitty'
-
-- name: Setup link
+- name: Create kitty dir
   become: yes
   file:
-    src: '{{user_home}}/repos/kitty/kitty/launcher/kitty'
+    dest: /usr/local/src/kitty
+    owner: '{{user}}'
+    group: '{{user}}'
+    mode: '0775'
+    state: directory
+
+- name: Unpack kitty
+  unarchive:
+    src: /tmp/kitty-0.24.1-x86_64.txz
+    dest: /usr/local/src/kitty
+
+- name: Link kitty
+  become: yes
+  file:
+    src: /usr/local/src/kitty/bin/kitty
     dest: /usr/local/bin/kitty
     state: link
 
@@ -43,4 +36,5 @@
     state: link
   with_items:
     - 'base16-gruvbox.conf'
+    - 'catppuccin.conf'
     - 'kitty.conf'

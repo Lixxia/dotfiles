@@ -1,22 +1,22 @@
 - name: Create fonts dir
   file:
-    path: ~/.local/share/fonts
+    path: '{{user_home}}/.local/share/fonts'
     state: directory
 
 - name: Install Iosevka Medium
   get_url:
       url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Medium/complete/Iosevka%20Medium%20Nerd%20Font%20Complete.ttf
-      dest: "~/.local/share/fonts/Iosevka Medium Nerd Font Complete.ttf"
+      dest: "{{user_home}}/.local/share/fonts/Iosevka Medium Nerd Font Complete.ttf"
 
 - name: Install Iosevka Regular Mono
   get_url:
       url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Bold/complete/Iosevka%20Bold%20Nerd%20Font%20Complete.ttf
-      dest: "~/.local/share/fonts/Iosevka Bold Nerd Font Complete.ttf"
+      dest: "{{user_home}}/.local/share/fonts/Iosevka Bold Nerd Font Complete.ttf"
 
 - name: Link extra symbol font
   file:
     src: '{{dotfiles_path}}/roles/fonts/files/pelo.ttf'
-    dest: '{{user_home}}/.fonts/pelo.ttf'
+    dest: '{{user_home}}/.local/share/fonts/pelo.ttf'
     state: link
 
 - name: Symlink fonts dir

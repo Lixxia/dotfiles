@@ -20,7 +20,7 @@ let g:NERDTreeStatusline = "%#powerline#%#fgc#%{exists('b:NERDTree')?b:NERDTr
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Git status icons
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "",
     \ "Staged"    : "✚",
     \ "Untracked" : "",

@@ -1,4 +1,4 @@
-#include ".colors/base16-gruvbox"
+#include ".colors/catppuccin"
 
 ! Fonts
 Xft.dpi: 96
@@ -54,4 +54,3 @@ URxvt.tabbedex.bell-bg: -1
 ! Disable annoying keybind
 URxvt.iso14755:    false
 URxvt.iso14755_52: false
-

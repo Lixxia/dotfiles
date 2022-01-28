@@ -27,6 +27,7 @@
       - ninja-build
 
 - name: Install meson
+  become: yes
   pip:
     name: meson
     executable: pip3
@@ -34,7 +35,7 @@
 
 - name: Clone picom repo
   git:
-    repo: https://github.com/sdhand/picom
+    repo: https://github.com/yshui/picom
     dest: '{{user_home}}/repos/picom'
 
 - name: Update submodules

@@ -6,7 +6,7 @@
       - flex
       - librsvg2-dev
       - libjpeg-dev
-      - qcalc
+      - qalc
       - libtool
 
 - name: Clone rofi repo
@@ -52,11 +52,13 @@
   with_items:
     - 'config.rasi'
     - 'powermenu.rasi'
+    - 'gruvbox.rasi'
+    - 'catppuccin.rasi'
 
 - name: Clone rofi-calc repo
   git:
     repo: https://github.com/svenstaro/rofi-calc.git
-    dest: '{{user_home}}/repos/rofi'
+    dest: '{{user_home}}/repos/rofi-calc'
 
 - name: Autotools
   command: 'autoreconf -i'

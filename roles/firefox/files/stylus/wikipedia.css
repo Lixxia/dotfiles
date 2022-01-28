@@ -1,9 +1,5 @@
-/* from: https://github.com/phallus/user-styles/blob/master/styles-clean/fix-wikipedia.css 
-  with a few tweaks
-*/
-@namespace url(http://www.w3.org/1999/xhtml);
-
 @-moz-document domain(wikipedia.org) {
+@namespace url(http://www.w3.org/1999/xhtml);
 
 /* things to hide */
 .magnify,
