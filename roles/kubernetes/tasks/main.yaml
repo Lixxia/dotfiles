@@ -1,0 +1,29 @@
+# kubectl curl binary
+# chmod +x
+# move /usr/local/bin
+
+# aws-iam-authenticator curl
+# chmod +x
+# move /usr/local/bin
+
+# saml2aws
+# wget
+# untar to /usr/local/bin
+# chmod
+
+# kubectx
+# clone
+# link
+
+# docker install (apt repo add)
+# docker-compose install (curl)
+
+# groupadd docker
+# usergroup docker
+# newgroup docker
+
+# install opa (github curl)
+
+# install stern
+
+# install helm

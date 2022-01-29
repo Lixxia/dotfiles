@@ -1,0 +1,46 @@
+*background: #1E1E28
+*foreground: #DADAE8
+
+! Black + dark black
+*color0: #6E6C7E
+*color8: #988BA2
+
+! Red
+*color1: #F28FAD
+*color9: #F28FAD
+
+! Green
+*color2: #B1E3AD
+*color10: #B1E3AD
+
+! Yellow
+*color3: #FAE3B0
+*color11: #FAE3B0
+
+! Blue
+*color4: #96CDFB
+*color12: #96CDFB
+
+! Magenta
+*color5: #C6AAE8
+*color13: #C6AAE8
+
+! Cyan
+*color6: #89DCEB
+*color14: #89DCEB
+
+! Whites
+*color7: #DADAE8
+*color15: #DADAE8
+
+! Extra
+*color16: #d9e0ee
+*color17: #c3bac6
+*color18: #575268
+*color19: #6E6C7E
+*color20: #988BA2
+*color21: #C3BAC6
+*color22: #1A1826
+*color23: #1E1E2E
+*color24: #302D41
+*color25: #575268

@@ -1,0 +1,74 @@
+#!/bin/bash
+
+create_bar() {
+    polybar $1 &
+}
+
+launch() {
+    killall -q polybar
+    while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+    for m in $(polybar --list-monitors | cut -d":" -f1); do
+      MONITOR=$m polybar --reload main &
+    done
+}
+
+rofi_open() {
+    rofi -show drun 
+}
+
+rofi_calc_open() {
+    rofi -show calc -modi calc -no-show-match -no-sort -terse -no-history
+}
+
+search_open() {
+    rofi -show window -width 28
+}
+
+power_open() {
+    local theme="~/.config/rofi/powermenu.rasi"
+    
+    local power_off="襤"
+    local reboot="ﰇ"
+    local lock=""
+    local suspend=""
+    local log_out=""
+    local options="$power_off\n$reboot\n$lock\n$suspend\n$log_out"
+
+    local launch="$(echo -e "$options" | rofi -theme $theme -dmenu -selected-row 2)"
+
+    case $launch in
+        $power_off)
+    	    systemctl poweroff
+            ;;
+        $reboot)
+            systemctl reboot
+            ;;
+        $lock)
+            $HOME/.scripts/locker
+            ;;
+        $suspend)
+            systemctl suspend
+            ;;
+        $log_out)
+            i3-msg exit
+            ;;
+    esac
+}
+
+case "$1" in
+    rofi)
+        rofi_open
+        ;;
+    search)
+        search_open
+        ;;
+    calc)
+        rofi_calc_open
+        ;;
+    power)
+        power_open
+        ;;
+    launch)
+        launch
+        ;;
+esac

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+today=$(date '+%-d')
+month=$(ncal -bh | head -n1)
+dates=$(ncal -bh | tail -n7 | sed -z "s|$today|<b><span foreground='#e38c8f'>$today</span></b>|1")
+moon="\n       ~ $(python3 $HOME/.local/bin/moonphase.py)"
+
+notify-send -i calendar-go-today "$month" "$dates$moon"

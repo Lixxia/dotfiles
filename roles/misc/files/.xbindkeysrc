@@ -1,0 +1,30 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.6
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifiers:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+
+"xte 'keydown Control_R' 'keydown Page_Up' 'keyup Control_R' 'keyup Page_Up'"
+  release + Control + Left
+
+"xte 'keydown Control_R' 'keydown Page_Down' 'keyup Control_R' 'keyup Page_Down'"
+  release + Control + Right

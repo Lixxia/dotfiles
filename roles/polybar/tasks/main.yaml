@@ -1,0 +1,130 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - build-essential
+      - cmake
+      - cmake-data
+      - pkg-config
+      - libcairo2-dev
+      - libxcb1-dev
+      - libxcb-util0-dev
+      - libxcb-randr0-dev
+      - libxcb-composite0-dev
+      - python3-xcbgen
+      - xcb-proto
+      - libxcb-image0-dev
+      - libxcb-ewmh-dev
+      - libxcb-icccm4-dev
+      - libjsoncpp-dev
+      - libxcb-cursor-dev
+      - libasound2-dev
+      - libpulse-dev
+      - libuv1-dev
+      - gsimplecal
+
+- name: Install pip dependencies
+  become: yes
+  pip:
+    name: sphinx
+    state: present
+
+- name: Check polybar
+  stat:
+    path: /usr/local/bin/polybar
+  register: poly
+
+- name: Clone polybar repo
+  git:
+    repo: https://github.com/polybar/polybar.git
+    dest: '{{user_home}}/repos/polybar'
+  when: not poly.stat.exists
+
+- name: Remove build dir
+  file:
+    path: '{{user_home}}/repos/polybar/build'
+    state: absent
+  when: not poly.stat.exists
+
+- name: Create new build dir
+  file:
+    path: '{{user_home}}/repos/polybar/build'
+    state: directory
+  when: not poly.stat.exists
+
+- name: Run cmake
+  command: 'cmake ..'
+  args:
+    chdir: '{{user_home}}/repos/polybar/build'
+  when: not poly.stat.exists
+
+- name: Make
+  make:
+    chdir: '{{user_home}}/repos/polybar/build'
+  when: not poly.stat.exists
+
+- name: Install
+  become: yes
+  make:
+    chdir: '{{user_home}}/repos/polybar/build'
+    target: install
+  when: not poly.stat.exists
+
+- name: Create polybar directory
+  file:
+    path: '{{user_home}}/.config/polybar'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/polybar/files/{{item}}'
+    dest: '{{user_home}}/.config/polybar/{{item}}'
+    state: link
+  with_items:
+    - 'config.ini'
+
+- name: Create home local bin
+  file:
+    path: '{{user_home}}/.local/bin'
+    state: directory
+
+- name: Symlink scripts
+  file:
+    src: '{{dotfiles_path}}/roles/polybar/files/{{item}}'
+    dest: '{{user_home}}/.local/bin/{{item}}'
+    state: link
+  with_items:
+    - 'polywrap'
+    - 'stonks.py'
+    - 'battery.sh'
+    - 'calendar'
+    - 'moonphase.py'
+
+- name: Install i3-agenda dependencies
+  become: yes
+  pip:
+    name:
+      - python-bidi
+      - google-api-python-client
+      - google-auth-httplib2
+      - google-auth-oauthlib
+
+- name: Clone i3-agenda
+  git:
+    repo: https://github.com/rosenpin/i3-agenda.git
+    dest: '{{user_home}}/repos/i3-agenda'
+
+- name: Install i3-agenda
+  become: yes
+  command: python3 setup.py install
+  args:
+    chdir: '{{user_home}}/repos/i3-agenda'
+
+- name: Install stonks dependencies
+  become: yes
+  pip:
+    name:
+      - yahoo_fin
+      - chardet 
+      - requests
+      - requests_html

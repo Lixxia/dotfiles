@@ -1,0 +1,41 @@
+- name: Get kitty
+  get_url:
+    url: https://github.com/kovidgoyal/kitty/releases/download/v0.24.1/kitty-0.24.1-x86_64.txz
+    dest: /tmp/kitty-0.24.1-x86_64.txz
+
+- name: Create kitty dir
+  become: yes
+  file:
+    dest: /usr/local/src/kitty
+    owner: '{{user}}'
+    group: '{{user}}'
+    mode: '0775'
+    state: directory
+
+- name: Unpack kitty
+  unarchive:
+    src: /tmp/kitty-0.24.1-x86_64.txz
+    dest: /usr/local/src/kitty
+
+- name: Link kitty
+  become: yes
+  file:
+    src: /usr/local/src/kitty/bin/kitty
+    dest: /usr/local/bin/kitty
+    state: link
+
+- name: Create kitty directory
+  file:
+    path: '{{user_home}}/.config/kitty'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/kitty/files/{{item}}'
+    dest: '{{user_home}}/.config/kitty/{{item}}'
+    state: link
+  with_items:
+    - 'base16-gruvbox.conf'
+    - 'catppuccin.conf'
+    - 'kitty.conf'
+    - 'tab_bar.py'

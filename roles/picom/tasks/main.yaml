@@ -1,0 +1,66 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - libxext-dev 
+      - libxcb1-dev 
+      - libxcb-damage0-dev 
+      - libxcb-xfixes0-dev 
+      - libxcb-shape0-dev 
+      - libxcb-render-util0-dev 
+      - libxcb-render0-dev 
+      - libxcb-randr0-dev 
+      - libxcb-composite0-dev 
+      - libxcb-image0-dev 
+      - libxcb-present-dev 
+      - libxcb-xinerama0-dev 
+      - libxcb-glx0-dev 
+      - libpixman-1-dev 
+      - libdbus-1-dev 
+      - libconfig-dev 
+      - libgl1-mesa-dev  
+      - libpcre2-dev  
+      - libevdev-dev 
+      - uthash-dev 
+      - libev-dev 
+      - libx11-xcb-dev
+      - ninja-build
+
+- name: Install meson
+  become: yes
+  pip:
+    name: meson
+    executable: pip3
+    state: present
+
+- name: Clone picom repo
+  git:
+    repo: https://github.com/yshui/picom
+    dest: '{{user_home}}/repos/picom'
+
+- name: Update submodules
+  command: 'git submodule update --init --recursive'
+  args:
+    chdir: '{{user_home}}/repos/picom'
+
+- name: Meson build
+  command: 'meson --buildtype=release . build'
+  args:
+    chdir: '{{user_home}}/repos/picom'
+
+- name: Ninja build
+  command: 'ninja -C build'
+  args:
+    chdir: '{{user_home}}/repos/picom'
+
+- name: Ninja install
+  become: yes
+  command: 'ninja -C build install'
+  args:
+    chdir: '{{user_home}}/repos/picom'
+
+- name: Link configs
+  file: 
+    src: '{{dotfiles_path}}/roles/picom/files/picom.conf'
+    dest: '{{user_home}}/.config/picom.conf'
+    state: link

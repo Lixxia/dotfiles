@@ -1,0 +1,77 @@
+configuration {
+    show-icons:          true;
+    icon-theme:          "Oomox-catppuccin";
+    terminal:            "kitty";
+    font:                "Iosevka Bold 13";
+    modi:                "window,run,drun";
+}
+
+@theme "/dev/null"
+@import "catppuccin.rasi"
+
+* {
+    selected-foreground: @lightfg;
+    normal-foreground:   @foreground;
+    urgent-foreground:   @red;
+    active-foreground:   @green;
+
+    background-color:    @background;
+    border-color:        @background;
+    text-color:          @normal-foreground;
+}
+
+entry {
+    padding:             4px 0px 4px 4px;
+    border-radius:       10px 10px 0px 0px;
+}
+
+prompt {
+    background-color:    @accent;
+    text-color:          @background;
+    padding:             4px 10px 4px 10px;
+}
+
+window {
+    border-radius:       10px;
+    x-offset:            3;
+    y-offset:            3;
+    location:            north;
+    width:               25%;
+}
+
+inputbar {
+    children: [ prompt, entry];
+    background-color: @accent;
+    text-color: @fg;
+    expand: false;
+    padding: 2px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+listview {
+    fixed-height:        false;
+    dynamic:             true;
+    scrollbar:           false;
+    padding:             10px;
+    spacing:             8px;
+    lines:               9;
+    columns:             1;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    margin: 3px;
+}
+
+element-icon {
+    size:                2ch;
+}
+
+element selected {
+    text-color:    @selected-foreground;
+}
+
+button selected {
+    text-color:          @selected-foreground;
+}

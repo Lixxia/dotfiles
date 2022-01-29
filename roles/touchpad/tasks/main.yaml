@@ -1,0 +1,43 @@
+- name: Link xorg file
+  become: yes
+  file:
+    src: '{{dotfiles_path}}/roles/touchpad/files/30-touchpad.conf'
+    dest: '/usr/share/X11/xorg.conf.d/30-touchpad.conf'
+    state: link
+
+- name: Install libinput dependencies
+  become: yes
+  apt:
+    name:
+      - xdotool
+      - wmctrl
+      - libinput-tools
+      - xserver-xorg-core
+      - xserver-xorg-input-libinput
+
+- name: Clone libinput-gestures
+  git:
+    repo: https://github.com/bulletmark/libinput-gestures.git
+    dest: '{{user_home}}/repos/libinput-gestures'
+
+- name: Install libinput-gestures
+  become: yes
+  make:
+    chdir: '{{user_home}}/repos/libinput-gestures'
+    target: install
+
+- name: Link libinput file
+  file:
+    src: '{{dotfiles_path}}/roles/touchpad/files/libinput-gestures.conf'
+    dest: '{{user_home}}/.config/libinput-gestures.conf'
+    state: link
+
+- name: Add user to input group
+  become: yes
+  user:
+    name: '{{user}}'
+    groups: input
+    append: yes
+
+- name: Setup libinput autostart
+  command: libinput-gestures-setup autostart

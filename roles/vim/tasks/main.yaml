@@ -1,0 +1,37 @@
+- name: Install vim
+  become: yes
+  apt:
+    name: vim
+    state: present
+
+- name: Setup dirs
+  file:
+    path: '{{user_home}}/.vim/autoload'
+    state: directory
+
+- name: Install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: '{{user_home}}/.vim/autoload/plug.vim'
+
+- name: Symlink vimrc
+  file:
+    src: '{{dotfiles_path}}/roles/vim/files/.vimrc'
+    dest: '{{user_home}}/.vimrc'
+    state: link
+
+- name: Symlink .vim items
+  file:
+    src: '{{dotfiles_path}}/roles/vim/files/{{item}}'
+    dest: '{{user_home}}/.vim/{{item}}'
+    state: link
+  with_items:
+    - 'colors'
+    - 'statusline.vim'
+    - 'nerdtree.vim'
+
+- name: Install plugins
+  command: vim +PlugInstall +qall
+
+# - name: Install go deps
+#

@@ -1,0 +1,89 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - feh
+      - imagemagick
+      - libxcb1-dev
+      - libxcb-keysyms1-dev
+      - libpango1.0-dev
+      - libxcb-util0-dev
+      - libxcb-icccm4-dev
+      - libyajl-dev
+      - libstartup-notification0-dev
+      - libxcb-randr0-dev
+      - libev-dev
+      - libxcb-cursor-dev
+      - libxcb-xinerama0-dev
+      - libxcb-xkb-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+      - autoconf
+      - libxcb-xrm0
+      - libxcb-xrm-dev
+      - automake
+      - libxcb-shape0-dev
+      - ninja-build
+      - light
+
+- name: Install python deps
+  pip:
+    name:
+      - blurwal
+      - autorandr
+      - meson
+    state: present
+    executable: pip3
+
+- name: Clone i3 repo
+  git:
+    repo: https://github.com/Airblader/i3
+    dest: '{{user_home}}/repos/i3'
+
+- name: Create new build dir
+  file:
+    path: '{{user_home}}/repos/i3/build'
+    state: directory
+
+- name: Meson
+  command: 'meson ..'
+  args:
+    chdir: '{{user_home}}/repos/i3/build'
+
+- name: Ninja
+  command: ninja
+  args:
+    chdir: '{{user_home}}/repos/i3/build'
+
+- name: Install
+  become: yes
+  command: ninja install
+  args:
+    chdir: '{{user_home}}/repos/i3/build'
+
+- name: Create i3 directory
+  file:
+    path: '{{user_home}}/.config/i3'
+    state: directory
+
+- name: Symlink configs
+  file:
+    src: '{{dotfiles_path}}/roles/i3/files/{{item}}'
+    dest: '{{user_home}}/.config/i3/{{item}}'
+    state: link
+  with_items:
+    - 'background.png'
+    - 'config'
+
+- name: Symlink monitor script
+  file:
+    src: '{{dotfiles_path}}/roles/i3/files/monitor'
+    dest: '{{user_home}}/.local/bin/monitor'
+    state: link
+
+- name: Add user to video group for backlight
+  become: yes
+  user:
+    name: '{{user}}'
+    groups: video
+    append: yes

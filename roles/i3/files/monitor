@@ -1,0 +1,24 @@
+#!/bin/bash
+
+extend() {
+    xrandr --output DP-1 --above eDP-1 --auto
+}
+
+mirror() {
+    xrandr --output DP-1 --auto --output eDP-1 --panning 3440x1440 
+    sleep 0.2
+    i3-msg restart
+}
+
+laptop() {
+    xrandr --output eDP-1 --panning 1920x1080 --output DP-1 --off
+    sleep 0.2
+    i3-msg restart
+}
+
+case "$1" in
+    mirror)
+        mirror;;
+    laptop)
+        laptop;;
+esac

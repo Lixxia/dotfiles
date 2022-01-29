@@ -1,0 +1,75 @@
+- name: Install dependencies
+  become: yes
+  apt:
+    name:
+      - libxkbcommon-dev 
+      - libxkbcommon-x11-dev
+      - libpam0g-dev
+      - pkg-config
+      - libxcb1-dev
+      - libxcb-util-dev
+      - libpam-dev
+      - libcairo-dev
+      - libxcb-xinerama0-dev
+      - libxcb-randr0-dev
+      - libev-dev
+      - libx11-dev
+      - libx11-xcb-dev
+      - libxkbcommon-dev
+      - libxkbcommon-x11-dev
+
+- name: Clone i3lock repo
+  git:
+    repo: https://github.com/lixxia/i3lock
+    dest: '{{user_home}}/repos/i3lock'
+
+- name: Build i3lock
+  command: autoreconf --force --install
+  args:
+    chdir: '{{user_home}}/repos/i3lock'
+
+- name: Remove build dir
+  file:
+    path: '{{user_home}}/repos/i3lock/build'
+    state: absent
+
+- name: Create new build dir
+  file:
+    path: '{{user_home}}/repos/i3lock/build'
+    state: directory
+
+- name: Run configure
+  command: '../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers'
+  args:
+    chdir: '{{user_home}}/repos/i3lock/build'
+
+- name: Make
+  make:
+    chdir: '{{user_home}}/repos/i3lock/build'
+
+- name: Install
+  become: yes
+  make:
+    chdir: '{{user_home}}/repos/i3lock/build'
+    target: install
+
+- name: Create suspend@.service
+  become: yes
+  file:
+    src: '{{dotfiles_path}}/roles/i3lock/files/suspend@.service'
+    dest: '/etc/systemd/system/suspend@.service'
+    state: link
+
+- name: Link locker script
+  file:
+    src: '{{dotfiles_path}}/roles/i3lock/files/locker'
+    dest: ~/.local/bin/locker
+    state: link
+
+- name: Start user suspend@.service
+  become: yes
+  systemd:
+    name: 'suspend@{{user}}.service'
+    state: started
+    enabled: yes
+

@@ -1,0 +1,54 @@
+[global]
+# General
+sort = yes
+indicate_hidden = true
+show_age_threshold = 60
+idle_threshold = 120
+show_age_threshold = 60
+sticky_history = no
+follow = none
+show_indicators = yes
+
+# Text
+font = "Iosevka 12"
+format = "<b>%s</b>\n%b"
+alignment = left
+vertical_alignment = center
+word_wrap = yes
+ignore_newline = no
+
+# Appearance
+width = 300
+# height = 100
+origin = top-right
+offset = 7x42
+separator_height = 0
+padding = 16
+horizontal_padding = 16
+corner_radius = 10
+frame_width = 0
+
+# Apps
+dmenu = /usr/local/bin/rofi -dmenu -p dunst:
+browser = /usr/bin/firefox -new-tab
+
+# Icons
+icon_position = left
+icon_path = /home/laura/.icons/oomox-catppuccin/actions/24:/home/laura/.icons/oomox-catppuccin/devices/symbolic:/home/laura/.icons/oomox-catppuccin/status/48
+max_icon_size = 48
+min_icon_size = 48
+
+[urgency_low]
+background = "#1E1E28"
+foreground = "#DADAE8"
+timeout = 5 
+
+[urgency_normal]
+background = "#1E1E28"
+foreground = "#DADAE8"
+timeout = 10
+
+[urgency_critical]
+background = "#1E1E28"
+foreground = "#DADAE8"
+timeout = 15
