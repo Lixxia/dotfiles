@@ -93,6 +93,7 @@ Roles
       <td>Guidance for <a href="https://symless.com/synergy">synergy</a> setup.</td>
     </tr>
     <tr>
+      <td>Productivity</td>
       <td><a href="roles/touchpad">touchpad</a></td>
       <td>Touchpad tweaks to make it usable.</td>
     </tr>
