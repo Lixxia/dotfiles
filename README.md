@@ -59,7 +59,6 @@ Roles
     </tr>
     <tr>
       <td>Terminal</td>
-      <td><a href="roles/i3lock">i3lock</a></td>
       <td><a href="roles/kitty">kitty</a></td>
       <td>Setup <a href="https://sw.kovidgoyal.net/kitty/index.html">kitty</a> terminal.</td>
     </tr>
