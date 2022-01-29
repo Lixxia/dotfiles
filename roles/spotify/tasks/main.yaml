@@ -1,21 +1,6 @@
-- name: Add spotify gpg key
-  become: yes
-  apt_key:
-    url: https://download.spotify.com/debian/pubkey_0D811D58.gpg
-    state: present
-
-- name: Add spotify repo
-  become: yes
-  apt_repository:
-    repo: deb http://repository.spotify.com stable non-free
-    state: present
-
 - name: Install spotify
   become: yes
-  apt:
-    name: spotify-client
-    state: present
-    update_cache: yes
+  command: snap install spotify
 
 - name: Update folder ownership
   become: yes
@@ -34,8 +19,8 @@
 
 - name: Get spicetify-cli
   get_url: 
-    url: https://github.com/khanhas/spicetify-cli/releases/download/v2.7.2/spicetify-2.7.2-linux-amd64.tar.gz
-    dest: /tmp/spicetify-2.7.2-linux-amd64.tar.gz
+    url: https://github.com/khanhas/spicetify-cli/releases/download/v2.8.4/spicetify-2.8.4-linux-amd64.tar.gz
+    dest: /tmp/spicetify-2.8.4-linux-amd64.tar.gz
 
 - name: Create spicetify-cli dir
   become: yes
@@ -48,7 +33,7 @@
 
 - name: Unpack spicetify-cli
   unarchive:
-    src: /tmp/spicetify-2.7.2-linux-amd64.tar.gz
+    src: /tmp/spicetify-2.8.4-linux-amd64.tar.gz
     dest: /usr/local/src/spicetify-cli
 
 - name: Setup link
@@ -72,23 +57,28 @@
     - 'spicetify/Themes'
     - 'spicetify/Extensions'
 
+- name: Overwrite color.ini
+  copy:
+    src: '{{dotfiles_path}}/roles/spotify/files/color.ini'
+    dest: '{{user_home}}/repos/spicetify-themes/Ziro/color.ini'
+
 - name: Link theme
   file:
-    src: '{{user_home}}/repos/spicetify-themes/Dribbblish'
-    dest: '{{user_home}}/.config/spicetify/Themes/Dribbblish'
+    src: '{{user_home}}/repos/spicetify-themes/Ziro'
+    dest: '{{user_home}}/.config/spicetify/Themes/Ziro'
     state: link
 
-- name: Link extension
-  file:
-    src: '{{user_home}}/.config/spicetify/Themes/Dribbblish/dribbblish.js'
-    dest: '{{user_home}}/.config/spicetify/Extensions/dribbblish.js'
-    state: link
+- name: Update user.css
+  blockinfile:
+    path: '{{user_home}}/.config/spicetify/Themes/Ziro/user.css'
+    insertafter: '^\* \{'
+    block: "  font-family: 'Iosevka' !important;"
+    marker: "/* {mark} ANSIBLE MANAGED */"
 
 - name: Setup theme
   command: '{{item}}'
   with_items:
-    - 'spicetify config extensions dribbblish.js'
-    - 'spicetify config current_theme Dribbblish color_scheme gruvbox'
+    - 'spicetify config current_theme Ziro color_scheme dark'
     - 'spicetify config inject_css 1 replace_colors 1 overwrite_assets 1'
 
 - name: Check backup

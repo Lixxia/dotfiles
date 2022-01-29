@@ -38,3 +38,4 @@
     - 'base16-gruvbox.conf'
     - 'catppuccin.conf'
     - 'kitty.conf'
+    - 'tab_bar.py'

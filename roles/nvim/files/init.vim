@@ -4,17 +4,10 @@
 "  \ V /| | | | | | | | | (__ 
 "   \_/ |_|_| |_| |_|_|  \___|
 
-if empty (glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.config/nvim/plugged')
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'hashivim/vim-terraform'
@@ -22,7 +15,7 @@ Plug 'towolf/vim-helm'
 Plug 'raimondi/delimitMate'
 Plug 'ap/vim-css-color'
 Plug 'fatih/vim-go'
-" Plug 'ycm-core/YouCompleteMe'
+Plug 'itchyny/vim-gitbranch'
 Plug 'tsandall/vim-rego'
 call plug#end()
 
