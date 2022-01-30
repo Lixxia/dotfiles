@@ -1,17 +1,49 @@
-Dotfiles
-========
+<p align="center">
+<b>Dotfiles</b>
+</p>
 
-Ansible Playbook used to setup personal Ubuntu laptop.
+<img src="screenshots/desktop.png" alt="desktop" align="right" width="400px">
 
-Installation
-============
+This is a personal collection of configurations, scripts, and otherwise. Mainly used for work and personal laptops.
 
-For full setup run `ansible-playbook --ask-become-pass -i hosts laptop.yaml`.
+Setup Summary:
++ **WM**: i3
++ **OS**: ubuntu
++ **Shell**: bash
++ **Terminal**: kitty
++ **Editor**: neovim
++ **File Manager**: nautilus
++ **Launcher**: rofi
++ **Browser**: firefox
++ **Font**: iosevka
++ **Colorscheme**: <a href="https://github.com/catppuccin/catppuccin">catppuccin</a>
 
-For targeted roles add `--tags <rolename>`.
+Additional links and details below in the *Roles* section.
 
-Roles
-=====
+## Setup
+
+### Install Ansible
+
+Follow <a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu">installation docs</a> and setup Ansible for fresh systems.
+
+```
+$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo add-apt-repository --yes --update ppa:ansible/ansible
+$ sudo apt install ansible
+```
+
+### Run Playbook
+
+To execute all roles (breakdown of roles below) run `ansible-playbook --ask-become-pass -i hosts laptop.yaml`.
+
+To target specific roles add `--tags <rolename>` to the above command.
+
+### Note
+
+All roles are designed to be idempotent/safe to run multiple times but it's always a good idea to back things up! Most configs are driven via symlinks so that changes can be tracked via git and easily pushed upstream.
+
+## Roles
 
 <table>
   <thead>
@@ -114,9 +146,3 @@ Roles
     </tr>
   </tbody>
 </table>
-
-Screenshots
-===========
-
-![img](/screenshots/desktop.png?raw=true)
-![img](/screenshots/firefox.png?raw=true)

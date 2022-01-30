@@ -78,4 +78,5 @@ require'nvim-tree'.setup {
     require_confirm = true
   }
 }
+vim.g.nvim_tree_indent_markers = 1
 EOF

@@ -22,6 +22,11 @@
     - 'colors'
     - 'statusline.vim'
     - 'nerdtree.vim'
+    - 'gitsigns.lua'
 
 - name: Install plugins
   command: nvim +PlugInstall +qall
+
+# Replace lua/nvim-tree/renderer/padding.lua
+# L24 ┗
+# L26 ┃

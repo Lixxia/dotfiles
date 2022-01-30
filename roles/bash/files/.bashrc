@@ -35,19 +35,18 @@ show_color() {
 }
 
 working_directory() {
-    echo -e "$(tput setaf 12)$(pwd | sed "s/${HOME//\//\\\/}/ /; s/\//  /g")\e[0m"
-}
-
-parse_git_dirty() {
-    if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
-      echo -e "$(tput setaf 10)  "
-    else
-      echo -e "$(tput setaf 9)  "
-    fi
+    echo -e "$(tput setaf 8)$(tput setaf 12)$(tput setab 8)$(pwd | sed "s/${HOME//\//\\\/}/ /; s/\//  /g")\e[0m$(tput setaf 8)\e[0m"
 }
 
 parse_git_branch() {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/╺─╸$(parse_git_dirty)\1/"
+    branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
+    if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
+      # echo -e "$(tput setaf 10)"
+      echo -e "$(tput setaf 10)$(tput setab 10)$(tput setaf 8) $branch\e[0m$(tput setaf 10)\e[0m"
+    else
+      # echo -e "$(tput setaf 9)"
+      echo -e "$(tput setaf 9)$(tput setab 9)$(tput setaf 8) $branch\e[0m$(tput setaf 9)\e[0m"
+    fi
 }
 
 # MISC
@@ -162,5 +161,5 @@ export GREP_COLOR='1;33'
 if [ -n "$SSH_CONNECTION" ]; then
   export PS1='┌─╸\[\e[1;32m\]\u@\h\[\e[0;37m\]╺─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸\[\e[0m\]'
 else
-  export PS1=$'┌─╸ $(working_directory) $(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸ \[\e[0m\]'
+    export PS1=$'$(working_directory) $(parse_git_branch) $([ \j -gt 0 ] && echo "\e[1;32m\]")\[\e[1;32m\] \n\[\e[0;37m\]  \[\e[0m\]'
 fi

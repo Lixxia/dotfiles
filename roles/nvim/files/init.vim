@@ -9,7 +9,6 @@ Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter'
 Plug 'hashivim/vim-terraform'
 Plug 'towolf/vim-helm'
 Plug 'raimondi/delimitMate'
@@ -17,6 +16,9 @@ Plug 'ap/vim-css-color'
 Plug 'fatih/vim-go'
 Plug 'itchyny/vim-gitbranch'
 Plug 'tsandall/vim-rego'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
 " Setup statusline
@@ -27,6 +29,8 @@ source ~/.config/nvim/catppuccin.vim
 
 " Extra tree settings
 source ~/.config/nvim/nvimtree.vim
+
+source ~/.config/nvim/gitsigns.lua
 
 " Turn on syntax highlighting 
 syntax on
@@ -90,7 +94,14 @@ hi GitGutterDelete guifg=1 guibg=NONE
 hi StatusLine gui=italic guibg=NONE guifg=019
 hi StatusLineNC gui=bold guibg=NONE guifg=019
 
-set fillchars+=vert:\▏
+hi VertSplit guifg=#302D41 guibg=NONE
+hi NvimTreeVertSplit guifg=#1E1E28 guibg=NONE
+
+set fillchars+=vert:\┃
+
+lua <<EOF
+vim.g.indent_blankline_char = "┃"
+EOF
 
 " Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
