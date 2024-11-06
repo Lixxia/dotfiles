@@ -1,0 +1,44 @@
+:root {
+    --dark-0: #1A1826;
+    --dark-base: #161320;
+    --dark-1: #1E1E2E;
+    --dark-2: #302D41;
+    --dark-3: #575268;
+    --dark-4: #6E6C7E;
+    --light-0: #D9E0EE;
+    --light-base: #DADAE8;
+    --light-1: #C3BAC6;
+    --light-2: #6E6C7E;
+    --accent: #89DCEB;
+    --yellow: #EBDDAA;
+    --green: #B1E3AD;
+    --red: #E38C8F;
+    --extension-icon-mask: grayscale(85%) invert(32%) sepia(9%) saturate(17%) hue-rotate(0deg) brightness(98%) contrast(82%);
+
+    /* expanded width of the sidebar. 
+    used for userChrome-static, and hover */
+    --sidebar-width: 250px;
+    /* initial width of the sidebar. 
+    advised not to change since tst css relies on this value*/
+    --sidebar-collapsed-width: 40px;
+
+    --dividers: 2px;
+
+    --tl-animation-duration: 200ms;
+    /*--tl-tab-background-gradient: */
+    /* uncomment and add gradient value for selected tab gradient*/
+
+    /******WINDOW CONTROL PLACEMENT VARS******/
+    --wc-vertical-shift: 18px;
+    /* larger value moves window controls down,*/
+    /* can be negative(moves controls up) */
+    /* Experiemntal: 55px if tabline visible, -25px if tabline hidden */
+    --wc-left-space: 15px; /* add space to the left of window controls*/
+    --wc-right-space: 18px; /* add space to the right of window controls*/
+    /* left-space shifts window-controls */
+    /* if you want to shift window controls to the left: positive value */
+    /* if you want to shift them to the right: smaller or negative value */
+    /* right-space shifts rest of the navbar (forward,backward,urlbar,etc.) to the right */
+    /* if you want to increase/decrease space between window-controls and navbars: */
+    /* set positive/smaller or negative value for right-space*/
+}

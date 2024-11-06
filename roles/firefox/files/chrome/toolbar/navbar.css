@@ -1,0 +1,43 @@
+/* ArcWTF - navbar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+:root {
+  --toolbarbutton-border-radius: 4px !important;
+  --toolbarbutton-inner-padding: 4px !important;
+  --uc-toolbarbutton-inner-inline-padding: 4px !important;
+  --toolbarbutton-outer-padding: 6px !important;
+  --tabs-navbar-shadow-size: 0px !important;
+  --message-bar-border-radius: var(--border-radius-medium);
+}
+
+#nav-bar .toolbarbutton-icon {scale: 0.85;}
+
+/* move reload/stop icon to middle of button */
+#reload-button>.toolbarbutton-animatable-box,
+#stop-button>.toolbarbutton-animatable-box {
+  top: calc(50% - 10px) !important;
+}
+
+#nav-bar-customization-target :where(#reload-button, #stop-button)>.toolbarbutton-icon {
+  padding: var(--toolbarbutton-inner-padding) var(--uc-toolbarbutton-inner-inline-padding) !important;
+}
+
+#PanelUI-button {
+  order: -1 !important;
+  margin-left: 5px !important;
+   padding-right: 0px !important;
+}
+
+/* Make navbar keep using lwt-accent-color even when browser window is inactive. */
+#navigator-toolbox {
+  &:-moz-lwtheme {
+    &:-moz-window-inactive {
+      background-color: var(--lwt-accent-color) !important;
+     }
+    }
+   }
+
+/* Decrease navbar buttons and URL when browser window is inactive.  */
+#nav-bar.browser-toolbar .toolbarbutton-icon { &:-moz-window-inactive {opacity: 0.5 !important;} }
+#titlebar .titlebar-buttonbox-container .titlebar-buttonbox { &:-moz-window-inactive {opacity: 0.5 !important;} }
+#nav-bar.browser-toolbar #urlbar-container { &:-moz-window-inactive {opacity: 0.5 !important;} }

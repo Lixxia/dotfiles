@@ -1,0 +1,13 @@
+/* ArcWTF - findbar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+/* Rounded corners optimizations. */
+@media {
+  findbar {
+    border: 0px !important;
+    border-radius: var(--uc-tweak-rounded-corners-radius) var(--uc-tweak-rounded-corners-radius) 0 0 !important;
+    margin-left: var(--uc-tweak-rounded-corners-padding) !important;
+    margin-right: var(--uc-tweak-rounded-corners-padding) !important;
+    padding-inline: 2px !important;
+    }
+  }

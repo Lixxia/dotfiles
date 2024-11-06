@@ -1,0 +1,58 @@
+#toolbar-menubar {
+  margin-top: 0px !important;
+}
+
+/* hide navbar if not focused */
+:root:not([customizing]) #nav-bar
+{
+  max-height:0;
+  min-height:0 !important;
+  padding-top:0 !important;
+  padding-bottom:0 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: background-color 0.2s var(--ease-basic), width 0.3s var(--ease-out), opacity 0.3s var(--ease-basic) !important;
+}
+
+/* show navbar on focus */
+:root:not([customizing]) #nav-bar:focus-within {
+  max-height: 41px;
+  pointer-events: auto;
+  opacity: 1;
+  transition: background-color 0.2s var(--ease-basic), width 0.3s var(--ease-out), opacity 0.3s var(--ease-basic) !important;
+}
+
+/* fix for 1px bottom border */
+#navigator-toolbox {
+    max-height: 32px;
+    border: none !important;
+    border-bottom: none !important;
+}
+
+/* hide the one pixel top border for tabs */
+.tab-background {
+       border-top: none !important;
+}
+
+/* no blue line on top of the focused tab */
+#tabbrowser-tabs {
+       --tab-line-color: -moz-win-accentcolor !important;
+       --tab-loading-fill: -moz-win-accentcolor !important;
+       box-shadow: none !important;
+}
+
+/* hide tab bar if only one tab */
+tab:only-of-type {
+    display:none;
+}
+
+/* unset the tab bar min-height */
+#tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox, #tabbrowser-tabs[positionpinnedtabs] > .tabbrowser-tab[pinned] {
+    min-height: initial !important;
+}
+
+/* set the height on the tabs instead */
+tab {
+    line-height: 32px; 
+    height: 32px;
+}

@@ -1,0 +1,34 @@
+/* ArcWTF main files */
+@import url("icons/icons.css");
+@import url("icons/extension-icons.css");
+@import url("toolbar/tabbar.css");
+@import url("toolbar/navbar.css");
+@import url("toolbar/personalbar.css");
+@import url("toolbar/findbar.css");
+@import url("toolbar/urlbar.css");
+@import url("global/colors.css");
+@import url("global/popup.css");
+@import url("global/browser.css");
+@import url("global/tree.css");
+
+/* Tweaks */
+@import url("global/tweaks.css");
+@import url("tweaks/hide-tabs-bar.css");
+@import url("tweaks/extensions.css");
+@import url("tweaks/sidebar.css");
+@import url("tweaks/popup-search.css");
+@import url("tweaks/sidebery.css");
+@import url("popup/popup.css");
+
+/* Enable translucency on browser toolbars. (MacOS only) */
+/**/@import url("tweaks/mac-translucent.css") (-moz-bool-pref: "uc.tweak.mac-translucent");/**/
+
+/* Import custom stylesheet instead of modifying the theme files. */
+@import url("custom.css");
+
+/* Replacing Userchrome Toggle icon with Arc sidebar icon */
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon { list-style-image: url(./icons/userchrome-toggle.svg); }
+:is(.webextension-browser-action, .eom-addon-button)[data-extensionid="copy-frame-url@jeffersonscher.com"] .toolbarbutton-icon { list-style-image: url(./icons/link.svg); }
+
+/* Using Segoe UI Variable font (uncomment below to apply) */
+/* * {font-family: "Segoe UI Variable Display" !important;} */

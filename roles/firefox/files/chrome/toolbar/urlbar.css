@@ -1,0 +1,268 @@
+/* ArcWTF - urlbar.css
+ * https://github.com/KiKaraage/ArcWTF */
+
+/* Variables */
+:root {
+  --urlbar-min-height: 24px !important;
+  --urlbarView-item-inline-padding: calc(1px + var(--uc-urlbar-inline-padding) + var(--uc-urlbar-icon-inline-padding)) !important;
+  --urlbar-icon-border-radius: 99px !important;
+  --urlbar-icon-padding: calc(var(--toolbarbutton-inner-padding) - 2px) !important;
+  --urlbar-margin-inline: 2px !important;
+  --identity-box-margin-inline: 6px !important;
+  --uc-urlbar-icon-inline-padding: calc(var(--uc-toolbarbutton-inner-inline-padding));
+  --uc-urlbar-inline-padding: 6px;
+  --uc-urlbar-block-padding: 6px;
+  --uc-urlbar-shadow: 0 0 0px rgb(0 0 0 / .1);
+   --urlbarView-rich-suggestion-default-icon-size: 32px !important;
+
+  /* urlbar height */
+  & #urlbar-container {
+    --urlbar-container-height: calc(8px + 16px + var(--toolbarbutton-inner-padding) * 2) !important;
+  }
+
+  & #urlbar {
+    --urlbar-toolbar-height: calc(5px + 16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    --urlbar-height: calc(16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    --urlbar-min-height: calc(16px + var(--toolbarbutton-inner-padding) * 2) !important;
+    font-size: 1em !important;
+  }
+
+  /* Spacing for urlbar suggestion icons. */
+  .urlbarView-row {
+    --urlbarView-icon-margin-start: 0px !important;
+    --urlbarView-icon-margin-end: calc(var(--uc-urlbar-icon-inline-padding) + var(--identity-box-margin-inline)) !important;
+  }
+}
+
+/* Appearance for URL bar. */
+#urlbar-background,
+#searchbar {
+  border-radius: calc(var(--urlbar-icon-border-radius) + 2px) !important;
+  border-color: transparent !important;
+
+  /* Shadow for URL bar, only appears in light mode. */
+  :root:not(:-moz-lwtheme) #nav-bar:not([brighttext]) & {
+    box-shadow: var(--uc-urlbar-shadow, none);
+  }
+
+  /* Appearance when the URL bar is expanded. */
+  #urlbar:is([open], [usertyping][focused]) & {
+    border-radius: 8px !important;
+    border-color: transparent !important;
+    outline: 0px solid var(--arrowpanel-border-color) !important;
+
+    &:not(:-moz-lwtheme) {
+      outline-color: transparent !important;
+    }
+  }
+}
+
+/* Add padding to sides of URL bar. */
+#urlbar-input-container,
+#searchbar {
+  padding-inline: var(--uc-urlbar-inline-padding) !important;
+}
+
+#urlbar #urlbar-input {text-align: center !important}
+#urlbar-background {background: transparent !important;}
+
+#nav-bar[urlbar-exceeds-toolbar-bounds="true"] #urlbar-background {background: var(--arrowpanel-background) !important;}
+#urlbar[focused=""] > #urlbar-background {background: var(--arrowpanel-background) !important;}
+
+/* URL bar suggestions container. */
+.urlbarView {
+  margin-top: 2px !important;
+  margin-inline: 0 !important;
+  width: 100% !important;
+  border-inline: 0 !important;
+  padding-block: 0 !important;
+  background: var(--arrowpanel-background) !important;
+  border-radius: 0 0 8px 8px !important;
+
+
+  & .urlbarView-body-inner {
+    width: 100% !important;
+    margin-inline: 0 !important;
+  }
+
+  /* Remove padding from top of URL bar results, not needed as URL bar input already has padding. */
+  & .urlbarView-results {
+    padding-block-start: 0 !important;
+  }
+}
+
+/* URL bar item. */
+.urlbarView-row {
+  padding-block: 0 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  margin-inline: 2px !important;
+  
+  /* Vertically align search suggestion thumbnail images. */
+  &[rich-suggestion] > .urlbarView-row-inner > .urlbarView-favicon {
+    margin-inline-start: calc(var(--urlbarView-icon-margin-start) + (16px - var(--urlbarView-rich-suggestion-default-icon-size)) / 2) !important;
+    margin-inline-end: calc(var(--urlbarView-icon-margin-end) + (16px - var(--urlbarView-rich-suggestion-default-icon-size)) / 2) !important;
+  }
+}
+
+/* Keep URL bar in place when expanding. */
+#urlbar[breakout][breakout-extend] {
+  left: 0 !important;
+  width: 100% !important;
+}
+
+/* Search engine selector */
+.search-one-offs:not([hidden]) {
+  padding-block: 6px !important;
+
+  & .searchbar-engine-one-off-item {
+    min-width: 30px !important;
+    height: 30px !important;
+  }
+
+  .urlbarView:not([noresults]) > & {
+    border-color: var(--urlbarView-separator-color) !important;
+  }
+
+  #urlbar-anon-search-settings {
+    margin-inline-end: 8px !important;
+  }
+}
+
+/* Search engine indicator. */
+#urlbar-search-mode-indicator {
+  :root:not(:-moz-lwtheme) & {
+    background-color: var(--urlbar-box-hover-bgcolor) !important;
+  }
+
+  & #urlbar-search-mode-indicator-title {
+    font-size: 0.9em !important;
+  }
+}
+
+/* Remove border between URL bar input and suggestions. */
+#urlbar[open] > .urlbarView > .urlbarView-body-outer > .urlbarView-body-inner {
+  border-top: 0 !important;
+  align: center !important;
+}
+
+/* Buttons inside the URL bar. */
+.urlbar-page-action,
+#urlbar-go-button,
+.search-go-button,
+#tracking-protection-icon-container,
+#identity-icon-box {
+  padding-inline: var(--uc-urlbar-icon-inline-padding) !important;
+  width: calc(var(--uc-urlbar-icon-inline-padding) * 2 + 16px) !important;
+}
+
+.urlbar-page-action:-moz-any(#reader-mode-button, #pageActionButton, #pocket-button-box, #pageAction-urlbar-screenshots_mozilla_org, #pageAction-urlbar-sendToDevice, #pageAction-urlbar-emailLink, #pageAction-urlbar-copyURL, #pageAction-urlbar-shareURL, #pageAction-urlbar-addSearchEngine) {
+    transition: background-color 0.2s var(--ease-basic), margin 0.15s var(--ease-in), opacity 0.15s var(--ease-basic),
+        visibility 0s 4s !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    margin-inline-start: -32px !important;
+}
+
+#star-button,
+#star-button-box,
+#tracking-protection-icon,
+#tracking-protection-icon-box {
+    display: none !important;
+}
+
+/* Site information and Permissions buttons. */
+#identity-icon-box,
+#identity-permission-box,
+.notification-anchor-icon {
+  padding-inline: var(--uc-urlbar-icon-inline-padding) !important;
+}
+
+/* Zoom level and tab container indicators. */
+#userContext-icons,
+#urlbar-zoom-button {
+  padding-inline: var(--uc-urlbar-icon-inline-padding) !important;
+  margin-block: 0 !important;
+  margin-inline: 0 !important;
+  visibility: collapse !important;
+}
+
+/* Move tracking protection button. */
+#tracking-protection-icon-container,
+#page-action-buttons {
+  order: 2 !important;
+}
+
+/* Show translation button on URL bar. */
+#translation-button {
+   hidden: false !important;
+   display: flex !important;
+   }
+
+
+/* Pin icon for URL bar suggested sites. */
+.urlbarView-row[pinned] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-type-icon {
+  fill: var(--toolbar-field-color) !important;
+}
+
+#urlbar-input::placeholder,
+.searchbar-textbox::placeholder {
+  opacity: 0.6 !important;
+}
+
+/* Make the lock icon brighter in dark mode. */
+#nav-bar[brighttext] #identity-box:not([pageproxystate="invalid"]) #identity-icon {
+  fill-opacity: calc(var(--urlbar-icon-fill-opacity) * 1.8) !important;
+}
+
+/* Make the URL bar label opaque in light mode, matching the icons. */
+#nav-bar:not([brighttext]) #identity-box #identity-icon-label {
+  opacity: var(--urlbar-icon-fill-opacity) !important;
+}
+
+/* Label on the left of the URL bar, shown when viewing Firefox or extension pages. */
+#identity-box[pageproxystate="valid"]:is(.notSecureText, .chromeUI, .extensionPage) > .identity-box-button {
+  position: relative;
+  width: unset !important;
+
+  /* Spacing between the icon and label. */
+  & #identity-icon-label {
+  visibility: collapse !important;
+  }
+
+  /* Separator to the right of the label. */
+  &::after {
+    content: "";
+    position: absolute;
+    height: 16px;
+    border-right: 0px solid currentColor;
+    right: 0;
+    inset-block: 0;
+    margin-block: auto;
+    opacity: 0;
+  }
+
+  /* Fractional scaling adjustments (150%, 175%, etc.) */
+  @media (1dppx < resolution < 2dppx) {
+    &::after {
+      border-right-width: 1.5px !important;
+    }
+  }
+
+  /* Remove background from urlbar box. */
+  &:not(:hover, [open]) {
+    background-color: transparent !important;
+
+    /* Separator opacity */
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  /* Fade transition for separator. */
+  @media not (prefers-reduced-motion) {
+    &::after {
+      transition: opacity 0.2s ease;
+    }
+  }
+}
