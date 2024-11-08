@@ -3,8 +3,8 @@
 /* colours */
 @-moz-document url-prefix(about:) {
   :root {
-    --in-content-page-color: light-dark(#252525, #fff) !important;
-    --in-content-page-background: light-dark(#f7f7f7, #252525) !important;
+    --in-content-page-color: light-dark(#1e1e2e, #fff) !important;
+    --in-content-page-background: light-dark(#f7f7f7, #1e1e2e) !important;
     --in-content-deemphasized-text: light-dark(#666, #bbb) !important;
     --in-content-box-background: light-dark(#fff, #333) !important;
     --in-content-box-background-odd: light-dark(rgb(0 0 0 / .05), rgb(255 255 255 / .05)) !important;

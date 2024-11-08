@@ -1,0 +1,43 @@
+:root {
+    --autohide-sidebar-extended: 230px; /* width of panel extended */
+    --autohide-sidebar-collapsed: 40px; /* width of panel collapsed */
+}
+
+#TabsToolbar, #sidebar-header, #sidebar-splitter {
+  display: none;
+}
+
+:root { 
+--tabs-border-color: transparent !important; 
+}
+
+/* --------Sidebery Auto-hiding Sidebar ----------- */
+#main-window:not([extradragspace="true"])
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden]) {
+    width: var(--autohide-sidebar-collapsed) !important;
+    min-width: unset !important;
+    z-index: 1;
+    transition: all 0.2s ease-in-out; /* doesn't do anything unless you uncomment lower bit of code */
+}
+
+/* width of panel (grey box) on hover */
+/* uncomment this section if you want the webpage to move when your tabs are extended- otherwise covers */ 
+/* #main-window:not([extradragspace="true"])
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden]):hover {
+    width: var(--autohide-sidebar-extended) !important;
+    min-width: unset !important;
+    z-index: 1;
+} */
+
+/* width of tabs */
+#main-window:not([extradragspace="true"]) 
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar {
+  width: var(--autohide-sidebar-collapsed) !important;
+  transition: all 0.2s ease-in-out;
+}
+/* width of tabs on hover */
+#main-window:not([extradragspace="true"]) 
+    #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:hover #sidebar {
+  width: var(--autohide-sidebar-extended)  !important;
+}
+

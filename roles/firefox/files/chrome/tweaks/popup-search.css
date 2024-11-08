@@ -1,6 +1,9 @@
 /* search */
 @media (-moz-bool-pref: "uc.tweak.popup-search") {
   #urlbar:is([breakout][breakout-extend], [breakout][usertyping][focused]) {
+
+    transition: margin-top 0.45s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
+
     #urlbar-input {
       font-size: 16px !important;
       text-align: left !important;
@@ -55,4 +58,29 @@
       backdrop-filter: blur(300px);
     }
   }
+}
+
+/* animate */
+
+#urlbar {
+  margin-top: 0 !important;
+  transition: margin-top 0.45s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
+}
+
+#urlbar[breakout-extend] {
+  width: 100vw !important;
+  position: absolute !important;
+  margin-top: 10vh !important;
+  /* margin-left: 8vw !important; */
+  z-index: 9999 !important;
+  transition: margin-top 0.45s cubic-bezier(0.075, 0.82, 0.165, 1) !important;
+  max-width: 70vw !important;
+  /* backdrop-filter: blur(8px) !important; */
+  background: rgba(0, 0, 0, 0) !important;
+  /* border-radius: 20px; */
+}
+
+#urlbar[breakout-extend] #urlbar-background {
+  background: var(--toolbar-field-focus-background-color) !important;
+  transition: all 0.1s linear !important;
 }

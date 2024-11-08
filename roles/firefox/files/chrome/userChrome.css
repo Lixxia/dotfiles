@@ -15,10 +15,13 @@
 @import url("global/tweaks.css");
 @import url("tweaks/hide-tabs-bar.css");
 @import url("tweaks/extensions.css");
-@import url("tweaks/sidebar.css");
+/*@import url("tweaks/sidebar.css");*/
+/*@import url("tweaks/findbar.css");*/
 @import url("tweaks/popup-search.css");
 @import url("tweaks/sidebery.css");
 @import url("popup/popup.css");
+@import url("tweaks/hide-nav.css");
+@import url("tweaks/sidebar-collapse.css");
 
 /* Enable translucency on browser toolbars. (MacOS only) */
 /**/@import url("tweaks/mac-translucent.css") (-moz-bool-pref: "uc.tweak.mac-translucent");/**/
