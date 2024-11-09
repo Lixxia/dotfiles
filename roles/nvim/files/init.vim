@@ -6,8 +6,8 @@
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'tpope/vim-commentary'
 Plug 'hashivim/vim-terraform'
 Plug 'towolf/vim-helm'
@@ -19,18 +19,20 @@ Plug 'tsandall/vim-rego'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'romgrk/barbar.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'mfussenegger/nvim-lint'
 call plug#end()
 
 " Setup statusline
 source ~/.config/nvim/statusline.vim
 
-" Setup catppuccin colorscheme
-source ~/.config/nvim/catppuccin.vim
+" Setup colorscheme
+source ~/.config/nvim/catppuccin.lua
 
-" Extra tree settings
-source ~/.config/nvim/nvimtree.vim
-
-source ~/.config/nvim/gitsigns.lua
+" Extra settings
+source ~/.config/nvim/plugins.vim
 
 " Turn on syntax highlighting 
 syntax on
@@ -86,16 +88,11 @@ hi Normal guibg=NONE guibg=NONE
 hi LineNr          guifg=019   guibg=NONE
 hi CursorLineNr    guifg=white guibg=NONE
 
-hi GitGutterAdd    guifg=2 guibg=NONE
-hi GitGutterChange guifg=3 guibg=NONE
-hi GitGutterDelete guifg=1 guibg=NONE
-
 " Fix splitter statusline
 hi StatusLine gui=italic guibg=NONE guifg=019
 hi StatusLineNC gui=bold guibg=NONE guifg=019
 
 hi VertSplit guifg=#302D41 guibg=NONE
-hi NvimTreeVertSplit guifg=#1E1E28 guibg=NONE
 
 set fillchars+=vert:\┃
 
