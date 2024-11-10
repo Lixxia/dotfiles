@@ -1,3 +1,5 @@
 .vim/.netrwhist
 .vim/plugged
 .vim/autoload
+roles/nvim/files/plugged
+lazy-lock.json

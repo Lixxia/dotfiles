@@ -2,7 +2,7 @@ configuration {
     show-icons:          true;
     icon-theme:          "Oomox-catppuccin";
     terminal:            "kitty";
-    font:                "Iosevka Bold 13";
+    font:                "Victor Mono Bold 13";
     modi:                "window,run,drun";
 }
 

@@ -161,5 +161,17 @@ export GREP_COLOR='1;33'
 if [ -n "$SSH_CONNECTION" ]; then
   export PS1='┌─╸\[\e[1;32m\]\u@\h\[\e[0;37m\]╺─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸\[\e[0m\]'
 else
-    export PS1=$'$(working_directory) $(parse_git_branch) $([ \j -gt 0 ] && echo "\e[1;32m\]")\[\e[1;32m\] \n\[\e[0;37m\]  \[\e[0m\]'
+    export PS1=$'╭─$(working_directory) $(parse_git_branch) $([ \j -gt 0 ] && echo "\e[1;32m\]")\[\e[1;32m\] \n\[\e[0;37m\]╰─ \[\e[0m\]'
 fi
+
+
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION

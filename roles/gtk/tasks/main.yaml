@@ -22,6 +22,9 @@
 
 - name: Link icons
   file:
-    src: '{{dotfiles_path}}/roles/gtk/files/oomox-gruv'
-    dest: '{{user_home}}/.icons/oomox-gruv'
+    src: '{{dotfiles_path}}/roles/gtk/files/{{item}}'
+    dest: '{{user_home}}/.icons/{{item}}'
     state: link
+  with_items:
+    - 'oomox-catppuccin'
+    - 'oomox-gruv'

@@ -10,8 +10,8 @@ follow = none
 show_indicators = yes
 
 # Text
-font = "Iosevka 12"
-format = "<b>%s</b>\n%b"
+font = "Victor Mono 12"
+format = "<b><i>%s</i></b>\n%b"
 alignment = left
 vertical_alignment = center
 word_wrap = yes
@@ -40,15 +40,13 @@ min_icon_size = 48
 
 [urgency_low]
 background = "#1E1E28"
-foreground = "#DADAE8"
-timeout = 5 
+foreground = "#CAD3F5"
 
 [urgency_normal]
 background = "#1E1E28"
-foreground = "#DADAE8"
-timeout = 10
+foreground = "#CAD3F5"
 
 [urgency_critical]
-background = "#1E1E28"
-foreground = "#DADAE8"
-timeout = 15
+background = "#24273A"
+foreground = "#CAD3F5"
+frame_color = "#F5A97F"

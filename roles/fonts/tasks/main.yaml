@@ -1,17 +1,34 @@
+# download iosevka
+# download nf symbol fonts
 - name: Create fonts dir
   file:
     path: '{{user_home}}/.local/share/fonts'
     state: directory
 
-- name: Install Iosevka Medium
+- name: Get Victor Mono
   get_url:
-      url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Medium/complete/Iosevka%20Medium%20Nerd%20Font%20Complete.ttf
-      dest: "{{user_home}}/.local/share/fonts/Iosevka Medium Nerd Font Complete.ttf"
+    url: https://rubjo.github.io/victor-mono/VictorMonoAll.zip
+    dest: /tmp/VictorMonoAll.zip
 
-- name: Install Iosevka Regular Mono
+- name: Install Victor Mono
+  unarchive:
+    src: /tmp/VictorMonoAll.zip
+    dest: "{{user_home}}/.local/share/fonts"
+
+- name: Install Symbol Font
   get_url:
-      url: https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Iosevka/Bold/complete/Iosevka%20Bold%20Nerd%20Font%20Complete.ttf
-      dest: "{{user_home}}/.local/share/fonts/Iosevka Bold Nerd Font Complete.ttf"
+    url: https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/NerdFontsSymbolsOnly/complete/Symbols-1000-em%20Nerd%20Font%20Complete%20Mono.ttf
+    dest: "{{user_home}}/.local/share/fonts/Symbols-1000-em Nerd Font Complete Mono.ttf"
+
+- name: Get Iosevka
+  get_url:
+    url: https://github.com/be5invis/Iosevka/releases/download/v16.0.2/ttf-iosevka-term-16.0.2.zip
+    dest: /tmp/ttf-iosevka-term-16.02.zip
+
+- name: Install Iosevka
+  unarchive:
+    src: /tmp/ttf-iosevka-term-16.02.zip
+    dest: "{{user_home}}/.local/share/fonts"
 
 - name: Link extra symbol font
   file:

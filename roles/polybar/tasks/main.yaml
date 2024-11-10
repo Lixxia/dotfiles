@@ -97,6 +97,7 @@
     - 'polywrap'
     - 'stonks.py'
     - 'battery.sh'
+    - 'toggle-sound.sh'
     - 'calendar'
     - 'moonphase.py'
 

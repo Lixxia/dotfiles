@@ -1,6 +1,48 @@
-# kubectl curl binary
-# chmod +x
-# move /usr/local/bin
+# WIP
+- name: Install kubectl
+  get_url:
+    url: https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl
+    dest: /tmp/kubectl
+
+- name: Move +x kubectl 
+  become: yes
+  copy:
+    src: /tmp/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: a+x
+
+- name: Install kubectx and kubens
+  become: yes
+  git:
+    repo: https://github.com/ahmetb/kubectx.git
+    dest: /opt/kubectx 
+
+- name: Link kubectx and kubens
+  become: yes
+  file:
+    src: '/opt/kubectx/{{item}}'
+    dest: '/usr/local/bin/{{item}}'
+    state: link
+  with_items:
+    - 'kubectx'
+    - 'kubens'
+
+- name: Install helm
+  get_url:
+    url: https://get.helm.sh/helm-v3.8.1-linux-amd64.tar.gz
+    dest: /tmp/helm-v3.8.1-linux-amd64.tar.gz
+
+- name: Unzip helm
+  unarchive:
+    src: /tmp/helm-v3.8.1-linux-amd64.tar.gz
+    dest: /tmp
+
+- name: Move helm binary
+  become: yes
+  copy:
+    src: /tmp/linux-amd64/helm
+    dest: /usr/local/bin/helm
+    mode: a+x
 
 # aws-iam-authenticator curl
 # chmod +x
@@ -25,5 +67,3 @@
 # install opa (github curl)
 
 # install stern
-
-# install helm
