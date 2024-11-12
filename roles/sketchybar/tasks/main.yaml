@@ -1,0 +1,11 @@
+- name: Add sketchybar
+  command: brew tap FelixKratz/formulae
+
+- name: Install sketchybar
+  command: brew install sketchybar
+
+- name: Link config
+  file:
+    src: '{{ dotfiles_path }}/roles/sketchybar/files'
+    dest: '{{ user_home }}/.config/sketchybar'
+    state: link

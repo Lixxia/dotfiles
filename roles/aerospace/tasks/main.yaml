@@ -1,0 +1,8 @@
+- name: Install aerospace
+  command: brew install --cask nikitabobko/tap/aerospace
+
+- name: Link config
+  file:
+    src: '{{ dotfiles_path }}/roles/aerospace/files'
+    dest: '{{ user_home }}/.config/aerospace'
+    state: link
