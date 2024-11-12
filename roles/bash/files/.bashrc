@@ -1,11 +1,13 @@
+set +o posix
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-export PATH="$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/bin:$HOME/go/bin:/usr/local/go/bin:/opt/homebrew/bin:$PATH"
+export GOROOT=/usr/local/go
 
 # Bash Completion
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # History
 HISTCONTROL=ignoreboth
@@ -35,17 +37,17 @@ show_color() {
 }
 
 working_directory() {
-    echo -e "$(tput setaf 8)$(tput setaf 12)$(tput setab 8)$(pwd | sed "s/${HOME//\//\\\/}/ /; s/\//  /g")\e[0m$(tput setaf 8)\e[0m"
+    printf "$(tput setaf 8)$(tput setaf 12)$(tput setab 8)$(pwd | gsed "s@${HOME}@ @; s@/@  @g")\e[0m$(tput setaf 8)\e[0m"
 }
 
 parse_git_branch() {
     branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) || return
     if [[ $(git status 2> /dev/null | tail -n1) = "nothing to commit, working tree clean" ]]; then
-      # echo -e "$(tput setaf 10)"
-      echo -e "$(tput setaf 10)$(tput setab 10)$(tput setaf 8) $branch\e[0m$(tput setaf 10)\e[0m"
+      # printf "$(tput setaf 10)"
+      printf "$(tput setaf 10)$(tput setab 10)$(tput setaf 8) $branch\e[0m$(tput setaf 10)\e[0m"
     else
-      # echo -e "$(tput setaf 9)"
-      echo -e "$(tput setaf 9)$(tput setab 9)$(tput setaf 8) $branch\e[0m$(tput setaf 9)\e[0m"
+      # printf "$(tput setaf 9)"
+      printf "$(tput setaf 9)$(tput setab 9)$(tput setaf 8) $branch\e[0m$(tput setaf 9)\e[0m"
     fi
 }
 
@@ -53,10 +55,12 @@ parse_git_branch() {
 
 push() {
     branch=$(git rev-parse --abbrev-ref HEAD)
-    if [[ "$branch" != "master" ]]; then
-        git push origin $(git rev-parse --abbrev-ref HEAD)
-    else
+    if [[ "$branch" == "main" ]]; then
+        echo "Will not push to main."
+    elif [[ "$branch" == "master " ]]; then
         echo "Will not push to master."
+    else
+        git push origin $(git rev-parse --abbrev-ref HEAD)
     fi
 }
 
@@ -64,13 +68,6 @@ cdt() {
     if [[ $(git rev-parse --show-toplevel 2> /dev/null) ]]; then
         cd $(git rev-parse --show-toplevel)
     fi
-}
-
-userdata_diff() {
-    local before=${1:?Userdata required}
-    local after=${1:?Userdata required}
-
-    diff <(echo "$before" | base64 -d | gzip -cd) <(echo "$after" | base64 -d | gzip -cd)
 }
 
 ttf() {
@@ -83,8 +80,9 @@ alias ko="kubeon"
 alias koff="kubeoff"
 alias kns="kubens 2> /dev/null"
 alias kgn="kubectl get nodes -L node.kubernetes.io/type --sort-by=.metadata.creationTimestamp"
-source <(kubectl completion bash)
+source "/etc/bash_completion.d/kubectl"
 complete -F __start_kubectl k
+export KUBE_EDITOR="nvim"
 
 sort_by() {
     echo "--sort-by=.metadata.creationTimestamp"
@@ -97,7 +95,7 @@ kube_ps1() {
     kube_namespace="${kube_namespace:-default}"
 
     if [[ "$KUBE_PS1_ENABLED" == "on" ]]; then
-        echo -e " $(tput setaf 24)ﴱ \e[1;33m${kube_context}\e[0m ╸\e[34m${kube_namespace}\e[0m ╺─╸ "
+        printf "$(tput setaf 8)$(tput setaf 5)$(tput setab 8) ${kube_context}   ${kube_namespace}\e[0m$(tput setaf 8)\e[0m"
     fi
 }
 
@@ -108,6 +106,24 @@ kubeoff() {
 kubeon() {
     export KUBE_PS1_ENABLED="on"
 }
+
+kc () {
+    kubectx ${1}
+}
+
+# kc() {
+#     local acc=${1:-}
+#     case $acc in)
+#         sandbox)
+#             jps sandbox
+#             ;;
+#         *)
+#             ;;
+#     esac
+#     kubectx $acc
+# }
+
+# Helpers
 
 extract() {
     if [ -f $1 ] ; then
@@ -143,6 +159,7 @@ alias restart-sound="pulseaudio -k && sudo alsa force-reload"
 alias vi="nvim"
 alias vim="nvim"
 alias vvim="vim"
+alias vimdiff="nvim -d"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -161,17 +178,32 @@ export GREP_COLOR='1;33'
 if [ -n "$SSH_CONNECTION" ]; then
   export PS1='┌─╸\[\e[1;32m\]\u@\h\[\e[0;37m\]╺─╸[\[\e[1;34m\]\w\[\e[1;37m\]]$(parse_git_branch)\[\e[1;32m\] \n\[\e[1;37m\]└────╸\[\e[0m\]'
 else
-    export PS1=$'╭─$(working_directory) $(parse_git_branch) $([ \j -gt 0 ] && echo "\e[1;32m\]")\[\e[1;32m\] \n\[\e[0;37m\]╰─ \[\e[0m\]'
+    export PS1=$'$(working_directory) $(parse_git_branch) $(kube_ps1) $(curprofile) $([ \j -gt 0 ] && echo "\e[1;32m\]")\[\e[1;32m\] \n\[\e[0;37m\]  \[\e[0m\]'
 fi
 
+_getprofiles() {
+    COMPREPLY=($(compgen -W "$(sed -n 's#^\[\(.*\)\]#\1#p' ~/.aws/config | sort -u)" -- "${COMP_WORDS[1]}"))
+}
 
+aps () {
+    if [ -z "$1" ]; then
+        echo $AWS_DEFAULT_PROFILE
+        return
+    fi
 
+    export AWS_DEFAULT_PROFILE=$1
+    printf "$(echo $1)"
+}
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION
+curprofile() {
+    aws_profile="$AWS_DEFAULT_PROFILE"
+    if [[ "${aws_profile}" == "prod" ]]; then
+      printf "$(tput setaf 8)$(tput setaf 1)$(tput setab 8) $AWS_DEFAULT_PROFILE\e[0m$(tput setaf 8)\e[0m"
+    elif [[ -z "${aws_profile}" ]]; then
+      printf "$(tput setaf 8)$(tput setaf 12)$(tput setab 8) -\e[0m$(tput setaf 8)\e[0m"
+    else
+      printf "$(tput setaf 8)$(tput setaf 12)$(tput setab 8) $AWS_DEFAULT_PROFILE\e[0m$(tput setaf 8)\e[0m"
+    fi
+    # printf "$(tput setaf 8)$(tput setaf 12)$(tput setab 8)$(pwd | gsed "s@${HOME}@ @; s@/@  @g")\e[0m$(tput setaf 8)\e[0m"
+}
+complete -F _getprofiles aps
