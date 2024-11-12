@@ -2,6 +2,8 @@
   hosts: local
   roles:
     - {role: misc, tags: ['misc']}
+    - {role: aerospace, tags: ['aerospace']}
+    - {role: sketchybar, tags: ['sketchybar']}
     - {role: nvim, tags: ['nvim']}
     - {role: bash, tags: ['bash']}
     - {role: fonts, tags: ['fonts']}

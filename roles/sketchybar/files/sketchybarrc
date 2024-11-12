@@ -1,0 +1,150 @@
+BLUE=0xFF96CDF8
+CYAN=0xFF89DCE8
+PURPLE=0xFFC6AAE8
+RED=0xFFF28FAD
+GREEN=0xFFB1E3AD
+YELLOW=0xFFFAE3B0
+BG=0xEB1E1E28
+FG=0xEBffffff
+FGALT=0xFF1A1826
+
+# MAIN
+sketchybar --bar height=35 \
+                 margin=5 \
+                 y_offset=0 \
+                 padding_left=0 \
+                 padding_right=0 \
+                 color=0x00000000 \
+                 display=1
+
+sketchybar --default updates=when_shown \
+                     icon.font="Symbols Nerd Font Mono:Normal:14.0" \
+                     icon.color=$FG \
+                     label.font="Victor Mono:Bold:14.0" \
+                     background.color=0x00000000 \
+                     y_offset=0
+
+# LEFT
+
+sketchybar --add event aerospace_workspace_change
+
+SPACE_ICONS=("" "" "3" "" "" "6" "7" "8" "" "" "11" "12")
+
+for sid in $(aerospace list-workspaces --monitor all --empty no); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid \
+        background.color=$CYAN \
+        background.corner_radius=0 \
+        background.height=25 \
+        background.padding_left=10 \
+        background.padding_right=10 \
+        background.drawing=off \
+        icon="${SPACE_ICONS[$sid-1]}" \
+        icon.align=center \
+        icon.padding_left=5 \
+        icon.padding_right=5 \
+        label="$sid" \
+        label.drawing=off \
+        click_script="aerospace workspace $sid" \
+        script="$CONFIG_DIR/scripts/aerospace.sh $sid"
+done
+
+# spaces together 
+sketchybar --add bracket spaces '/space\..*/' \
+           --set         spaces background.color=$BG \
+                                background.corner_radius=15 \
+                                blur_radius=2 \
+                                background.height=25                    
+        
+# update defaults
+sketchybar --default \
+           background.color=$BG \
+           blur_radius=2 \
+           background.corner_radius=15 \
+           background.height=25 \
+           icon.padding_left=12 \
+           icon.padding_right=4 \
+           label.padding_left=4 \
+           label.padding_right=12 \
+           background.padding_left=18
+
+# CENTER 
+
+# title
+sketchybar --add item title center \
+           --set      title label.padding_left=12 \
+                            label="Title" \
+                            background.padding_left=0 \
+                            icon.padding_left=0 \
+                            icon.padding_right=0 \
+                            script='./scripts/title.sh' \
+                            label.max_chars=54
+
+sketchybar --subscribe title aerospace_workspace_change
+
+
+# RIGHT 
+
+# wifi
+sketchybar --add alias "Control Center,WiFi" right \
+           --set "Control Center,WiFi" alias.color=$FG \
+                                       background.padding_left=0 \
+                                       background.padding_right=0 \
+                                       background.drawing=off \
+                                       icon.padding_left=0 \
+                                       icon.padding_right=0 
+# time
+sketchybar --add item time right \
+           --set      time icon=  \
+                           icon.color=$BG \
+                           label.color=$BG \
+                           background.color=$PURPLE \
+                           background.corner_radius=0 \
+                           label="$(date '+%I:%M %p')" \
+                           script='./scripts/time.sh' \
+                           background.padding_left=0 \
+                           background.padding_right=0 \
+                           update_freq=1
+
+# battery
+sketchybar --add alias "Control Center,Battery" right \
+           --set "Control Center,Battery" alias.color=$FG \
+                                          background.padding_left=0 \
+                                          background.padding_right=0 \
+                                          background.drawing=off \
+                                          icon.padding_left=0 \
+                                          icon.padding_right=0 \
+                                          alias.update_freq=30
+
+# volume
+sketchybar --add alias "Control Center,Sound" right \
+           --set "Control Center,Sound" alias.color=$YELLOW \
+                                        background.padding_left=0 \
+                                        background.padding_right=0 \
+                                        background.drawing=off \
+                                        icon.padding_left=0 \
+                                        icon.padding_right=0 \
+                                        alias.update_freq=30
+
+# tailscale
+sketchybar --add alias "Tailscale,Item-0" right \
+           --set "Tailscale,Item-0" alias.color=$RED \
+                                    background.padding_left=0 \
+                                    background.padding_right=0 \
+                                    background.drawing=off \
+                                    icon.padding_left=5 \
+                                    icon.padding_right=0
+
+# consolidate right
+sketchybar --add bracket rights time "Control Center,Battery" "Control Center,Sound" "Control Center,WiFi" "Tailscale,Item-0" \
+           --set         rights background.color=$BG \
+                                background.corner_radius=15 \
+                                background.padding_left=10 \
+                                background.padding_right=10 \
+                                blur_radius=2 \
+                                background.height=25
+
+# finish config
+sketchybar --hotload on
+sketchybar --update
